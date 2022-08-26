@@ -1,0 +1,1052 @@
+<div class="home-content">
+  <div class="container-full">
+    
+    <nav class="esn-wrapper">
+      <ul id="esn-outer_wrapper" class="nav-promotion-images mobile_only desktop_promotion home_promotion esn-outer_wrapper">
+        <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
+          <ul id="esn-container" class="esn-container">
+            {% assign subnavLinks = linklists["new-mobile-subnav-feb-twentytwo"].links %}
+            {%- for link in subnavLinks -%}
+              <li>
+                <a class="image_block" href="{{ link.url }}">
+                  <div>
+                    <!--             <img width="91" height="121" class="lazyloadPload" alt="EBY Memberships" title="EBY Memberships" src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---Product-NAV---subscription---1440_2x_d3d77c30-997d-4605-9e9e-97b90287ffbd.jpg?v=1637064352"> -->
+                    <h4>{{ link.title }}</h4>
+                  </div>
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    {% if shop.metafields.ebyacf.enable_holiday_mode__global %}
+    <div class="banner_section">
+        <a href="/collections/seamless-underwear">
+          <img width="1680" height="993" alt="Seamless Underwear Sitewide Sale" title="Seamless Underwear Sitewide Sale" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/EOY-1440-opt.jpg?v=1640123447" class="desk_img lazyload">
+          <img width="762" height="762" alt="Seamless Underwear Sitewide Sale" title="Seamless Underwear Sitewide Sale" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/EOY-1440-opt.jpg?v=1640123447" class="tablet_img lazyload">
+          <img width="375" height="478" alt="Seamless Underwear Sitewide Sale" title="Seamless Underwear Sitewide Sale" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/EOY-376---Posiition-1-_-2-opt.jpg?v=1640121474" class="mob_img lazyload">
+        </a>
+      	<div class="over_text">
+          <p>UP TO 60% OFF<br>SITEWIDE</p>
+          <a href="/collections/seamless-underwear">SHOP NOW</a>
+      	</div>
+    </div>
+    {% else %}
+    <div class="banner_section middle_align">
+<!--       <a href="/pages/seamless-sheer-mesh">
+        <img width="1680" height="993" alt="All New Seamless Mesh Underwear" title="All New Seamless Mesh Underwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/1440---HOME---SHEER---slot_1_2x_36f92379-99f1-461e-bdb3-5ccd74b0555c.jpg" class="desk_img lazyload">
+        <img width="762" height="762" alt="All New Seamless Mesh Underwear" title="All New Seamless Mesh Underwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/768---HOME---SHEER---slot_1_2x_66f09871-b579-4786-803f-d559cc8300a6.jpg" class="tablet_img lazyload">
+        <img width="375" height="478" alt="All New Seamless Mesh Underwear" title="All New Seamless Mesh Underwear" src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/376---HOME---SHEER---slot_1_2x_3c1eb0b3-60c6-4664-af19-c7a162487913.jpg" class="mob_img lazyloadPload">
+      </a>
+      <div class="over_text middle_align">
+        <p>NEW SEAMLESS MESH</p>
+        <a href="/pages/seamless-sheer-mesh">SHOP NOW</a>
+      </div>
+      <a href="/pages/duchess-and-festival-fuchsia#shopify-section-dutchess-middle_section">
+        <img width="1680" height="993" alt="All New Seamless Luxe Underwear" title="All New Seamless Luxe Underwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/1440---HOME---LUXE_6---Slot-1_2x_65adc739-a188-4d8c-9299-d8a0cba29cdb.jpg" class="desk_img lazyload">
+        <img width="762" height="762" alt="All New Seamless Luxe Underwear" title="All New Seamless Luxe Underwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/768---HOME---LUXE_6---Slot-1_2x_15265cf5-5f0f-4a27-92ba-c10ff7c97c24.jpg" class="tablet_img lazyload">
+        <img width="375" height="478" alt="All New Seamless Luxe Underwear" title="All New Seamless Luxe Underwear" src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/376---HOME---LUXE_6---Slot-1_2x_c58eae19-aaa9-4810-9213-497cf4bd18bb.jpg" class="mob_img lazyloadPload">
+      </a>
+      <div class="over_text middle_align">
+        <p><span class="hpNewSubText">ALL NEW</span> SEAMLESS LUXE<br/>MATCHING SETS</p>
+        <a href="/pages/duchess-and-festival-fuchsia#shopify-section-dutchess-middle_section">SHOP NOW</a>
+      </div> -->
+      <div class="ebyHomePanel shopAllUnderwearPanel us_only primary">
+<!--       	<a href="/collections/invisible-cotton">
+          <img width="696" height="696" alt="New Seamless Cotton Underwear and Seamless Cotton Bralettes" title="New Seamless Cotton Underwear and Seamless Cotton Bralettes" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---1440---1024---768---cotton---newcolors---blueopal.jpg" class="desk_img lazyload">
+          <img width="425" height="425" alt="New Seamless Cotton Underwear and Seamless Cotton Bralettes" title="New Seamless Cotton Underwear and Seamless Cotton Bralettes" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---1440---1024---768---cotton---newcolors---blueopal.jpg" class="tablet_img lazyload">
+          <img width="376" height="472" alt="New Seamless Cotton Underwear and Seamless Cotton Bralettes" title="New Seamless Cotton Underwear and Seamless Cotton Bralettes" src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---336---cotton---newcolors---blueopal.jpg" class="mob_img lazyloadPload">
+        </a>
+        <div class="over_text middle_align">
+          <h3><span class="hpNewSubText">Seamless Cotton</span>New Colors,<br/>Laurel Green &amp; Blue Opal!</h3>
+          <a href="/collections/invisible-cotton">SHOP NOW</a>
+        </div> -->
+        <a href="/pages/washable-eco-silk-outerwear">
+          <img width="696" height="696" alt="All New Washable Eco Silk Inner and Outerwear" title="All New Washable Eco Silk Inner and Outerwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME_-_1440_-_we-silk_-_A.jpg" class="desk_img lazyload">
+          <img width="425" height="425" alt="All New Washable Eco Silk Inner and Outerwear" title="All New Washable Eco Silk Inner and Outerwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME_-_1440_-_we-silk_-_A.jpg" class="tablet_img lazyload">
+          <img width="376" height="472" alt="All New Washable Eco Silk Inner and Outerwear" title="All New Washable Eco Silk Inner and Outerwear" src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME_-_376_-_we-silk_-_A.jpg" class="mob_img lazyloadPload">
+        </a>
+        <div class="over_text middle_align">
+          <h3><span class="hpNewSubText">Our Latest Innovation</span>Washable Eco Silk<br/><span class="miniCopyAddon">Inner-Outerwear</span></h3>
+          <a href="/pages/washable-eco-silk-outerwear">SHOP NOW</a>
+        </div>
+      </div>
+      <div class="ebyHomePanel internationalPanel internationalBlock primary">
+      	<!-- <a href="/pages/seamless-sheer-bralettes">
+          <img width="696" height="696" alt="New Seamless Underwear and Seamless Bralettes" title="New Seamless Underwear and Seamless Bralettes" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---1440---sheer_reverted.jpg" class="desk_img lazyload">
+          <img width="425" height="425" alt="New Seamless Underwear and Seamless Bralettes" title="New Seamless Underwear and Seamless Bralettes" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---1440---sheer_reverted.jpg" class="tablet_img lazyload">
+          <img width="376" height="472" alt="New Seamless Underwear and Seamless Bralettes" title="New Seamless Underwear and Seamless Bralettes" src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---376---sheer_reverted.jpg" class="mob_img lazyloadPload">
+        </a>
+        <div class="over_text middle_align">
+          <h3><span class="hpNewSubText">Our Latest Innovation</span>All New Sheer Is Here<br/><span class="miniCopyAddon">Hyper Pink &amp; Lime Punch</span></h3>
+          <a href="/pages/seamless-sheer-bralettes">SHOP NOW</a>
+        </div> -->
+        <a href="/pages/washable-eco-silk-outerwear">
+          <img width="696" height="696" alt="All New Washable Eco Silk Inner and Outerwear" title="All New Washable Eco Silk Inner and Outerwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME_-_1440_-_we-silk_-_A.jpg" class="desk_img lazyload">
+          <img width="425" height="425" alt="All New Washable Eco Silk Inner and Outerwear" title="All New Washable Eco Silk Inner and Outerwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME_-_1440_-_we-silk_-_A.jpg" class="tablet_img lazyload">
+          <img width="376" height="472" alt="All New Washable Eco Silk Inner and Outerwear" title="All New Washable Eco Silk Inner and Outerwear" src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME_-_376_-_we-silk_-_A.jpg" class="mob_img lazyloadPload">
+        </a>
+        <div class="over_text middle_align">
+          <h3><span class="hpNewSubText">Our Latest Innovation</span>Washable Eco Silk<br/><span class="miniCopyAddon">Inner &amp; Outerwear</span></h3>
+          <a href="/pages/washable-eco-silk-outerwear">SHOP NOW</a>
+        </div>
+      </div>
+      {% if customer.tags contains 'Active Subscriber' %}
+      <div class="ebyHomePanel joinTheMovementPanel us_only memberOnlyPanel secondary">
+      	<a class="homeHeroImage" href="/pages/give-ten">
+          <img width="696" height="696" alt="" title="" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---1440---referral-desktop.jpg" class="desk_img lazyload">
+          <img width="425" height="425" alt="" title="" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---1440---referral-desktop.jpg" class="tablet_img lazyload">
+          <img width="376" height="472" alt="" title="" src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME_-_referral-mock_-_376.jpg" class="mob_img lazyloadPload">
+        </a>
+        <div class="over_text middle_align">
+          <h3><span class="hpNewSubText">Share The Love</span>Give $10, Get $10</h3>
+          <a href="/pages/give-ten">START TODAY</a>
+        </div>
+      </div>
+      {% else %}
+      <div class="ebyHomePanel joinTheMovementPanel us_only secondary">
+      	<a class="homeHeroImage" href="/pages/underwear-subscription-membership">
+          <img width="696" height="696" alt="Best Underwear Subscription For Women" title="Best Underwear Subscription For Women" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---1440---subscription.jpg" class="desk_img lazyload">
+          <img width="425" height="425" alt="Best Underwear Subscription For Women" title="Best Underwear Subscription For Women" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---768---subscription.jpg" class="tablet_img lazyload">
+          <img width="376" height="472" alt="Best Underwear Subscription For Women" title="Best Underwear Subscription For Women" src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---376---subscription.jpg" class="mob_img lazyloadPload">
+        </a>
+        <div class="over_text middle_align">
+          <h3><span class="hpNewSubText">Try Our Subscription</span>Subscribe &amp;<br/>Save 40%</h3>
+          <a href="/pages/underwear-subscription-membership">GET STARTED</a>
+        </div>
+      </div>
+      {% endif %}
+      <div class="ebyHomePanel internationalPanel internationalBlock secondary">
+<!--       	<a href="/pages/womens-underwear-sale">
+          <img width="696" height="696" alt="New Seamless Panties Sale" title="New Seamless Panties Sale" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---1440---luxe7---slot2.jpg?v=1649037270" class="desk_img lazyload">
+          <img width="425" height="425" alt="New Seamless Panties Sale" title="New Seamless Panties Sale" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---1440---luxe7---slot2.jpg?v=1649037270" class="tablet_img lazyload">
+          <img width="376" height="472" alt="New Seamless Panties Sale" title="New Seamless Panties Sale" src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---376---25_2---slot_1_2x_ab6c265a-19e0-413b-a8a1-bdecad9b302a.jpg" class="mob_img lazyloadPload">
+        </a>
+        <div class="over_text middle_align">
+          <h3><span class="hpNewSubText">Capsule Collection</span>ONE WEEK ONLY<br/>25% OFF SALE</h3>
+          <a href="/pages/womens-underwear-sale">SHOP NOW</a>
+        </div> -->
+        <a href="/collections/new-arrivals">
+          <img width="696" height="696" alt="New Seamless Underwear and Seamless Bralettes" title="New Seamless Underwear and Seamless Bralettes" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/LP---universal---luxe7---story1b.jpg" class="desk_img lazyload">
+          <img width="425" height="425" alt="New Seamless Underwear and Seamless Bralettes" title="New Seamless Underwear and Seamless Bralettes" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/LP---universal---luxe7---story1b.jpg" class="tablet_img lazyload">
+          <img width="376" height="472" alt="New Seamless Underwear and Seamless Bralettes" title="New Seamless Underwear and Seamless Bralettes" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/LP---universal---luxe7---story1_64cb13fb-b776-4c2c-993e-a390c50d11bb.jpg" class="mob_img lazyload">
+        </a>
+        <div class="over_text middle_align">
+          <h3><span class="hpNewSubText">All New</span>Seamless Luxe<br/>Matching Sets</h3>
+          <a href="/collections/new-arrivals">SHOP NOW</a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+    {%comment%}
+    {% if shop.metafields.ebyacf.enable_holiday_mode__global %}
+    <div class="banner_section only_mobile_banner">
+      <a href="/collections/last-call-seamless-underwear">
+        <img width="375" height="478" alt="No-Strap Seamless Fabric Bralettes" title="No-Strap Seamless Fabric Bralettes" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/Cotton-2-0-Position-2-opt.jpg?v=1640118110" class="mob_img lazyload">
+      	<div class="over_text">
+          <p>COTTON 2.0<br>SEAMLESS UNDERWEAR</p>
+          <a href="/products/seamless-cotton-underwear">SHOP</a>
+        </div>
+      </a>
+    </div>
+    {% else %}
+    <div class="banner_section only_mobile_banner">
+      <a href="/pages/luxe-wrap-tops">
+        <img width="375" height="478" alt="Shop Panty Subscriptions" title="Shop Panty Subscriptions" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---376---luxe7---slot2.jpg" class="lazyload">
+      	<div class="over_text">
+          <h3><span class="hpNewSubText">All New</span>Seamless Luxe<br>Matching Sets</h3>
+          <div class="ebyCtaBtn">SHOP NOW</div>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+    {%endcomment%}
+    
+    {% if shop.metafields.ebyacf.enable_holiday_mode__global %}
+    <div class="four_cols two_cols">
+      <div class="two_colss new-container">
+        <div class="four_col">
+          <div class="inner_four_col">
+            <a href="/products/seamless-cotton-underwear">
+              <div class="inner_four">
+                <img width="512" height="514" class="lazyload" alt="Shop Seamless Underwear" title="Shop Seamless Underwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/Cotton-2-0-Position-2-opt.jpg?v=1640118110" />
+                <div class="four_over_text">
+                  <p>COTTON 2.0<br>SEAMLESS UNDERWEAR</p>
+                  <div>
+                    SHOP
+                  </div>                  
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="inner_four_col">
+            <a href="/collections/last-call-seamless-underwear">
+              <div class="inner_four">
+                <img width="512" height="514" class="lazyload" alt="Shop Panty Subscriptions" title="Shop Panty Subscriptions" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/opt768---lastcall_2x_2d0e07fd-0e46-4054-b7bd-6289df535065.jpg">
+                <div class="four_over_text">
+                  <p>LAST CALL<br>SALE</p>
+                  <div>SHOP LAST CALL</div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+<!--     <div class="four_cols two_cols single_cols bfx-remove">
+      
+        <div class="two_colss new-container">
+            <div class="four_col">
+              <a href="/collections/best-sellers">
+                <div class="inner_four_col">
+                  <div class="inner_four">
+                    <img width="1680" height="993" alt="Poppy Red Print Underwear" title="Poppy Red Print Underwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---HOME_3---Evergreen---key-1---1440_2x_9e16a749-ab45-489f-beae-e218dff7a36c.jpg?v=1637405934" class="desk_img lazyload"/>
+                    <img width="762" height="762" alt="Poppy Red Print Underwear" title="Poppy Red Print Underwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---HOME_3---Evergreen---key-1---768_2x_7dc863e8-94aa-4c10-a156-7d4caa28354d.jpg?v=1637405934" class="tablet_img lazyload"/>
+                    <img width="375" height="478" alt="Poppy Red Print Underwear" title="Poppy Red Print Underwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---HOME_3---Evergreen---key-1---376_2x_ede725b2-ecf6-4f28-aa99-829617f44858.jpg?v=1637405934" class="mob_img lazyload"/>
+                    <div class="four_over_text">
+                      <p>UNDERWEAR LIKE <br>YOU’VE NEVER <br>FELT BEFORE</p>
+                      <div>SHOP NOW</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+        </div>
+    </div> -->
+    {% comment %}
+    <div class="four_cols two_cols">
+      <div class="two_colss new-container">
+        <div class="four_col">
+          <div class="inner_four_col">
+            <a href="/pages/luxe-wrap-tops">
+              <div class="inner_four">
+                <img width="512" height="512" class="lazyload" alt="Shop Panty Subscriptions" title="Shop Panty Subscriptions" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---768---luxe7---slot2.jpg">
+                <div class="four_over_text">
+<!--                   <p>FREE BRALETTE<br>
+                    IN 1ST BOX<br>
+                    USE: FREEBRA</p>
+                  <div>SUBSCRIBE TODAY & SAVE BIG</div> -->
+                  <h3><span class="hpNewSubText">All New</span>Seamless Luxe<br>Matching Sets</h3>
+                  <div class="ebyCtaBtn">SHOP NOW</div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="inner_four_col">
+            <a href="/pages/womens-underwear-sale">
+              <div class="inner_four">
+                <img width="512" height="512" alt="Spring Underwear For Women" title="Spring Underwear For Women" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---768---25_3---slot2.jpg" class="lazyload">
+                <div class="four_over_text">
+                  <h3><span class="hpNewSubText">French Collection</span> ONE WEEK ONLY<br/>25% OFF SALE</h3>
+                  <div class="ebyCtaBtn">
+                    SHOP TODAY
+                  </div>                  
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endcomment %}
+	{% endif %}
+    
+    <div class="reviews_section epcWrapper text-center index-carousel">
+      <div class="review_container new-container ebyContainer pcs">
+        <h5>Best Women's Underwear Ever</h5>
+        <div class="pcsOuterWrapper">
+          <div class="products_carousel_wrapper pcsWrapper">
+            <div class="pcsInnerWrapper">
+              <div class="pcsContainer">
+              {% for product in collections['homepage-carousel-collection'].products %}
+                    {%- assign hasFlag = "false" -%}
+                    {% for prodTag in product.tags %}
+                        {% if prodTag == "flag-new_arrival" %}
+                            {% assign hasFlag = "true" %}
+                            {% assign prodFlag = "New" %}
+                        {% endif %}
+                        {% if prodTag == "flag-on_sale" %}
+                            {% assign hasFlag = "true" %}
+                            {% assign prodFlag = "Sale" %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if product.type contains "Underwear" %}
+                        {% for prodTag in product.tags %}
+                            {% if prodTag contains "pantyType-" %}
+                                {%- assign prodNameTitle = prodTag | replace: "pantyType-", "" | replace: "_", " "  -%}
+                            {% endif %}
+                            {% if prodTag contains "pantyColor-" %}
+                                {%- assign prodColorTitle = prodTag | replace: "pantyColor-", "" | replace: "_", " " -%}
+                            {% endif %}
+                            {% if prodTag contains "pantyFabric-" %}
+                                {% if prodTag == "pantyFabric-signature" %}
+                                    {%- assign prodFabricTitle = "Seamless" -%}
+                                {% elsif prodTag == "pantyFabric-cotton" %}
+                                  {%- assign prodFabricTitle = "Seamless Cotton" -%}
+                                {% else %}
+                                    {% if product.type contains "Mesh" %}
+                                        {%- assign prodFabricTitle = "Seamless Sheer" -%}
+                                    {% else %}
+                                        {%- assign prodFabricTitle = "Seamless" -%}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% elsif product.type contains "Bralette" %}
+                        {%- assign prodNameTitle = "bralette" -%}
+                        {% for prodTag in product.tags %}
+                            {% if prodTag contains "braletteColor-" %}
+                                {%- assign prodColorTitle = prodTag | replace: "braletteColor-", "" | replace: "_", " " -%}
+                            {% endif %}
+                            {% if prodTag contains "braletteFabric-" %}
+                                {% if prodTag == "braletteFabric-signature" %}
+                                    {%- assign prodFabricTitle = "Seamless" -%}
+                                {% elsif prodTag == "braletteFabric-cotton" %}
+                                    {%- assign prodFabricTitle = "Seamless Cotton" -%}
+                                {% else %}
+                                    {% if product.type contains "Mesh" %}
+                                        {%- assign prodFabricTitle = "Seamless Sheer" -%}
+                                    {% else %}
+                                        {%- assign prodFabricTitle = "Seamless" -%}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% elsif product.type == "Wrap Top" %}
+                        {%- assign prodNameTitle = "Wrap Top" -%}
+                        {% for prodTag in product.tags %}
+                            {% if prodTag contains "wrapColor-" %}
+                                {%- assign prodColorTitle = prodTag | replace: "wrapColor-", "" | replace: "_", " " -%}
+                            {% endif %}
+                            {% if prodTag contains "wrapFabric-" %}
+                                {% if prodTag == "wrapFabric-signature" %}
+                                    {%- assign prodFabricTitle = "Seamless" -%}
+                                {% else %}
+                                    {%- assign prodFabricTitle = prodTag | replace: "wrapFabric-", "" | replace: "_", " " -%}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                  {% elsif product.type == "Bodysuit" %}
+                        {%- assign prodNameTitle = "Bodysuit" -%}
+                        {% for prodTag in product.tags %}
+                            {% if prodTag contains "bodysuitColor-" %}
+                                {%- assign prodColorTitle = prodTag | replace: "bodysuitColor-", "" | replace: "_", " " -%}
+                            {% endif %}
+                            {% if prodTag contains "bodysuitFabric-" %}
+                                {% if prodTag == "bodysuitFabric-signature" %}
+                                    {%- assign prodFabricTitle = "Seamless" -%}
+                                {% else %}
+                                    {%- assign prodFabricTitle = prodTag | replace: "bodysuitFabric-", "" | replace: "_", " " -%}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% elsif product.type == "Tank" %}
+                        {%- assign prodNameTitle = "Tank" -%}
+                        {% for prodTag in product.tags %}
+                            {% if prodTag contains "tankColor-" %}
+                                {%- assign prodColorTitle = prodTag | replace: "tankColor-", "" | replace: "_", " " -%}
+                            {% endif %}
+                            {% if prodTag contains "tankFabric-" %}
+                                {% if prodTag == "tankFabric-signature" %}
+                                    {%- assign prodFabricTitle = "Seamless" -%}
+                                {% else %}
+                                    {%- assign prodFabricTitle = prodTag | replace: "tankFabric-", "" | replace: "_", " " -%}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if prodNameTitle == "highwaisted_thong" %}
+                        {% assign prdImgFileName = "hwthong" %}
+                    {% else %}
+                        {% assign prdImgFileName = prodNameTitle %}
+                    {% endif %}
+
+                    {% assign premImgFileName = prodColorTitle | replace: " ", "" | append: "---" | append: prdImgFileName | append: "---missy---tile_fr.jpg" %}
+
+                    <div class="col velaProBlock quickadd carousel-item ept" data-size-guid="{% render 'collection-selectors-charts', product_target: product %}">
+                      <div class="col-wrap velaProBlockInner">
+                        {% if hasFlag == "true" %}
+                        <div class="prodTileFlag">
+                          <div class="prodTileFlagInnerWrapper">
+                            <span>{{ prodFlag }}</span>
+                          </div>
+                        </div>
+                        {% endif %}
+                        <div class="product-image proHImage d-flex flexJustifyCenter">
+                          <a class="proFeaturedImage" href="{{ product.url }}" draggable="false">
+                            {% for image in product.images %}
+                              {%- assign itemNumber = forloop.index -%}
+                              {%- if itemNumber == 2 -%}
+                                <img class="lazyload" width="240" height="300" draggable="false" alt="{{ image.alt }}" title="{{ image.alt }}" data-src="{{ image | img_url: 'master' }}">
+                              {%- endif -%}
+                            {% endfor %}
+                            <div class="col-pro-details">
+                              {% if product.type contains "Underwear" %}
+                              <h3 href="{{ product.url }}" draggable="false">
+                                <span>{{ prodFabricTitle| capitalize  }}</span>
+                                <span>{{ prodNameTitle | capitalize  }}</span>
+                                <span class="small">{{ prodColorTitle | capitalize  }}</span>
+                              </h3>
+                              {% else %}
+                              <h3 href="{{ product.url }}" draggable="false">
+                                <span>{{ prodFabricTitle| capitalize  }}</span>
+                                <span>{{ prodNameTitle | capitalize  }}</span>
+                                <span class="small">{{ prodColorTitle | capitalize  }}</span>
+                              </h3>
+                              {% endif %}
+                              <!-- <div class="prodTileReviewWrapper">
+                                {% if product.metafields.stamped.reviews_average %}
+                                <span class="colReviewAggrWrapper" draggable="false"><span>{{ product.metafields.stamped.reviews_average | round:2 }}</span><i class="reviewStar"></i></span>
+                                {% endif %}
+                              </div> -->
+                            </div>
+                          </a>
+                        </div>
+                        <div class="product-details proButton clearfix">
+                          <div class="quick_btn">
+                            <div class="productQuickAdd">
+                              <button class="btn btnProduct btnProductQuickAdd" data-href="#velaQuickAdd-{{ product.id }}" data-handle="{{ product.handle }}" title="Quick Add +">
+                                <div class="quickAddBtnInnerWrapper">
+                                  <span class="text">Add to Cart</span>
+                                  <div class="prodTilePriceWrapper{% if customer.tags contains 'Active Subscriber' and product.metafields.ebyacf.vip_product_price %} vipHighlight{%endif%}">
+                                    <p class="price bfx-price">{{ product.price | money_without_trailing_zeros  }}</p>
+                                    {% if customer.tags contains 'Active Subscriber' %}
+                                    {% if product.type == "Mask"%}
+                                    {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                    <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %}vipHighlight {%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %}bfx-price">{{ product.metafields.ebyacf.vip_product_price | replace: '/ ', '' | replace: ' members', ''  }}</div>
+                                    {% else %}
+                                    <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %}vipHighlight {%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %}bfx-price">{{ product.price | money_without_trailing_zeros  }}</div>
+                                    {% endif %}
+                                    <div class="ebyProdTile-vipPriceWrapper bfx-remove-element">
+                                      {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                      {%- assign discount = product.price | times: 44 | divided_by: 100 -%}
+                                      {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
+                                      {% comment %}
+                                      <p>/ <span class="ebyHolidayPrice bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }}% Off</span></p>
+                                      {% endcomment %}
+                                      <p>/ <span class="ebyHolidayPrice bfx-sale-price bfx-price">$6</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
+                                      {% else %}
+                                      <p class="bfx-price">{{product.metafields.ebyacf.vip_product_price | replace: "( " | replace: " members )"}}</p>
+                                      {% endif %}
+                                    </div>
+                                    {% elsif product.type == "Core Bralette" or product.type == "Cotton Bralette" or product.type == "Mesh Bralette" %}
+                                    {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                    <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %}vipHighlight {%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %}bfx-price">{{ product.metafields.ebyacf.vip_product_price | replace: '/ ', '' | replace: ' members', ''  }}</div>
+                                    {% else %}
+                                    <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %}vipHighlight {%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %}bfx-price">{{ product.price | money_without_trailing_zeros  }}</div>
+                                    {% endif %}
+                                    <div class="ebyProdTile-vipPriceWrapper bfx-remove-element">
+                                      {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %} 
+                                      {%- assign discount = product.price | times: 42.27 | divided_by: 100 -%}
+                                      {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
+                                      {% comment %}
+                                      <p>/ <span class="ebyHolidayPrice bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }}% Off</span></p>
+                                      {% endcomment %}
+                                      <p>/ <span class="ebyHolidayPrice bfx-sale-price bfx-price">$20</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
+                                      {% else %}
+                                      <p class="bfx-price">{{product.metafields.ebyacf.vip_product_price | replace: "( " | replace: " members )"}}</p>
+                                      {% endif %}
+                                    </div>
+                                    {% elsif product.type == "Wrap Top" %}
+                                    {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                    <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %}vipHighlight {%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %}bfx-price">{{ product.metafields.ebyacf.vip_product_price | replace: '/ ', '' | replace: ' members', ''  }}</div>
+                                    {% else %}
+                                    <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %}vipHighlight {%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %}bfx-price">{{ product.price | money_without_trailing_zeros  }}</div>
+                                    {% endif %}
+                                    <div class="ebyProdTile-vipPriceWrapper bfx-remove-element">
+                                      {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %} 
+                                      {%- assign discount = product.price | times: 42.27 | divided_by: 100 -%}
+                                      {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
+                                      {% comment %}
+                                      <p>/ <span class="ebyHolidayPrice bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }}% Off</span></p>
+                                      {% endcomment %}
+                                      <p>/ <span class="ebyHolidayPrice bfx-sale-price bfx-price">$20</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
+                                      {% else %}
+                                      <p class="bfx-price">{{product.metafields.ebyacf.vip_product_price | replace: "( " | replace: " members )"}}</p>
+                                      {% endif %}
+                                    </div>
+                                    {% elsif product.type == "Core Underwear" and product.tags contains "Featured Style" or product.type == "Mesh Underwear" %}
+                                    {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                    <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %}vipHighlight {%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %}bfx-price">{{ product.metafields.ebyacf.vip_product_price | replace: '/ ', '' | replace: ' members', ''  }}</div>
+                                    {% else %}
+                                    <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %}vipHighlight {%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %}bfx-price">{{ product.price | money_without_trailing_zeros  }}</div>
+                                    {% endif %}
+                                    <div class="ebyProdTile-vipPriceWrapper bfx-remove-element">
+                                      {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %} 
+                                      {%- assign discount = product.price | times: 44 | divided_by: 100 -%}
+                                      {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
+                                      {% comment %}
+                                      <p>/ <span class="ebyHolidayPrice bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }}% Off</span></p>
+                                      {% endcomment %}
+                                      <p>/ <span class="ebyHolidayPrice bfx-sale-price bfx-price">$9</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
+                                      {% else %}
+                                      <p class="bfx-price">{{product.metafields.ebyacf.vip_product_price | replace: "( " | replace: " members )"}}</p>
+                                      {% endif %}
+                                    </div>
+                                    {% elsif product.type == "Core Underwear" or product.type == "Cotton Underwear" or product.type == "Tank"  or product.type == "Bodysuit" or product.type == "Mesh Underwear" %}
+                                    {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                    <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %}vipHighlight {%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %}bfx-price">{{ product.metafields.ebyacf.vip_product_price | replace: '/ ', '' | replace: ' members', '' }}</div>
+                                    {% else %}
+                                    <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %}vipHighlight {%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %}bfx-price">{{ product.price | money_without_trailing_zeros  }}</div>
+                                    {% endif %}
+                                    <div class="ebyProdTile-vipPriceWrapper bfx-remove-element">
+                                      {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %} 
+                                      {%- assign discount = product.price | times: 43.24 | divided_by: 100 -%}
+                                      {%- assign holidayPrice = product.price | minus: discount | money_without_trailing_zeros  -%}
+                                      {% comment %}
+                                      <p>/ <span class="ebyHolidayPrice bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }}% Off</span></p>
+                                      {% endcomment %}
+                                      <p>/ <span class="ebyHolidayPrice bfx-sale-price bfx-price">$7.50</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
+                                      {% else %}
+                                      <p class="bfx-price">{{product.metafields.ebyacf.vip_product_price | replace: "( " | replace: " members )" }}</p>
+                                      {% endif %}
+                                    </div>
+                                    {% elsif product.type contains "Premium" %}
+
+                                    <div class="priceProduct {% if on_sale %}priceSale bfx-sale-price{% endif %}{% if product.metafields.ebyacf.evergreen_price_test %} st-tangentPrice{%endif%} bfx-price">{{ product.price | money_without_trailing_zeros  }}</div>
+
+                                    {% elsif product.type contains "Surprise Panty Pack" %}
+
+                                    <div class="priceProduct {% if on_sale %}priceSale bfx-sale-price{% endif %}{% if product.metafields.ebyacf.evergreen_price_test %} st-tangentPrice{%endif%} bfx-price">{{ product.price | money_without_trailing_zeros  }}</div>
+
+                                    {% endif %}
+
+                                    {% else %}
+                                    <div class="ebyProdTile-vipPriceWrapper bfx-remove-element">
+                                      {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                      {%- assign discount = product.price | times: shop.metafields.ebyacf.sitewide_discount_price | divided_by: 100 -%}
+                                      {%- assign holidayPrice = product.price | minus: discount | money_without_trailing_zeros  -%}
+                                      <p>/ <span class="ebyHolidayPrice bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
+                                      {% else %}
+                                      <p class="bfx-price">{{product.metafields.ebyacf.vip_product_price | replace: "( " | replace: " members )" }}</p>
+                                      {% endif %}
+                                    </div>
+                                    {% endif %}                                
+                                  </div>
+                                </div>
+                              </button>
+                              <div class="selection-wrapper" id="velaQuickAdd-{{ product.id }}">
+                              </div>
+                            </div>
+                            <span class="quickAddPriceNote{% if customer.tags contains 'Active Subscriber' and product.metafields.ebyacf.vip_product_price != "" %} vipHighlight{%endif%}">subscriber price</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="info-container">
+      <div class="new_style">
+        <h1>Seamless panties and bralettes for women
+        that with each purchase, give back to
+        women all over the world</h1>
+        <div class="below_content">
+          <h2>EBY makes the toppest-quality, best seamless underwear and bralettes you can buy.</h2>
+          <p>Even better, every single pair empowers a woman on the cusp of greatness — 10% of proceeds from all purchases fund micro-loans for women worldwide to start their own businesses, allowing them to benefit their communities and lift 
+            their families out of poverty.</p>
+          <p>Over 15,000 women impacted so far.<br> <b>Our goal is to impact 1 million by 2027.</b></p>
+          <p>EBY is easy. It's powerful. It's the most incredible underwear you will ever wear, and all you have 
+            to do to make an impact… is put it on.</p>
+          
+          <div class="reviews_section image_type text-center stories_section">
+            <div class="review_container new-container">
+              <p><b>Some of their stories.</b></p>
+              <div class="reviews_wrapper stories_wrapper">
+                <div class="reviews_grid">
+                  <div class="inner_reviews_grid">
+                    <div class="top_part">
+                      <img class="lazyload" width="319" height="214" alt="Microfinance Loan For Cosmetics Business" title="Microfinance Loan For Cosmetics Business" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---recipient-card---shirley_2x_925072f2-fed8-4500-ba93-0439e975d1c1.jpg?v=1637064352">
+                    </div>
+                    <div class="bottom_details">
+                      <div class="review_info">
+                        <p class="left_side">
+                          COUNTRY<br>
+                          BUSINESS<br>
+                          LOAN
+                        </p>
+                        <p class="right_side">
+                          Colombia<br>
+                          Cosmetics<br>
+                          $70
+                        </p>
+                      </div>
+                      <div class="bottom_part">
+                        <p>Shirley</p>
+<!--                         <a href="/pages/microfinance">See Her Story</a> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="reviews_grid">
+                  <div class="inner_reviews_grid">
+                    <div class="top_part">
+                      <img class="lazyload" width="319" height="214" alt="Microfinance Loan For Retail Business" title="Microfinance Loan For Retail Business" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---recipient-card---odette_2x_c2f85ea5-ccc9-4c6c-a618-66a242f51053.jpg?v=1637064352">
+                    </div>
+                    <div class="bottom_details">
+                      <div class="review_info">
+                        <p class="left_side">
+                          COUNTRY<br>
+                          BUSINESS<br>
+                          LOAN
+                        </p>
+                        <p class="right_side">
+                          Haiti<br>
+                          Drug Store<br>
+                          $240
+                        </p>
+                      </div>
+                      <div class="bottom_part">
+                        <p>Odette</p>
+<!--                         <a href="/pages/microfinance">See Her Story</a> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="reviews_grid">
+                  <div class="inner_reviews_grid">
+                    <div class="top_part">
+                      <img class="lazyload" width="319" height="214" alt="Microfinance Loan For Woodworking Business" title="Microfinance Loan For Woodworking Business" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---recipient-card---blanca_2x_b2cdb48c-46d7-43df-a3e0-f0aeb001405f.jpg?v=1637064352">
+                    </div>
+                    <div class="bottom_details">
+                      <div class="review_info">
+                        <p class="left_side">
+                          COUNTRY<br>
+                          BUSINESS<br>
+                          LOAN
+                        </p>
+                        <p class="right_side">
+                          Nicaragua<br>
+                          Woodworking<br>
+                          $150
+                        </p>
+                      </div>
+                      <div class="bottom_part">
+                        <p>Blanca</p>
+<!--                         <a href="/pages/microfinance">See Her Story</a> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="/pages/about" class="show_content textLinkHighlight" style="display: none">TELL ME MORE</a>
+        <div class="buttonWrapper">
+<!--           <a href="/pages/underwear-subscription-membership" class="textLink textLinkBtn btn">GIVE SUBSCRIPTION A TRY / TRY SUBSCRIPTION TODAY</a> -->
+          <a href="/pages/underwear-subscription-membership" class="textLink textLinkBtn btn hidden_cause" >GIVE SUBSCRIPTION A TRY TODAY</a>
+          <a href="/pages/microfinance" class="textLink hidden_cause" style="display:none;">MORE ON SUPPORTING WOMEN</a>
+<!--           <a href="/pages/microfinance" class="textLink">MORE ON OUR CAUSE</a> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="four_cols">
+      <div class="two_colss new-container">
+        <div class="four_col">
+          <div class="inner_four_col">
+            <a href="/collections/seamless-underwear">
+            <div class="inner_four">
+                <img width="187" height="187" class="lazyload" alt="No Slip Grip Fabric" title="No Slip Grip Fabric" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---USP---flocking-detail---1440_2x_7cc4e0af-8915-4a31-8c8e-bd96b12309ed.jpg?v=1637064352">
+                <div class="four_over_text">
+                  <h5>STAYS IN PLACE</h5>
+                </div>
+            </div>
+            </a>
+          </div>
+          <div class="inner_four_col">
+            <a href="/collections/seamless-underwear">
+            <div class="inner_four">
+              <img width="187" height="187" class="lazyload" alt="Premium Cotton Lining" title="Premium Cotton Lining" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---USP---lining-detail---1440_2x_2185eaa7-ce87-4743-b724-73b7b2f7fc5d.jpg?v=1637064352">
+              <div class="four_over_text">
+                <h5>COTTON LINING</h5>
+              </div>
+            </div>
+            </a>
+          </div>
+          <div class="inner_four_col">
+            <a href="/collections/seamless-underwear">
+            <div class="inner_four">
+              <img width="187" height="187" class="lazyload" alt="Moisture Wicking Material" title="Moisture Wicking Material" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---USP---wicking-detail---1440_2x_d537b518-692a-4d98-8b95-036f7ba03fbf.jpg?v=1637064352">
+              <div class="four_over_text">
+                <h5>MOISTURE WICKING</h5>
+              </div>
+            </div>
+            </a>
+          </div>
+          <div class="inner_four_col">
+            <a href="/collections/seamless-underwear">
+            <div class="inner_four">              
+                <img width="187" height="187" class="lazyload" alt="No Show Comfort Everyday" title="No Show Comfort Everyday" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---USP---no-show-detail---1440_2x_53bb5214-78a2-48c0-a08c-397ccbb29207.jpg?v=1637064352">
+                <div class="four_over_text">
+                  <h5>NO SHOW PANTY LINES</h5>
+                </div>
+            </div>
+            </a>
+          </div>
+        </div>
+<!--         <div class="cta text-center">
+          <a class="btn" href="/collections/seamless-underwear">SHOP NOW</a>
+        </div> -->
+      </div>
+    </div>
+    
+    {% comment %}
+    <div class="home-hero" style="background: linear-gradient(90deg, #d0e4fa 12%, #daf5f2 30%);">
+      <div class="hero-content">
+        <div class="content-block">
+          <h2 style="font-family: 'Voyage Bold';color: #000c48;">Fresh Cut
+            </h2>
+          <div class="intro">
+            up to 50% off
+            <span class="introSubline">select items 50%</span>
+          </div>
+          <!--
+          <div class="cta">
+            <a class="btn" href="/collections/seamless-underwear">
+              Get yours
+            </a>
+          </div>
+          -->
+          <div class="cta">
+            <a class="btn" href="/collections/best-sellers">Shop Collection</a>
+          </div>
+        </div>
+      </div>
+       <div class="image-block">
+        <a href="/pages/parisian-summer-luxe-seamless-underwear">
+        	<img alt="Worn by the baddest women on the planet" class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---LUXE_3---home---combo---1440-2x.jpg"/>
+        </a>
+      </div>
+      <div class="image-block-mobile">
+        <a href="/pages/parisian-summer-luxe-seamless-underwear">
+        	<img alt="Worn by the baddest women on the planet" class="lazyload" width="1024" height="1366" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---LUXE_3---home---combo---376-2x.jpg"/>
+        </a>
+      </div>
+    </div>
+    
+    <div class="vprop-container">
+      
+      <div id="pageContent" class="collection_grid">
+        <header class="ebyCollectionSeoHeader">
+          <h1 class="ebyCollectionSeoTitle">Seamless Underwear</h1>
+        </header>
+        {% section 'top-categories' %}        
+      </div>
+      
+      <div class="arrow-sep"></div>
+      
+      <div class="vprop-blocks">
+        <h2>The best panties in the world</h2>
+        <div class="vprop-intro">
+          <p>Supreme comfort, with no panty lines</p>
+          <p>Truly seamless underwear, in up to 9 sizes from XS – 4X</p>
+          <p>No-slip-grip means these undies move with you like a second skin</p>
+          <p>Creates business micro-loans for women</p>
+        </div>
+        
+        <div class="vprop-blocks-container">
+          <div class="vprop-block">
+            <div class="vprop-image">
+              <img alt="No Slip, No Silicone" title="No Slip, No Silicone" class="lazyload" width="360" height="360" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/Flocking-Homepage.png?v=1625651924"/>
+            </div>
+            <div class="vprop-description">
+              <h3>No Slip, No Silicone</h3>
+              <p>Only EBY has no-slip-grip made from nylon flocking. No riding up, no slipping down, and no chaffing from silicone strips.</p>
+            </div>
+          </div>
+          <div class="vprop-block">
+            <div class="vprop-image">
+              <img alt="Empowered By You (EBY)" title="Empowered By You (EBY)" class="lazyload" width="360" height="360" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/VPROP_2_-_By_You_2x_f582f368-141a-479a-a8ab-80f23dbacac3.jpg?v=1616276974"/>
+            </div>
+            <div class="vprop-description">
+              <h3>For Her</h3>
+              <p>10% of proceeds fund micro-loans for women who want to empower themselves out of poverty by starting their own business.</p>
+            </div>
+          </div>
+          <div class="vprop-block">
+            <div class="vprop-image">
+              <img alt="Exclusive Free Access" title="Exclusive Free Access" class="lazyload" width="360" height="360" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/VPROP_3_-_Free_Access_2x_87e22f43-9af2-441b-8d70-33a854484dac.jpg?v=1616276973"/>
+            </div>
+            <div class="vprop-description">
+              <h3>For You</h3>
+              <p>Get exclusive free access to Deepak Chopra’s mental hygiene tool kit. You deserve seamless panties and a healthy mind too.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+<!--     <div class="feat feat-1 lazy-background" style="background: #000c48;">
+      <div class="feat-content">
+        <h2 style="margin-bottom: 4rem;">Labor Day Sale</h2>
+        <p style="color: #fff;text-align: center;font-size: 18px;width: 300px;margin: 0 auto 4rem;font-weight: 300;">One time only seamless panty packs for up to 40% off</p>
+        <div class="cta">
+          <a class="btn-large" href="/collections/labor-day-sale-packs">
+            Shop Deals Now
+          </a>
+        </div>
+      </div>
+    </div> -->
+    <!--     <div class="banner_section">
+      <a href="/collections/bralettes-for-women">
+        <img alt="Shop The Comfiest Bralettes Ever" title="Shop The Comfiest Bralettes Ever" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/img-cotton-2-0-key-1-376-copy-4_2x_3736312a-425b-471f-87c6-055809f41968.png?v=1636803825" class="desk_img lazyload">
+        <img alt="Shop The Comfiest Bralettes Ever" title="Shop The Comfiest Bralettes Ever" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/img-cotton-2-0-key-1-376-copy-4_2x_3736312a-425b-471f-87c6-055809f41968.png?v=1636803825" class="tablet_img lazyload">
+        <img alt="Shop The Comfiest Bralettes Ever" title="Shop The Comfiest Bralettes Ever" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/img-cotton-2-0-key-1-376-copy-3_2be13389-e2ae-4e9c-8a2d-cc2bf549fb49.png?v=1636803882" class="mob_img lazyload">
+      </a>
+      <div class="over_text">
+        <p>THE SEAMLESS BRALETTE</p>
+        <a href="/collections/bralettes-for-women">SHOP NOW</a>
+      </div>
+    </div>
+    <div class="banner_section layoutTwo desktop-only bfx-remove">
+      <a href="/pages/underwear-subscription-membership">
+        <img alt="Shop The Comfiest Bralettes Ever" title="Shop The Comfiest Bralettes Ever" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/opt1440---Subscription_2x_a67a56e9-86a1-4ca1-ac90-02b8ad1f0634.jpg" class="desk_img lazyload">
+        <img alt="Shop The Comfiest Bralettes Ever" title="Shop The Comfiest Bralettes Ever" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/opt1440---Subscription_2x_a67a56e9-86a1-4ca1-ac90-02b8ad1f0634.jpg" class="tablet_img lazyload">
+        <img alt="Shop The Comfiest Bralettes Ever" title="Shop The Comfiest Bralettes Ever" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/1024---IMG---HOME_FLIP---Subscribe_2x_dbccfe59-99a1-4132-bc4e-f6612649570f.jpg?v=1638827815" class="mob_img lazyload">
+      </a>
+      <div class="over_text">
+        <p>SUBSCRIBE & SAVE UP TO 40%<br>NEVER PAY SHIPPING</p>
+        <a href="/pages/underwear-subscription-membership">GET STARTED</a>
+      </div>
+    </div> 
+
+-->
+    {% endcomment %}
+    
+    <div class="banner_section layoutTwo desktop-only bfx-remove">
+      <a href="/pages/the-seamless-bra-bodysuit" class="goBtn" data-gobtntype="homepage_test1" data-gobtnlabel="homebanner_btn4" data-gobtnaction="start">
+      	<img width="1680" height="993" alt="All New Seamless Bodysuits" title="All New Seamless Bodysuits" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/SEO---bodysuit-opt_44f609e9-6a15-49f1-b294-c677d604a4ef.jpg" class="desk_img lazyload">
+      </a>
+      <div class="over_text">
+        <h3>ALL SEAMLESS BODYSUITS</h3>
+        <a href="/pages/the-seamless-bra-bodysuit">SHOP NOW</a>
+      </div>
+    </div>
+    <div class="banner_section layoutTwo mobile-only bfx-remove">
+<!--       <a href="/pages/poppy-red-and-pose">
+        <img width="375" height="478" alt="Poppy Red Print Underwear" title="Poppy Red Print Underwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/376---IMG---home_flip---pose_2x_c85d8080-f199-4b4f-b6a4-16009ff17c24.jpg" class="lazyload">
+      </a>
+      <div class="over_text">
+        <p>POPPY & POSE<br>SEAMLESS PANTIES</p>
+        <a href="/pages/poppy-red-and-pose">SHOP NOW</a>
+      </div>
+      <a href="/pages/womens-underwear-sale">
+      	<img width="376" height="478" alt="All New Seamless Mesh Underwear" title="All New Seamless Mesh Underwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---376---25_3---slot2.jpg" class="lazyload">
+      </a>
+      <div class="over_text">
+        <h3><span class="hpNewSubText">French Collection</span> One Week Only<br/>25% Off Sale</h3>
+        <a href="/pages/womens-underwear-sale">SHOP NOW</a>
+      </div> -->
+      <a href="/pages/the-seamless-bra-bodysuit" class="goBtn" data-gobtntype="homepage_test1" data-gobtnlabel="homebanner_btn4" data-gobtnaction="start">
+      	<img width="376" height="478" alt="All New Seamless Mesh Underwear" title="All New Seamless Mesh Underwear" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---376---COTY---key1_903a010c-b29f-4b29-9c41-760386007157.jpg" class="lazyload">
+      </a>
+      <div class="over_text">
+        <h3>ALL SEAMLESS BODYSUITS</h3>
+        <a href="/pages/the-seamless-bra-bodysuit">SHOP NOW</a>
+      </div>
+    </div>
+    <div class="banner_section layoutTwo internationalBlock">
+      <a href="/collections/bralettes-for-women">
+        <img alt="Shop The Comfiest Bralettes Ever" title="Shop The Comfiest Bralettes Ever" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/1024---IMG---home_flip---bralette_bluemeadow_2x_50e815d5-8e44-4f94-9e96-24eb0c4b538d.jpg" class="desk_img lazyload">
+        <img alt="Shop The Comfiest Bralettes Ever" title="Shop The Comfiest Bralettes Ever" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/1024---IMG---home_flip---bralette_bluemeadow_2x_50e815d5-8e44-4f94-9e96-24eb0c4b538d.jpg" class="tablet_img lazyload">
+        <img alt="Shop The Comfiest Bralettes Ever" title="Shop The Comfiest Bralettes Ever" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/768---IMG---home_flip---bralette_bluemeadow_2x_9097af0f-2641-4043-8c44-3cee9fa25a57.jpg" class="mob_img lazyload">
+      </a>
+      <div class="over_text">
+        <p>SEAMLESS<br>BRALETTES</p>
+        <a href="/collections/bralettes-for-women">SHOP NOW</a>
+      </div>
+    </div>
+    
+    <div class="reviews_section text-center">
+      <div class="review_container new-container">
+        <h5>Over 10,000 <br> five star reviews</h5>
+        <div class="reviews_wrapper reviewsCar_wrapper">
+          <div class="reviews_grid">
+            <div class="inner_reviews_grid">
+              <div class="top_part">
+                <span class="ebyRating"><i class="reviewStar"></i><i class="reviewStar"></i><i class="reviewStar"></i><i class="reviewStar"></i><i class="reviewStar"></i></span>
+                <span>11/03/21</span>
+              </div>
+              <div class="middle_part">
+                <p>Love EBY so much, I've given up all my bras except for these bralettes!</p>
+              </div>
+              <div class="bottom_part">
+                <p>Susan B.</p>
+                <a href="/pages/reviews">See All Reviews</a>
+              </div>
+            </div>
+          </div>
+          <div class="reviews_grid">
+            <div class="inner_reviews_grid">
+              <div class="top_part">
+                <span class="ebyRating"><i class="reviewStar"></i><i class="reviewStar"></i><i class="reviewStar"></i><i class="reviewStar"></i><i class="reviewStar"></i></span>
+                <span>11/03/21</span>
+              </div>
+              <div class="middle_part">
+                <p>Just like wearing nothing at all! LOVE them!! I’m actually sad when I can’t find a pair in my drawer!</p>
+              </div>
+              <div class="bottom_part">
+                <p>Laurie S.</p>
+                <a href="/pages/reviews">See All Reviews</a>
+              </div>
+            </div>
+          </div>
+          <div class="reviews_grid">
+            <div class="inner_reviews_grid">
+              <div class="top_part">
+                <span class="ebyRating"><i class="reviewStar"></i><i class="reviewStar"></i><i class="reviewStar"></i><i class="reviewStar"></i><i class="reviewStar"></i></span>
+                <span>11/03/21</span>
+              </div>
+              <div class="middle_part">
+                <p>I love them! They are the softest underwear I have ever worn.</p>
+              </div>
+              <div class="bottom_part">
+                <p>Heather H.</p>
+                <a href="/pages/reviews">See All Reviews</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </div>
+  <a href="#" data-lion-refer id="init-ebyrefpop" style="display:none;">Refer your friends and get $10</a>
+</div>
+
+<script defer type="text/javascript">
+ var vid = document.getElementById("myVideo1");
+ document.addEventListener("DOMContentLoaded", function() {
+     if (!!window.localStorage.getItem('err')) {
+       setTimeout(function () {
+         console.log(':show referral:');
+         $('#init-ebyrefpop')[0].click();
+         window.localStorage.removeItem('err');
+       }, 2000);
+     }
+   
+    $('#watch-video-button').on('click', function(){
+      $('#video-popup').css('display', 'block');
+      vid.play(); 
+    });
+    $('#myVideo1').click(function(){
+      vid.pause(); 
+      $('#video-popup').css('display', 'none');
+    });
+
+    $('.show_content').on('click', function(e){
+      e.preventDefault();
+      $(this).hide();
+      $('.below_content').slideDown(300);
+      $('.hide_content').show();
+      $('.hidden_cause').show();
+      
+    });
+
+    $('.stories_wrapper').slick({
+      arrows: false,
+      centerMode: false,
+      draggable: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      infinite: false,
+      responsive: [
+        {
+          breakpoint: 769,
+          settings: {
+            slidesToShow: 2,
+            dots: false
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            dots: false
+          }
+        }
+      ]
+    });
+
+    jQuery('.homeHeroImage').on('click', function (ev) {
+      let imgElm = jQuery(ev.target).find('img');
+      //console.log(';tag;');
+      window.gtag('event', 'ab_test_img-'+imgElm.src, {
+        'event_category': 'ab_test-sub_img_swap-click',
+        'event_label': 'homepage_ab_test-take_one',
+        'event_value': ''
+      });
+    });
+   
+    $('.hide_content').on('click', function(e){
+      e.preventDefault();
+      $(this).hide();
+      $('.below_content').slideUp(300);
+      $('.show_content').show();
+    });
+//    	$('.products_carousel_wrapper').slick({
+//       centerMode: false,
+//       draggable: true,
+//       arrows: false,
+//       slidesToShow: 3,
+//       slidesToScroll: 1,
+//       variableWidth: true,
+//       infinite: true,
+//       responsive: [
+//         {
+//           breakpoint: 768,
+//           settings: {
+//             centerMode: false,
+//             slidesToShow: 3,
+//             dots: false
+//           }
+//         },
+//         {
+//           breakpoint: 480,
+//           settings: {
+//             centerMode: false,
+//             slidesToShow: 1,
+//             dots: false
+//           }
+//         }
+//       ]
+//     });
+     $('.reviewsCar_wrapper').slick({
+        arrows: false,
+        centerMode: false,
+        draggable: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        infinite: false,
+        responsive: [
+          {
+            breakpoint: 769,
+            settings: {
+              slidesToShow: 2,
+              dots: false
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              dots: false
+            }
+          }
+        ]
+      });
+ });
+</script>

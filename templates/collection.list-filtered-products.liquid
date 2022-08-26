@@ -1,0 +1,291 @@
+<div class="ebyCollBreadcrumbsWrapper filtersView tierTwo">
+  {% include 'eby-breadcrumbs' %}
+</div>
+
+<section id="pageContent" class="ebyCollTemplate twoColFilterGrid noFilterMode">
+
+  <div class="innerWrapper">
+    
+  	<div class="ebyHalfColWrapper container-full filtered-container" style="max-width:100%;">
+      <header class="ebyBannerSummaryHeader mobileVer" style="padding:0 1rem;">
+        <h1 class="headerCollection">{{ collection.title | escape }}</h1>
+        <div class="headerCollectionSubtext" style="display: block !important;font-size: 1.2rem;font-weight: 300;text-align: left;padding: 0;color: #000c48;line-height: 17px;width: 100%;">
+          {% if collection.metafields.ebyacf.collection_subheader_copy %}
+          {{ collection.metafields.ebyacf.collection_subheader_copy }}
+          {% else %}
+          {{ collection.description }}
+          {% endif %}
+        </div>
+      </header>
+      <header class="ebyBannerSummaryHeader desktopVer active">
+        <h2 class="headerCollection">{{ collection.title | escape }}</h2>
+        <div class="headerCollectionSubtext">
+          {% if collection.metafields.ebyacf.collection_subheader_copy %}
+          {{ collection.metafields.ebyacf.collection_subheader_copy }}
+          {% else %}
+          {{ collection.description }}
+          {% endif %}
+        </div>
+        <aside class="ebyBanner-innerWrapper">
+          {% if collection.metafields.ebyacf.collection_banner_video_header %}
+              <div class="collection-image">
+                <div class="playerFilm">&nbsp;</div>
+                <img id="feelsLikeThisPlaceholderImage" width="710" height="300" class="playerPlaceholderImg lazyload" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/Feels-Like-Placeholder.jpg" alt="Feels Like This" title="Feels Like This" />
+                <div id="playerDesktop" class="playerWrapper desktop"></div>
+              </div>
+          {% else %}
+          	{% if shop.metafields.ebyacf.enable_holiday_mode__global %}
+                {% if collection.metafields.ebyacf.collection_holiday_banner_img %}
+                    <div class="collection-image">
+                      <img class="ebyBannerImage lazyload" alt="{{ collection.featured_image.alt }}" title="{{ collection.featured_image.alt }}" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/EOY-Category-opt.jpg?v=1640121475" width="710" height="300" />
+                    </div>
+                {% else %}
+          			{% if collection.handle contains "seamless-tank-top" %}
+          				<div class="collection-image">
+                          <img class="ebyBannerImage lazyload bfx-remove" alt="{{ collection.featured_image.alt }}" title="{{ collection.featured_image.alt }}" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/optC-BAN---tank_free_panty---920x432_2x_22cb9d87-5834-4d13-ba56-bfbd43b3b2b4.jpg" width="710" height="300" style="max-height:300px;object-fit: cover;" />
+                          <img class="ebyBannerImage lazyload internationalBlock" alt="{{ collection.featured_image.alt }}" title="{{ collection.featured_image.alt }}" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/optC-BAN---tank_free_panty---920x432_2x_22cb9d87-5834-4d13-ba56-bfbd43b3b2b4.jpg" width="710" height="300" style="max-height:300px;object-fit: cover;" />
+                        </div>
+          			{% else %}
+                        <div class="collection-image">
+                          <img class="ebyBannerImage lazyload bfx-remove" alt="{{ collection.featured_image.alt }}" title="{{ collection.featured_image.alt }}" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/EOY-Category-opt.jpg?v=1640121475" width="710" height="300" style="max-height:300px;object-fit: cover;" />
+                          <img class="ebyBannerImage lazyload internationalBlock" alt="{{ collection.featured_image.alt }}" title="{{ collection.featured_image.alt }}" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/EOY-Category-opt.jpg?v=1640121475" width="710" height="300" style="max-height:300px;object-fit: cover;" />
+                        </div>
+          			{% endif %}
+                {% endif %}
+             {% else %}
+                <div class="collection-image">
+                  {% if collection.image %}
+                      <div>
+                        <img class="ebyBannerImage lazyload bfx-remove" alt="{{ collection.featured_image.alt }}" title="{{ collection.featured_image.alt }}" data-src="{{ collection.featured_image  | img_url: 'master' }}" width="710" height="300" style="max-height:300px;object-fit: cover;" />
+                        <img class="ebyBannerImage lazyload internationalBlock" alt="{{ collection.featured_image.alt }}" title="{{ collection.featured_image.alt }}" data-src="{{ collection.featured_image  | img_url: 'master' }}" width="710" height="300" style="max-height:300px;object-fit: cover;" />
+                      </div>
+                  {% else %}
+                      <a href="/collections/best-sellers">
+                        <img class="ebyBannerImage lazyload bfx-remove" alt="{{ collection.featured_image.alt }}" title="{{ collection.featured_image.alt }}" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/BANNER---laurelgreen---briefset---master-seamless.jpg" width="710" height="300" style="max-height:300px;object-fit: cover;" />
+                        <img class="ebyBannerImage lazyload internationalBlock" alt="{{ collection.featured_image.alt }}" title="{{ collection.featured_image.alt }}" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/BANNER---laurelgreen---briefset---master-seamless.jpg" width="710" height="300" style="max-height:300px;object-fit: cover;" />
+                      </a>
+                  {% endif %}
+                  <!-- <img class="ebyBannerImage lazyload bfx-remove" alt="{{ collection.featured_image.alt }}" title="{{ collection.featured_image.alt }}" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/Collections-Banner---Subscription-Promo---Free-Bralette_2x_56a4306f-cd6a-45c5-8c97-c48379b3bc60.jpg?v=1638177471" width="710px" height="300px" />
+                  <img class="ebyBannerImage lazyload internationalBlock" alt="{{ collection.featured_image.alt }}" title="{{ collection.featured_image.alt }}" data-src="{{ collection.featured_image | img_url: 'master' }}" width="710px" height="300px" /> -->
+                </div> 
+             {% endif %}
+          {% endif %}
+          <ul class="ebyBannerSummaryList">
+            <li class="ebyBannerSummaryPoint bfx-remove-element">
+              <figure class="summaryPointWrapper">
+                <img class="icon-svg lazyload" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/Fit.svg?v=1626718616" width="40" height="34" alt="100% Fit Guarantee" title="100% Fit Guarantee" />
+                <figcaption>100% Fit Guarantee</figcaption>
+              </figure>
+            </li>
+            <li class="ebyBannerSummaryPoint">
+              <figure class="summaryPointWrapper">
+                <img class="icon-svg lazyload" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/Flocking.svg?v=1626718616" width="40" height="34" alt="No Slip, No Silicone" title="No Slip, No Silicone"/>
+                <figcaption>No Slip, No Silicone</figcaption>
+              </figure>
+            </li>
+            <li class="ebyBannerSummaryPoint">
+              <figure class="summaryPointWrapper">
+                <img class="icon-svg lazyload" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/Gusset.svg?v=1626718616"  width="40" height="34" alt="Cotton Lining" title="Cotton Lining"/>
+                {% unless collection.title contains "Bralette" or collection.title contains "Tops" %}
+                <figcaption>Cotton Lining</figcaption>
+                {% else %}
+                <figcaption>Moisture Wicking Material</figcaption>
+                {% endunless %}
+              </figure>
+            </li>
+            <li class="ebyBannerSummaryPoint">
+              <figure class="summaryPointWrapper">
+                <img class="icon-svg lazyload" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/Body.svg?v=1626718616"  width="40" height="34" alt="Sizes made for all bodies" title="Sizes made for all bodies"/>
+                <figcaption>Made For Every Body</figcaption>
+              </figure>
+            </li>
+          </ul>
+        </aside>
+      </header>
+      <div class="pageCollectionInner mb20 pb-md-30 collectionsGlobalWrapper">
+
+        <aside id="collSortbyModule" class="ecfWrapper global sortbyModule">
+          <section class="sortbyModuleInnerWrapper">
+            <header class="sortbyHeader">
+              <div class="ebyPaginateWrapper">
+                <!--                   <span class="filteredTitle">Product(s) - </span> -->
+                <!--                   <span id="ebyFilteredProductsCount" class="filtedProdCount"></span> product(s) -->
+              </div>
+            </header>
+            <footer class="sortbyFooter">
+              <div class="ebyInputFieldWrapper">
+                {% comment %}
+                <div id="sortbyToolbar" class="ebyInputField sortByField">
+                  <label>Sort by:</label>
+                  <select id="sortby-global_opt">
+                    <option value="sortby-bestSelling" selected>Best Selling</option>
+                    <option value="sortby-createdAt">Newest</option>
+                    <option value="sortby-reviewCount">Top Reviewed</option>
+                    <option value="sortby-price">Top Priced</option>
+                  </select>
+                </div>
+                {% endcomment %}
+              </div>
+            </footer>
+          </section>
+          <p id="currentFilteringPantySizeCopy" class="hidden">Showing: <span></span></p>
+        </aside>
+
+        <section class="ecfAppliedFilterListWrapper">
+          <div class="ecfAppliedFilterListTitleWrapper"></div>
+          <label class="ecfAppliedFilterListing chips chips-initial"></label>
+        </section>
+
+        {% comment %}
+        {% unless collection.handle contains "last-call-seamless-underwear" %}
+        
+        	{% assign on_sale = false %}
+            {% for product in collection.products %}
+                {% for prodTag in product.tags %}
+                    {% if prodTag contains "julyfour2022-" %}
+                        {% assign on_sale = true %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            {% if on_sale %}
+            <div class="main_switcher switch">
+              <span>All Items</span>
+              <label class="">
+                <input type="checkbox" id="togBtn">
+                <span class="lever"></span>
+              </label>
+              <span style="color:rgba(208,2,27,1);">On Sale</span>
+            </div>
+            {% endif %}
+        
+        {% endunless %}
+        {% endcomment %}
+
+        {% section 'vela-template-collection-filtered-products' %}
+        
+        {% if collection.metafields.ebyacf.related_products_listing %}
+        {%- assign pageRelatedItems = collections[collection.metafields.ebyacf.related_products_listing].products  -%}
+
+        <div class="velaCollections relatedCollection generalListing" data-coll_handle="{{ collection.handle }}--related_products_listing" data-coll_title="{{ collection.title }} – Related Products Listing">
+
+          <div class="velaBoxCollectionTop relatedHeader" id="relatedProducts-anchor">
+            <h2 class="headerCollection ebySecondaryHeader clearfix">You Would Also Love These</h2>
+            <p class="headerCollectionSubHeader">&nbsp;</p>
+          </div>
+
+          <div class="proList ebyList">
+            <div class="velaOwlRow owlCarouselPlay ebyProdTileListWrapper">
+              {% for product in pageRelatedItems %}
+                  {% include 'product-related-item' %}
+              {% endfor %}
+            </div>
+          </div>
+
+        </div>
+        {% endif %}
+
+
+        {% if collection.metafields.ebyacf.membership_products_listing %}
+        {% unless customer.tags contains 'Active Subscriber' %}
+        {%- assign pageRelatedItems = collections[collection.metafields.ebyacf.membership_products_listing].products  -%}
+
+        <div class="velaCollections relatedCollection membershipListing"  data-coll_handle="{{ collection.handle }}--related_sub_box_listing" data-coll_title="{{ collection.title }} – Related Subscription Box Listing">
+
+          <div class="velaBoxCollectionTop relatedHeader" id="relatedMemberships-anchor">
+            <h2 class="headerCollection ebySecondaryHeader clearfix">Our Most Popular Memberships</h2>
+            <p class="headerCollectionSubHeader">Save up to 47% on panties every 3 or 6 months at a time.</p>
+          </div>
+
+          <div class="proList ebyList">
+            <div class="velaOwlRow owlCarouselPlay ebyProdTileListWrapper">
+              {% for product in pageRelatedItems %}
+              {%- unless settings.free_gift_enabled == true and product.id == all_products[settings.free_gift_product].id -%}
+              <div class="item ebyProdTile subProdTile {% if product.metafields.ebyacf.product_is_new_release %}newRelease{% endif %}">
+                {% include 'product-grid-item-subscription' %}
+              </div>
+              {%- endunless -%}
+              {% endfor %}
+            </div>
+          </div>
+
+        </div>
+
+        {% endunless %}
+        {% endif %}
+        
+        {% if collection.metafields.ebyacf.collection_faq_header %}
+        <div class="footer_faq">
+          <ul class="collapsible expandable">
+            <li class="filterNavItem sizeTypeOptionsTile primaryFilterToolbar" data-attribute-id-int="0">
+              <div class="collapsible-header"><span class="ebyFilterIcon animate ebyicon-close-thin">&nbsp;</span>{{ collection.metafields.ebyacf.collection_faq_header }}</div>
+              <div class="collapsible-body">
+                <div class="faq_grid">
+                  {{ collection.metafields.ebyacf.collection_faq_body }}
+                </div>
+              </div>
+            </li>
+            <li class="filterNavItem sizeTypeOptionsTile primaryFilterToolbar" data-attribute-id-int="1">
+              <div class="collapsible-header"><span class="ebyFilterIcon animate ebyicon-close-thin">&nbsp;</span>{{ shop.metafields.ebyacf.global_coll_faq_header_tech }}</div>
+              <div class="collapsible-body">
+                <div class="faq_grid">
+                  {{ shop.metafields.ebyacf.global_coll_faq_body_tech.en }}
+                </div>
+              </div>
+            </li>
+            <li class="filterNavItem sizeTypeOptionsTile primaryFilterToolbar" data-attribute-id-int="2">
+              <div class="collapsible-header"><span class="ebyFilterIcon animate ebyicon-close-thin">&nbsp;</span>{{ shop.metafields.ebyacf.global_coll_faq_header_one }}</div>
+              <div class="collapsible-body">
+                <div class="faq_grid">
+                  {{ shop.metafields.ebyacf.global_coll_faq_body_one.en }}
+                </div>
+              </div>
+            </li>
+            {% comment %}
+            {% for block in section.blocks %}
+            {% if block.type == 'col_faq' %}
+            {% if block.settings.collection == collection.handle %}
+            <li class="filterNavItem sizeTypeOptionsTile primaryFilterToolbar" data-attribute-id-int="{{ forloop.index | plus: 1 }}">
+              {% if block.settings.title != blank %}
+              <div class="collapsible-header"><span class="ebyFilterIcon animate ebyicon-close-thin">&nbsp;</span> {{ block.settings.title }}</div>
+              {% endif %}
+              <div class="collapsible-body">
+                {% for i in (1..5) %}
+                {% capture que %}que_{{i}}{% endcapture %}
+                {% capture ans %}ans_{{i}}{% endcapture %}
+                {% if block.settings[que] != blank and block.settings[ans] != blank %}
+                <div class="faq_grid">
+                  <h5>{{ block.settings[que] }}</h5>
+                  <p>{{ block.settings[ans] }}</p>
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% endcomment %}
+          </ul>
+        </div>
+
+        {% endif %}
+        
+        <footer class="sortCollLoadingWrapper">
+          <div class="progress">
+            <div class="indeterminate"></div>
+          </div>
+          <div class="collListingLoadingBg"></div>
+        </footer>
+
+      </div>
+    </div>
+
+  </div>
+  
+  <div class="bottom_content {% if section.settings.Enable_filter == blank %}bottom_full_content{% endif %}">
+    <div class="content_wrapper">
+      {{ collection.metafields.ebyacf.collection_description_blurb }}
+    </div>
+  </div>
+  
+</section>

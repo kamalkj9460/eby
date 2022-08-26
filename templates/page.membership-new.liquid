@@ -1,0 +1,343 @@
+{% comment %}
+<!-- Default Template -->
+<section id="pageContent">
+    <div class="container-full">
+        <div class="pageContainer">
+            <h1 class="velaPageTitle">{{ page.title }}</h1>
+            <div class="pageContent">
+                <div class="rte">
+                    {{ page.content }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% section 'our-product-block' %}
+{% endcomment %}
+
+{% comment %}
+	{% section 'membership-top' %}
+	{% section 'membership-block-new' %}
+{% endcomment %}
+
+<div class="new_member_banner">
+  
+    {%- if page.metafields.build_your_box.build_your_box != blank -%}
+  
+  <div class="membership-cols">
+    <div class="membership-same-cols deal">
+      <img width="700" height="700" alt="Panty Subscription Memberships" title="Panty Subscription Memberships" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---1440---subscription.jpg" class="desk_img lazyload">
+      <img width="762" height="762" alt="Panty Subscription Memberships" title="Panty Subscription Memberships" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---1440---subscription.jpg" class="tablet_img lazyload">
+      <img width="375" height="375" alt="Panty Subscription Memberships" title="Panty Subscription Memberships" src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/HOME---376---subscription.jpg" class="mob_img lazyloadPload">
+      
+      <div class="eby-spotlightDealWrapper">
+        <div class="esd-wrapper">
+          <p class="esd-line"><b>Early Access<br> Now Includes</b><br/>Our Latest <br/>Limited Time Only<br/>Piki Print!</p>
+        </div>
+      </div>
+      
+    </div>
+    <div class="membership-same-cols membership-text-content">
+      <div class="membership-content">
+        <h2>Your Subscription</h2>
+        <div class="membership-colss">
+          <div class="membership-col">
+            <p>$39 for 3 panties<span>Up to 40% savings</span></p>
+          </div>
+          <div class="membership-col">
+            <p>Never pay for shipping</p>
+          </div>
+          <div class="membership-col">
+            <p>Customize your box or <br>enjoy our curated picks</p>
+          </div>
+          <div class="membership-col">
+            <p>Enjoy subscriber-only pricing</p>
+          </div>
+          <div class="membership-col">
+            <p>Gain early access to new arrivals</p>
+          </div>
+          <div class="membership-col">
+            <p>Delivers every 3 months, skip or cancel anytime</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="membership-content mobile-only">
+    <h2>Your Subscription</h2>
+    <div class="membership-colss">
+      <div class="membership-col">
+        <p>$39 for 3 panties<span>Up to 40% savings</span></p>
+      </div>
+      <div class="membership-col">
+        <p>Never pay for shipping</p>
+      </div>
+      <div class="membership-col">
+        <p>Customize your box or <br>enjoy our curated picks</p>
+      </div>
+      <div class="membership-col">
+        <p>Member-only pricing and early<br> access to new arrivals</p>
+      </div>
+      <div class="membership-col">
+        <p>Delivers every 3 months, skip or cancel anytime</p>
+      </div>
+    </div>
+<!--     <div class="membership-bottom-part">
+      <a href="/collections/build-your-custom-box" class="shop_btn btn">SUBSCRIBE NOW</a>
+      <p>Delivers every 3 months, skip or cancel anytime</p>
+    </div> -->
+  </div>
+    {%- endif -%}
+  
+    <section class="ebyMembershipBoxOptionsWrapper">
+<!--      	<p class="priceFixedCopy">From $39</p> -->
+      	<div class="membershipOfferingGrid" id="membership-box-options">
+          	<article class="membershipBoxTile third">
+                <div class="pro_inner_new">
+                    <header class="pro_img">
+                        <img class="lazyload" width="450" height="450" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/480---PROD---subscription---custom-2x.jpg" title="Custom Membership Box" alt="Custom Membership Box" />
+                  		<h3>Custom Box</h3>
+                      	<p class="save_price">All styles available, you choose</p>
+                  	</header>
+                    <footer class="pro_detail">
+                      	<button class="shop_btn modal-trigger ebyAnimate membershipCta" data-style="custom_box" data-target="nudge-getMembershipPopup">Create Box</button>
+                    </footer>
+                </div>
+            </article>
+      		<article class="membershipBoxTile third">
+                <div class="pro_inner_new">
+                    <header class="pro_img">
+                        <img class="lazyload" width="450" height="450" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/480---PROD---subscription---mixed-2x.jpg" title="Mixed Styles Membership Box" alt="Mixed Styles Membership Box" />
+                    	<h3>Mixed Styles</h3>
+                      	<p class="save_price">For she who wants it all — thong, brief, high waisted</p>
+                  	</header>
+                    <footer class="pro_detail">
+                        <button class="shop_btn modal-trigger ebyAnimate membershipCta" data-style="mixed_styles" data-target="nudge-getMembershipPopup">Pick Colors</button>
+                    </footer>
+                </div>
+            </article>
+            <article class="membershipBoxTile third">
+                <div class="pro_inner_new">
+                    <header class="pro_img">
+                        <img class="lazyload" width="450" height="450" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/480---PROD---subscription---briefs-2x.jpg" title="All Briefs Membership Box" alt="All Briefs Membership Box" />
+                    	<h3>Briefs Box</h3>
+                      	<p class="save_price">Never fussy, always sexy</p>
+                  	</header>
+                    <footer class="pro_detail">
+                        <button class="shop_btn modal-trigger ebyAnimate membershipCta" data-style="all_briefs" data-target="nudge-getMembershipPopup">Pick Colors</button>
+                    </footer>
+                </div>
+            </article>
+            <article class="membershipBoxTile">
+                <div class="pro_inner_new">
+                    <header class="pro_img">
+                        <img class="lazyload" width="450" height="450" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/480---PROD---subscription---thongs-2x.jpg" title="All Thongs Membership Box" alt="All Thongs Membership Box" />
+                    	<h3>All Thongs</h3>
+                      	<p class="save_price">Next best thing to naked</p>
+                  	</header>
+                    <footer class="pro_detail">
+                        <button class="shop_btn modal-trigger ebyAnimate membershipCta" data-style="all_thongs" data-target="nudge-getMembershipPopup">Pick Colors</button>
+                    </footer>
+                </div>
+            </article>
+          	<article class="membershipBoxTile">
+                <div class="pro_inner_new">
+                    <header class="pro_img">
+                        <img class="lazyload" width="450" height="450" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/480---PROD---subscription---highwaisted-2x.jpg" title="All High Waisted Membership Box" alt="All High Waisted Membership Box" />
+                    	<h3>All Highwaisted</h3>
+                  		<p class="save_price">Max coverage, max comfort</p>
+                  	</header>
+                    <footer class="pro_detail">
+                        <button class="shop_btn modal-trigger ebyAnimate membershipCta" data-style="all_highwaisted" data-target="nudge-getMembershipPopup">Pick Colors</button>
+                    </footer>
+                </div>
+            </article>
+            <article class="membershipBoxTile">
+                <div class="pro_inner_new">
+                    <header class="pro_img">
+                        <img class="lazyload" width="450" height="450" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/480---PROD---subscription---fullcoverage-2x.jpg" title="Full Coverage Membership Box" alt="Full Coverage Membership Box" />
+                    	<h3>Full Coverage</h3>
+                      	<p class="save_price">Modest mix — bikini, brief, high waisted</p>
+                  	</header>
+                    <footer class="pro_detail">
+                        <button class="shop_btn modal-trigger ebyAnimate membershipCta" data-style="full_coverage" data-target="nudge-getMembershipPopup">Pick Colors</button>
+                    </footer>
+                </div>
+            </article>
+      	</div>
+  	</section>
+</div>
+
+<div class="subscription-block-container">
+    <div class="subscription-block">
+        <div class="image-block">
+            <h3>Why do you need an EBY subscription?</h3>
+            <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/subscription-box.jpg?v=1616019860" alt="Subscription Box"/>
+        </div>
+        <div class="content-block">
+            <h3>Why do you need an EBY subscription?</h3>
+            <h4>Your panties are dirty</h4>
+            <p>Bacteria builds up in your undies over time. By the time laundry day comes, it may be impossible to rid bacteria 100%. EBY sends you 3 new panties every 3 months.</p>
+            <h4>Your panty lines are showing</h4>
+            <p>Every pair of EBY panties is invisible under your clothes</p>
+            <h4>Member perks</h4>
+            <p>EBY members get exclusive product, and big savings</p>
+            <h4>Women’s Empowerment</h4>
+            <p>EBY is a female empowering machine. 10% of every purchase funds business loans for women.</p>
+        </div>
+    </div>
+</div>
+
+<div class="member-perks-container">
+    <div class="member-perks">
+        <a href="/collections/build-your-custom-box" class="shop_btn">Subscribe Today</a>
+        <img class="lazyload" style="width:auto;margin:0 auto;" data-src="{{ 'down-arrow.svg' | asset_url }}" alt="Arrow down" class="arrow-image"/>
+        <h2>Member Perks</h2>
+        <div class="perks-container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card-block">
+                        <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/member-pricing.jpg?v=1616020484" alt="Subscription Box"/>
+                        <h4>VIP Pricing & Free Shipping</h4>
+                        <p>Pay 25% less for bralettes, panties, shapewear, and matching sets. Get free shipping on everything sitewide.</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card-block">
+                        <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/shipments.jpg?v=1616020484" alt="Subscription Box"/>
+                        <h4>Control Your Shipments</h4>
+                        <p>Skip any month you don’t need (or want) new panties</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card-block">
+                        <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/early-access.jpg?v=1616020484" alt="Subscription Box"/>
+                        <h4>Enjoy Early Access</h4>
+                        <p>Get first access to our most popular prints & new products before they sell out</p>
+                    </div>
+                </div>
+            </div>
+          	{% comment %}
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="card-block large-card">
+                        <img class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/love-in-action.jpg?v=1616020484" alt="Subscription Box"/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card-block large-card">
+                        <h4>EBY + Love In Action <br/> by Deepak Chopra</h4>
+                        <span>$250 VALUE</span>
+                        <p>Your membership grants you access to our FREE personal empowerment course created by Deepak Chopra exclusively for EBY members, based on insights from hundreds of women.</p>
+                    </div>
+                </div>
+            </div>
+          	{% endcomment %}
+        </div>
+        <a href="/collections/build-your-custom-box" class="shop_btn">Subscribe</a>
+        <img style="width:auto;margin:0 auto;" data-src="{{ 'down-arrow.svg' | asset_url }}" alt="Arrow down" class="arrow-image lazyload"/>
+    </div>
+</div>
+
+<div class="make_eby_section">
+	<div class="make_eby_inner">
+      {%- if page.metafields.what_makes_title.what_makes_title != blank -%}
+      	<h2>{{ page.metafields.what_makes_title.what_makes_title }}</h2>
+      {%- endif -%}
+    	<div class="make_eby_bg">
+            <div class="make_box">
+                <div class="make_box_in">
+                    {%- if page.metafields.what_makes_title01.what_makes_title01 != blank -%}
+                        <h3>{{ page.metafields.what_makes_title01.what_makes_title01 }}</h3>
+                    {%- endif -%}
+                    {%- if page.metafields.what_makes_content01.what_makes_content01 != blank -%}
+                        <p>Your purchase empowers women out of poverty by offering them a hand up, not a hand out. EBY
+                            funds micro-loans for women all around the world, enabling them to start their own
+                            businesses and break the cycle of poverty for their families.</p>
+                    {%- endif -%}
+                </div>
+            </div>
+            <div class="make_box">
+                <div class="make_box_in">
+                    {%- if page.metafields.what_makes_title02.what_makes_title02 != blank -%}
+                        <h3>No-Slip Nylon Grip</h3>
+                    {%- endif -%}
+                    {%- if page.metafields.what_makes_content02.what_makes_content02 != blank -%}
+                        <p>No riding up, no slipping down, and now for the first time, no chaffing from silicone strips.
+                            Made from an all new powdered-nylon flocking, No-slip Nylon Grip will make you feel
+                            ‘scream-from-the-rooftops’ incredible. Only EBY has it.</p>
+                    {%- endif -%}
+                </div>
+            </div>
+          <div class="make_box">
+            	<div class="make_box_in">
+                  {%- if page.metafields.what_makes_title03.what_makes_title03 != blank -%}
+                  	<h3>Fits Every Body</h3>
+                  {%- endif -%}
+                  {%- if page.metafields.what_makes_content03.what_makes_content03 != blank -%}
+                      <p>Available in all sizes from XS – 4X, our panties are specifically designed to fit every body.
+                          Plus and non-plus fits have been designed to size, unlike other brands that merely scale up
+                          their smaller sizes with no regard for fit.</p>
+                  {%- endif -%}
+				</div>
+            </div>
+        </div>
+        <div class="guarantee-block">
+            <h2>100% Fit Guarantee</h2>
+            <p>Love how your EBY products fit or your money back… that’s it.</p>
+        </div>
+        <div class="button_bottom"><a class="shop_btn" href="/collections/build-your-custom-box">Subscribe</a></div>
+    </div>	
+</div>
+
+{% comment %}
+<div class="mem_perk_section membership-block">
+	<div class="mem_perk_inner">
+    	{%- if page.metafields.membership_perks_tit.membership_perks_title != blank -%}
+      		<h2>{{ page.metafields.membership_perks_tit.membership_perks_title }}</h2>
+        {%- endif -%}
+
+      	{%- if page.metafields.membership_perks_sec.membership_perks_section != blank -%}
+      		{{ page.metafields.membership_perks_sec.membership_perks_section }}
+        {%- endif -%}
+    </div>
+</div>
+{% endcomment %}
+
+<script type="text/javascript" defer>
+  document.addEventListener("DOMContentLoaded", function() {
+
+    $(document).on('click', ".new_member_banner .shop_btn.modal-trigger", function(ev) {
+        var style = ev.target.getAttribute('data-style');
+
+        if (style !== "custom_box") {
+
+          console.log(':: init standard subscription nudge ::', style);
+          
+          // init function that accepts .method('styleGroup-key', {opts: {}})
+          vela.addEbyMembershipBox('cms', {
+            styleGroup : style,
+            colorGroup : null,
+            sizeGroup  : null,
+            planGroup  : null
+          });
+          
+          //return false;
+        } else {
+          console.log(':: init cb subscription nudge ::', style);
+
+          // init function that accepts where there may need to be a prepopulated product already
+          vela.addEbyMembershipBox('cms', {
+            styleGroup : style,
+            colorGroup : null,
+            sizeGroup  : null,
+            planGroup  : null
+          });
+          
+          //return false;
+        }
+    });
+
+  });
+</script>

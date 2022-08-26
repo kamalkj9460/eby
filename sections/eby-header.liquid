@@ -1,0 +1,978 @@
+<div class="hidden_data_two" style="display: none;">
+  {% assign trueCartCount = 0 %}
+  {% for cartItem in cart.items %}
+  {% unless cartItem.properties == empty %}
+  {% assign itemProps = cartItem.properties | join: ', ' %}
+  {% unless itemProps contains "hidden_collateral" or itemProps contains "included_in_custombox" or itemProps contains "Sub Subscription" or itemProps contains "sub_bundle" or itemProps contains "included_in_pack"%}
+  {% assign trueCartCount = trueCartCount | plus: cartItem.quantity %}
+  {% endunless %}
+  {% endunless %}
+  {% endfor %}
+  {{ trueCartCount }}
+</div>
+
+<header class="eby-header scrolled {% if template != 'page.poppy-red-and-pose' and template != 'page.blue-meadow' and template != 'page.parisian-summer-luxury' and template != 'page.premium_new' and template.name != 'index' %}scrolled{% endif %}{% if template.suffix contains 'holidaydeal' %} noTopBanner{% endif %}">
+  
+    <div class="ebyTopBannerWrapper"{% if template != 'page.poppy-red-and-pose' and template != 'page.blue-meadow' and template != 'page.parisian-summer-luxury' and template != 'page.premium_new' %} style="min-height: 32px;"{% endif %}>
+    {%- if settings.show_motivator_bar -%}
+      <script type="text/javascript" async>
+        function checkBalanceValue(current_price) {
+          var balance = {%- if settings.cart_total_motivator != blank -%}{{ settings.cart_total_motivator }}{%- else -%}50{%- endif -%};
+          return (balance - current_price);
+        }
+      </script>
+            {% if settings.subscribe_offer %}
+            <div class="motivator-bar__wrapper">
+              {% if customer and customer.tags contains "Active Subscriber" %}
+              	<div id="ribbonOne" class="motivator-bar text-center ribbonOne active">
+                  {% if shop.metafields.ebyacf.enable_holiday_mode__global %}
+                    <a class="motivator-bar__wrapper__fixedLink" href="/pages/underwear-subscription-membership">
+                      Subscribe & Get Extra Panty: code EXTRA
+                      {% comment %}
+                      {{ settings.subscribe_offer_text }}
+                      {% if page.handle == "underwear-subscription-membership" %}
+                      Free panty with first box	
+                      {% else %}
+                      {{ settings.subscribe_offer_text }}
+                      {% endif %}
+                      {% endcomment %}
+                    </a>
+                  {% else %}
+                    <a class="motivator-bar__wrapper__fixedLink" href="#" data-lion-refer>
+                      Give $10, Get $10 • <u>Share Your Link</u>
+                    </a>
+                  {% endif %}
+                </div>
+              {% else %}
+              	<div id="ribbonOne" class="motivator-bar text-center ribbonOne active">
+                  {% if shop.metafields.ebyacf.enable_holiday_mode__global %}
+                    <a class="motivator-bar__wrapper__fixedLink" href="/pages/underwear-subscription-membership">
+                      Subscribe & Get 1 FREE Panty: code EXTRA
+                      {% comment %}
+                      {{ settings.subscribe_offer_text }}
+                      {% if page.handle == "underwear-subscription-membership" %}
+                      Free panty with first box	
+                      {% else %}
+                      {{ settings.subscribe_offer_text }}
+                      {% endif %}
+                      {% endcomment %}
+                    </a>
+                  {% else %}
+                    <a class="motivator-bar__wrapper__fixedLink us" data-ribbon-mode="us-sub_nps" data-ribbon-url="membership_page" href="/pages/underwear-subscription-membership">
+                      <i class="ebyicon-promo"></i> <u>SUBSCRIBE NOW</u> • Save up to 40%! 
+                    </a>
+                    <a class="motivator-bar__wrapper__fixedLink ca intStore" data-ribbon-mode="ca-ecomm_5frs" data-ribbon-url="best_sellers" href="/collections/best-sellers">
+                      <i class="ebyicon-shipping"></i>5CAD Flat On Orders Over 85CAD • <u>SHOP TODAY</u> 
+                    </a>
+                    <a class="motivator-bar__wrapper__fixedLink general intStore" data-ribbon-mode="int-ecomm_default" data-ribbon-url="best_sellers" href="/collections/best-sellers">
+                      <i class="ebyicon-shipping"></i>Now Shipping Internationally • <u>SHOP TODAY</u> 
+                    </a>
+                  {% endif %}
+                </div>
+              {% endif %}
+              <div id="ribbonTwo" class="motivator-bar text-center ribbonTwo">
+                {% if shop.metafields.ebyacf.enable_holiday_mode__global %}
+                  <a class="motivator-bar__wrapper__fixedLink" href="/pages/underwear-subscription-membership">
+                    Subscribe & Get FREE Extra Panty: code EXTRA
+                    {% comment %}
+                    {{ settings.subscribe_offer_text }}
+                    {% if page.handle == "underwear-subscription-membership" %}
+                    Free panty with first box	
+                    {% else %}
+                    {{ settings.subscribe_offer_text }}
+                    {% endif %}
+                    {% endcomment %}
+                  </a>
+                {% else %}
+<!--                   <a class="motivator-bar__wrapper__fixedLink" href="/pages/womens-underwear-sale">
+                    25% Off Capsule Sale <div id="ebySaleCountdown" style="display:inline;"></div> •
+                    <u>SHOP NOW</u>
+                  </a> -->
+                  <a class="motivator-bar__wrapper__fixedLink us" href="/pages/washable-eco-silk-outerwear">
+                    ALL NEW Washable Eco Silk • 
+                    <u>Shop While Supplies Last!</u>
+                  </a>
+                  <a class="motivator-bar__wrapper__fixedLink general intStore" href="/collections/last-call-seamless-underwear">
+                    Up to 40% Off Sale •
+                    <u>SHOP NOW</u>
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+      	{% else %}
+          {% if shop.metafields.ebyacf.enable_sitewide_countdown%}
+              <div class="motivator-bar__wrapper">
+                <div class="motivator-bar text-center">
+                  <span class="close right ebyicon-close-thin">&nbsp;</span>
+                  <a class="motivator-bar__wrapper__fixedLink" href="/collections/memorial-day-sale">{{ settings.initial_message_motivator }} - <span id="ebySaleCountdown"></span></a>
+                </div>
+              </div>
+            {% else %}
+    <!--      	<div class="motivator-bar__wrapper">
+              <div class="motivator-bar text-center">
+                <span class="close right ebyicon-close-thin">&nbsp;</span>
+                <a class="motivator-bar__wrapper__fixedLink" href="/collections/best-sellers">Buy 1 Panty Get 1 Free w/ Code PRIDE</a>
+              </div>
+            </div><div class="motivator-bar__wrapper">
+              <div class="motivator-bar text-center">
+                <span class="close right ebyicon-close-thin">&nbsp;</span>
+                {% if settings.icon_motivator != blank %}<span class="icon-motivator"><img alt="EBY Shopping Alert" class="lazyload" data-src="{{ settings.icon_motivator | img_url: '30x' }}" srcset="{{ settings.icon_motivator | img_url: '60x' }} 2x"></span>{% endif %}
+                {% if settings.aditional_message != blank %}<span class="ribbon-shipping">{{ settings.aditional_message }}</span>{% endif %}
+                {% if settings.icon_motivator != blank %}<span class="icon-motivator second"><img alt="EBY Shopping Alert" class="lazyload" data-src="{{ settings.icon_motivator | img_url: '30x' }}" srcset="{{ settings.icon_motivator | img_url: '60x' }} 2x"></span>{% endif %}
+              </div>
+            </div> -->
+            {% unless handle contains 'independence-day-pack-sale' or handle contains 'labor-day-sale-packs' %}
+      <!-- 		<div class="motivator-bar__wrapper">
+                <div class="motivator-bar text-center">
+                  <span class="close right ebyicon-close-thin">&nbsp;</span>
+                  {% if settings.icon_motivator != blank %}<span class="icon-motivator"></span>{% endif %}
+                  {% if settings.aditional_message != blank %}<span class="ribbon-shipping">{{ settings.aditional_message }}</span>{% endif %}
+                  {% if settings.icon_motivator != blank %}<span class="icon-motivator second"></span>{% endif %}
+                </div>
+              </div> -->
+              <div class="motivator-bar__wrapper">
+                <div class="motivator-bar text-center">
+                  <span class="close right ebyicon-close-thin">&nbsp;</span>
+                  <a class="motivator-bar__wrapper__fixedLink" href="/collections/thong-panties">Buy 2, Get 1 Free Thong</a>
+                </div>
+              </div>
+            {%endunless%}
+          {% endif %}
+      	{% endif %}
+        <script type="text/javascript" defer>
+          function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+          }
+
+          function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+              }
+            }
+            return "";
+          }
+          function checkMotivatorBanner(current_price){
+
+            var balance = {%- if settings.cart_total_motivator != blank -%}{{ settings.cart_total_motivator }}{%- else -%}50{%- endif -%},
+                message = "<span class=\"initial-message\">{{ settings.initial_message_motivator }}</span>",
+            cookie_motivator = false;
+
+            cookie_motivator = getCookie('_smcust');
+            if(cookie_motivator == "true"){
+              if($('.motivator-bar').hasClass('initial')){
+                $('.motivator-bar').removeClass('initial');
+              }
+              var fire_banner = false, class_banner="";
+              if((checkBalanceValue(current_price)) < 0){
+                if(!$('.motivator-bar').hasClass('confirmation')){
+                  fire_banner = true;
+                  class_banner = 'confirmation';
+                  $('.motivator-bar').removeClass('second');
+                }
+                message = "<span class=\"confirmation-message\">{{ settings.confirmation_message_motivator }}</span>";
+              }else{
+                message = "<span class=\"motivator-message\">{{ settings.before_balance_motivator }}<span class=\"balance\"> $"+ parseFloat(checkBalanceValue(current_price)).toFixed(2) +" </span>{{ settings.after_balance_motivator }}</span>";
+                if(!$('.motivator-bar').hasClass('second')){
+                  fire_banner = true;
+                  class_banner = 'second';
+                  $('.motivator-bar').removeClass('confirmation');
+                }else{
+                  $('.motivator-bar .motivator-message').remove();
+                  {% if settings.aditional_message != blank %}
+                    $(message).insertBefore(".ribbon-shipping");
+                  {% else %}
+                    $(message).insertBefore(".icon-motivator.second");
+                    //$('.motivator-bar').addClass(class_banner).show();
+                  {% endif %}
+                }
+              }
+            }else{
+              fire_banner = true;
+              class_banner = 'initial';
+              setCookie("_smcust", "true", 1);
+            }
+            if(fire_banner){
+              $('.motivator-bar').removeClass('initial second confirmation');
+              $('.motivator-bar .motivator-message, .motivator-bar .confirmation-message, .motivator-bar .initial-message').remove();
+              {% if settings.aditional_message != blank %}
+                $(message).insertBefore(".ribbon-shipping");
+                //$('.motivator-bar').addClass(class_banner).show();
+              {% else %}
+                $(message).insertBefore(".icon-motivator.second");
+                //$('.motivator-bar').addClass(class_banner).show();
+              {% endif %}
+              /*height = '-'+$('.motivator-bar').outerHeight()+'px';
+
+              $('.motivator-bar').css( {'opacity': 0, 'margin-top': height, 'position': 'relative' } )
+                  .animate( { 'opacity': '1', 'margin-top' : 0 }, 1500 );*/
+            }
+
+
+          }
+
+          document.addEventListener("DOMContentLoaded", function() {
+            $('.motivator-bar .close').on('click', function(){
+              $('.motivator-bar').dequeue().slideUp( 300 ).removeClass('initial second confirmation');
+              jQuery('.ebyTopBannerWrapper').hide();
+              $('.mainContent').addClass('noTopBanner');
+              $('.eby-header').addClass('noTopBanner');
+            });
+            checkMotivatorBanner({{ cart.total_price | divided_by: 100.0 }});
+            
+          });
+
+        </script>
+    {%- endif -%}
+  </div>
+  
+  <div class="eby-header-nav-container">
+    
+    <nav class="eby-mobile-nav">
+      <div class="burger-menu" id="btnMenuMobile">
+        <div class="menuBtnMobile d-flex flexAlignCenter">
+          <div class="btnMenuMobile ebyicon-hamburger">
+            <span class="iconMenu"></span>
+            <span class="iconMenu"></span>
+            <span class="iconMenu"></span>
+            <span class="iconMenu"></span>
+          </div>
+        </div>
+        <div class="btnMenuMobile burger-close">
+          Close
+        </div>
+      </div>
+      <div class="nav-logo-mobile-container">
+        <a class="nav-logo-mobile" href="/">
+          {% if page.handle == 'premium' %}
+          <i class="ebyicon-eby premium" ></i>
+          {% else %}
+          <i class="ebyicon-eby def" ></i>
+          {% endif %}
+        </a>
+        <button class="right_text ebyMicroBtn joinNow{% if trueCartCount <= 0 %} join{%  else %} buy{% endif %}" data-subscribe="default" title="Subscribe">
+          <span>Get Started</span>
+        </button>
+      </div>
+      <div id="hcw" class="ebyHeaderCtaWrapper" data-ct="{{ cart.total_price | money_without_currency }}">
+        <button id="global-search-btn" class="d-flex ebyMiniSearch">
+          <span class="animate searchIconWrapper">
+            <i class="ebyicon-search"></i>
+          </span>
+        </button>
+        {%- if customer -%}
+          <a class="cart-link jsDrawerOpenRight d-flex ebyMinicart {%if trueCartCount == 0 %}isEmpty{% endif %}" href="/cart">
+            <span class="animate cartIconWrapper">
+              <i class="ebyicon-minicart-empty-alt"></i>
+              <span class="item-count"><span id="CartCountMobile">{{trueCartCount | at_least: 1}}</span></span>
+            </span>
+          </a>
+        {%- else -%}
+          <a class="cart-link jsDrawerOpenRight d-flex ebyMinicart {%if trueCartCount == 0 %}isEmpty{% endif %}" href="/cart">
+            <span class="animate cartIconWrapper">
+              <i class="ebyicon-minicart-empty-alt"></i> 
+              <span class="item-count"><span id="CartCountMobile">{{trueCartCount | at_least: 1}}</span></span>
+            </span>
+          </a>
+        {%- endif -%}
+      </div>
+    </nav>
+    
+    <nav class="eby-header-nav">
+      <div class="esn-wrapper" style="padding: 0 1rem;overflow:scroll;">
+        <ul id="esnm-outer_wrapper" class="nav-promotion-images mobile_only desktop_promotion home_promotion esn-outer_wrapper">
+          <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
+            <ul id="esn-container" class="esn-container">
+              {% assign subnavLinks = linklists["new-mobile-subnav-feb-twentytwo"].links %}
+              {%- for link in subnavLinks -%}
+                <li>
+                  <a class="image_block" href="{{ link.url }}">
+                    <div>
+                      <!--             <img width="91" height="121" class="lazyloadPload" alt="EBY Memberships" title="EBY Memberships" src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/IMG---Product-NAV---subscription---1440_2x_d3d77c30-997d-4605-9e9e-97b90287ffbd.jpg?v=1637064352"> -->
+                      <h4>{{ link.title }}</h4>
+                    </div>
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </li>
+        </ul>
+      </div>
+      
+      
+      
+      <div class="nav-main-wrapper">
+      <div class="header_left">
+        <a class="nav-logo" href="/">
+          {% if page.handle == 'premium' %}
+          <i class="ebyicon-eby premium" ></i>
+          {% else %}
+          <i class="ebyicon-eby def" ></i>
+          {% endif %}
+        </a>
+      </div>
+      
+      <div class="header_center mobile_only">
+        {% assign navLinks = linklists["new-mobile-menu-feb-twentytwo"].links %}
+        {%- for link in navLinks -%}
+            {% if linklists[link.handle] == empty %}
+            {% assign hasmega = false %}
+            {% for block in section.blocks %}
+              {% assign mmi = block.settings.menuItem | downcase | handle %}
+              {% assign li = link.title | downcase | handle %}
+              {% if li == mmi %}
+                {% assign x = forloop.index %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+
+            <div class="animate {% if hasmega %}hasmega mega-nav-container{% endif %} {% if link.links != blank %}mega-nav-container{% endif %}{%if link.title == "Membership" or link.title == "Subscribe & Save"%} membershipMegaMenu bfx-remove-element{% endif %}{%if link.title == "Panty Packs" or link.title == "Favorite Packs" %} bfx-remove-element{% endif %}">
+              <a href="{{ link.url }}">
+                <span>
+                  {{ link.title }}
+                </span>
+                {% if link.links != blank or hasmega %}<span class="mobileNavMenuDropdown prime animate ebyicon-close-thin">&nbsp;</span>{% endif %}
+              </a>
+
+              {%- if hasmega -%}
+              {%- assign x = x | minus: 1 -%}
+              {%- assign block = section.blocks[x] -%}
+
+              {% if block.type == 'manu1' %}
+              <div class="mega-nav">
+                <div class="mega-nav-columns">
+                  {% for i in (1..4) %}
+                      {% capture style-menu %}style-menu{{ i }}{% endcapture %}
+                      {% if block.settings[style-menu] != blank %}
+                          {% assign style-menu-list = block.settings[style-menu] %}
+                          <div {% if style-menu-list.links != blank %} class="mega-nav-column" {% endif %}>
+                            {%- for link in style-menu-list.links -%}
+                              {% if forloop.first == true %}
+                              <a href="{{ link.url }}" class="nav-column-header">
+                                <span>{{ link.title }}</span>
+                                {% if style-menu-list.links.size > 1 %}<span class="mobileNavMenuDropdown mini animate ebyicon-close-thin">&nbsp;</span>{% endif %}
+                              </a>
+                              {% endif %}
+                            {%- endfor -%}
+                            {% if style-menu-list.links != blank %}
+                            <ul>
+                              {%- for link in style-menu-list.links -%}
+                              {% if forloop.first == true %}
+    <!--                               <a href="{{ link.url }}" class="nav-column-header">
+                                    <span>{{ link.title }}</span>
+                                    {% if link.links != blank %}<span class="mobileNavMenuDropdown mini animate ebyicon-close-thin">&nbsp;</span>{% endif %}
+                                  </a> -->
+                              {% else %}
+                                  <li class="{%if link.title == "Panty Packs" or link.title == "Favorite Packs" %} bfx-remove-element{% endif %}">
+                                    <a href="{{ link.url }}" class="nav-column-header{%if link.title == "Panty Packs" or link.title == "Favorite Packs" %} bfx-remove-element{% endif %}">
+                                      <span>{{ link.title }}</span>
+                                    </a>
+                                  </li>
+                              {% endif %}
+                              {%- endfor -%}
+                            </ul>
+                            {% endif %}
+                          </div>
+                      {% endif %}
+                  {% endfor %}
+                  {% if block.settings.img != blank %}
+                  <div class="mega-nav-column image-with-text">
+                    <div class="image-with-text-cols">
+                      {% if block.settings.img != blank %}
+                      <div class="image-cols">
+                        <a href="{{ block.settings.link }}">
+                          <img width="180" height="240" class="lazyload" alt="{{ block.settings.title }}" title="{{ block.settings.title }}" data-src="{{ block.settings.img | img_url: 'master' }}" >
+                        </a>
+                      </div>
+                      {% endif %}
+                      <div class="text-cols">
+                        {% if block.settings.title != blank %}
+                        <h4><a href="{{ block.settings.link }}">{{ block.settings.title }}</a></h4>
+                        {% endif %}
+                        {% if block.settings.sub_title != blank %}
+                        <span class="sub_title"><a href="{{ block.settings.link }}">{{ block.settings.sub_title }}</a></span>
+                        {% endif %}
+                        {% if block.settings.text != blank %}
+                        {{ block.settings.text }}
+                        {% endif %}
+                        {% if block.settings.link != blank and block.settings.btn_text != blank %}
+                        <a class="go_btn ebyicon-back_link" href="{{ block.settings.link }}">{{ block.settings.btn_text }}</a>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+              {% elsif block.type == 'manu2' %}
+              <div class="mega-nav">
+                <div class="mega-nav-columns">
+                  {% for i in (1..2) %}
+                  {% capture rev_title %}rev_title{{ i }}{% endcapture %}
+                  {% capture rev_text %}rev_text{{ i }}{% endcapture %}
+                  {% capture name %}name{{ i }}{% endcapture %}
+
+                  {% if block.settings[rev_title] != blank %}
+                  <div class="mega-nav-column review_wrapper {% if forloop.first %}review_block_1{% else %}review_block_2{% endif %}">
+                    <div class="text-cols">
+                      {% if block.settings[rev_title] != blank %}
+                      {% if forloop.first %}<h4><a href="/pages/reviews">{{ block.settings[rev_title] }}</a></h4>{% else %}<h4>{{ block.settings[rev_title] }}</h4>{%endif%}
+                      {% endif %}
+                      {% if block.settings[rev_text] != blank %}
+                      {{ block.settings[rev_text] }}
+                      {% endif %}
+                      {% if block.settings[name] != blank %}
+                      <span class="aurther_name">{{ block.settings[name] }}</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                  {% if block.settings.img != blank %}
+                  <div class="mega-nav-column image-with-text">
+                    <div class="image-with-text-cols">
+                      {% if block.settings.img != blank %}
+                      <div class="image-cols">
+                        <a href="https://blog.join-eby.com/">
+                          <img class="lazyload" width="180" height="240" alt="{{ block.settings.title }}" title="{{ block.settings.title }}" data-src="{{ block.settings.img | img_url: 'master' }}" alt="" >
+                        </a>
+                      </div>
+                      {% endif %}
+                      <div class="text-cols">
+                        {% if block.settings.title != blank %}
+                        <h4><a href="https://blog.join-eby.com/">{{ block.settings.title }}</a></h4>
+                        {% endif %}
+                        {% if block.settings.sub_title != blank %}
+                        <span class="sub_title">{{ block.settings.sub_title }}</span>
+                        {% endif %}
+                        {% if block.settings.text != blank %}
+                        {{ block.settings.text }}
+                        {% endif %}
+                        {% if block.settings.link != blank and block.settings.btn_text != blank %}
+                        <a class="go_btn ebyicon-back-thin" href="{{ block.settings.link }}">{{ block.settings.btn_text }}</a>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+              {% endif %}
+              {% endif %}
+            </div>
+
+            {% else %}
+
+            {% assign class = false %}
+            {% if link.links != blank %}
+              {%- for link in link.links -%}
+                {% if link.links == blank %}
+                  {% assign class = true %}
+                {% endif %}
+              {%- endfor -%}
+            {% endif %}
+
+
+            <div class="animate {% if link.links != blank %}mega-nav-container{% endif %} {% if class %}mega-single-nav{% endif %} {%if link.title == "Membership"%} membershipMegaMenu bfx-remove-element{% endif %}{%if link.title == "Panty Packs" or link.title == "Favorite Packs" %} bfx-remove-element{% endif %}">
+              <a href="{{ link.url }}">
+                <span>
+                  {{ link.title }}
+                </span>
+                {% if link.links != blank %}<span class="mobileNavMenuDropdown prime animate ebyicon-close-thin">&nbsp;</span>{% endif %}
+              </a>
+              {% if link.links != blank %}
+              <div class="mega-nav">
+                <div class="desktopSearchWrapper">
+                  <form class="search ebyGlobalSearchbar desktopVer" action="/search">
+                    <input type="text" placeholder="Find colors and styles" name="q" value="{{ search.terms | escape }}"  />
+                  </form>
+                </div>
+                <div class="mega-nav-columns">
+                  {%- for link in link.links -%}
+                  <div {% if link.links != blank %} class="mega-nav-column{%if link.title == "Panty Packs" or link.title == "Favorite Packs" %} bfx-remove-element{% endif %}" {% endif %}>
+                    <a href="{{ link.url }}" class="nav-column-header">
+                      <span>{{ link.title }}</span>
+                      {% if link.links != blank %}<span class="mobileNavMenuDropdown mini animate ebyicon-close-thin">&nbsp;</span>{% endif %}
+                    </a>
+                    {% if link.links != blank %}
+                    <ul>
+                      {%- for link in link.links -%}
+                      <li class="{%if link.title == "Panty Packs" or link.title == "Favorite Packs" %} bfx-remove-element{% endif %}">
+                        <a href="{{ link.url }}">
+                          <span>{{ link.title }}</span>
+                        </a>
+                      </li>
+                      {%- endfor -%}
+                    </ul>
+                    {% endif %}
+                  </div>
+                  {%- endfor -%}
+                </div>
+              </div>
+              {% endif %}
+            </div>
+            {% endif %}
+        {%- endfor -%}
+      </div>
+      <div class="header_center desktop_only">
+        {% assign navLinks = linklists["new-header-menu-october"].links %}
+        {%- for link in navLinks -%}
+            {% if linklists[link.handle] == empty %}
+            {% assign hasmega = false %}
+            {% for block in section.blocks %}
+            {% assign mmi = block.settings.menuItem | downcase | handle %}
+            {% assign li = link.title | downcase | handle %}
+            {% if li == mmi %}
+            {% assign hasmega = true %}
+            {% assign x = forloop.index %}
+            {% break %}
+            {% endif %}
+            {% endfor %}
+
+            <div class="animate {% if hasmega %}hasmega mega-nav-container{% endif %} {% if link.links != blank %}mega-nav-container{% endif %}{%if link.title == "Membership" or link.title == "Subscribe & Save"%} membershipMegaMenu bfx-remove-element{% endif %}{%if link.title == "Panty Packs" or link.title == "Favorite Packs" %} bfx-remove-element{% endif %}">
+              <a href="{{ link.url }}">
+                <span>
+                  {{ link.title }}
+                </span>
+                {% if link.links != blank or hasmega %}<span class="mobileNavMenuDropdown prime animate ebyicon-close-thin">&nbsp;</span>{% endif %}
+              </a>
+
+              {%- if hasmega -%}
+              {%- assign x = x | minus: 1 -%}
+              {%- assign block = section.blocks[x] -%}
+
+              {% if block.type == 'manu1' %}
+              <div class="mega-nav">
+                <div class="mega-nav-columns">
+                  {% for i in (1..4) %}
+                      {% capture style-menu %}style-menu{{ i }}{% endcapture %}
+                      {% if block.settings[style-menu] != blank %}
+                          {% assign style-menu-list = block.settings[style-menu] %}
+                          <div {% if style-menu-list.links != blank %} class="mega-nav-column" {% endif %}>
+                            {%- for link in style-menu-list.links -%}
+                              {% if forloop.first == true %}
+                              <a href="{{ link.url }}" class="nav-column-header">
+                                <span>{{ link.title }}</span>
+                                {% if style-menu-list.links.size > 1 %}<span class="mobileNavMenuDropdown mini animate ebyicon-close-thin">&nbsp;</span>{% endif %}
+                              </a>
+                              {% endif %}
+                            {%- endfor -%}
+                            {% if style-menu-list.links != blank %}
+                            <ul>
+                              {%- for link in style-menu-list.links -%}
+                              {% if forloop.first == true %}
+    <!--                               <a href="{{ link.url }}" class="nav-column-header">
+                                    <span>{{ link.title }}</span>
+                                    {% if link.links != blank %}<span class="mobileNavMenuDropdown mini animate ebyicon-close-thin">&nbsp;</span>{% endif %}
+                                  </a> -->
+                              {% else %}
+                                  <li class="{%if link.title == "Panty Packs" or link.title == "Favorite Packs" %} bfx-remove-element{% endif %}">
+                                    <a href="{{ link.url }}" class="nav-column-header{%if link.title == "Panty Packs" or link.title == "Favorite Packs" %} bfx-remove-element{% endif %}">
+                                      <span>{{ link.title }}</span>
+                                    </a>
+                                  </li>
+                              {% endif %}
+                              {%- endfor -%}
+                            </ul>
+                            {% endif %}
+                          </div>
+                      {% endif %}
+                  {% endfor %}
+                  {% if block.settings.img != blank %}
+                  <div class="mega-nav-column image-with-text">
+                    <div class="image-with-text-cols">
+                      {% if block.settings.img != blank %}
+                      <div class="image-cols">
+                        <a href="{{ block.settings.link }}">
+                          <img width="180" height="240" class="lazyload" alt="{{ block.settings.title }}" title="{{ block.settings.title }}" data-src="{{ block.settings.img | img_url: 'master' }}" >
+                        </a>
+                      </div>
+                      {% endif %}
+                      <div class="text-cols">
+                        {% if block.settings.title != blank %}
+                        <h4><a href="{{ block.settings.link }}">{{ block.settings.title }}</a></h4>
+                        {% endif %}
+                        {% if block.settings.sub_title != blank %}
+                        <span class="sub_title"><a href="{{ block.settings.link }}">{{ block.settings.sub_title }}</a></span>
+                        {% endif %}
+                        {% if block.settings.text != blank %}
+                        {{ block.settings.text }}
+                        {% endif %}
+                        {% if block.settings.link != blank and block.settings.btn_text != blank %}
+                        <a class="go_btn ebyicon-back_link" href="{{ block.settings.link }}">{{ block.settings.btn_text }}</a>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+              {% elsif block.type == 'manu2' %}
+              <div class="mega-nav">
+                <div class="mega-nav-columns">
+                  {% for i in (1..2) %}
+                  {% capture rev_title %}rev_title{{ i }}{% endcapture %}
+                  {% capture rev_text %}rev_text{{ i }}{% endcapture %}
+                  {% capture name %}name{{ i }}{% endcapture %}
+
+                  {% if block.settings[rev_title] != blank %}
+                  <div class="mega-nav-column review_wrapper {% if forloop.first %}review_block_1{% else %}review_block_2{% endif %}">
+                    <div class="text-cols">
+                      {% if block.settings[rev_title] != blank %}
+                      {% if forloop.first %}<h4><a href="/pages/reviews">{{ block.settings[rev_title] }}</a></h4>{% else %}<h4>{{ block.settings[rev_title] }}</h4>{%endif%}
+                      {% endif %}
+                      {% if block.settings[rev_text] != blank %}
+                      {{ block.settings[rev_text] }}
+                      {% endif %}
+                      {% if block.settings[name] != blank %}
+                      <span class="aurther_name">{{ block.settings[name] }}</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                  {% if block.settings.img != blank %}
+                  <div class="mega-nav-column image-with-text">
+                    <div class="image-with-text-cols">
+                      {% if block.settings.img != blank %}
+                      <div class="image-cols">
+                        <a href="https://blog.join-eby.com/">
+                          <img class="lazyload" width="180" height="240" alt="{{ block.settings.title }}" title="{{ block.settings.title }}" data-src="{{ block.settings.img | img_url: 'master' }}" alt="" >
+                        </a>
+                      </div>
+                      {% endif %}
+                      <div class="text-cols">
+                        {% if block.settings.title != blank %}
+                        <h4><a href="https://blog.join-eby.com/">{{ block.settings.title }}</a></h4>
+                        {% endif %}
+                        {% if block.settings.sub_title != blank %}
+                        <span class="sub_title">{{ block.settings.sub_title }}</span>
+                        {% endif %}
+                        {% if block.settings.text != blank %}
+                        {{ block.settings.text }}
+                        {% endif %}
+                        {% if block.settings.link != blank and block.settings.btn_text != blank %}
+                        <a class="go_btn ebyicon-back-thin" href="{{ block.settings.link }}">{{ block.settings.btn_text }}</a>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+              {% endif %}
+              {% endif %}
+            </div>
+
+            {% else %}
+
+            {% assign class = false %}
+            {% if link.links != blank %}
+              {%- for link in link.links -%}
+                {% if link.links == blank %}
+                  {% assign class = true %}
+                {% endif %}
+              {%- endfor -%}
+            {% endif %}
+
+
+            <div class="animate {% if link.links != blank %}mega-nav-container{% endif %} {% if class %}mega-single-nav{% endif %} {%if link.title == "Membership"%} membershipMegaMenu bfx-remove-element{% endif %}{%if link.title == "Panty Packs" or link.title == "Favorite Packs" %} bfx-remove-element{% endif %}">
+              <a href="{{ link.url }}">
+                <span>
+                  {{ link.title }}
+                </span>
+                {% if link.links != blank %}<span class="mobileNavMenuDropdown prime animate ebyicon-close-thin">&nbsp;</span>{% endif %}
+              </a>
+              {% if link.links != blank %}
+              <div class="mega-nav">
+                <div class="desktopSearchWrapper">
+                  <form class="search ebyGlobalSearchbar desktopVer" action="/search">
+                    <input type="text" placeholder="Find colors and styles" name="q" value="{{ search.terms | escape }}"  />
+                  </form>
+                </div>
+                <div class="mega-nav-columns">
+                  {%- for link in link.links -%}
+                  <div {% if link.links != blank %} class="mega-nav-column{%if link.title == "Panty Packs" or link.title == "Favorite Packs" %} bfx-remove-element{% endif %}" {% endif %}>
+                    <a href="{{ link.url }}" class="nav-column-header">
+                      <span>{{ link.title }}</span>
+                      {% if link.links != blank %}<span class="mobileNavMenuDropdown mini animate ebyicon-close-thin">&nbsp;</span>{% endif %}
+                    </a>
+                    {% if link.links != blank %}
+                    <ul>
+                      {%- for link in link.links -%}
+                      <li class="{%if link.title == "Panty Packs" or link.title == "Favorite Packs" %} bfx-remove-element{% endif %}">
+                        <a href="{{ link.url }}">
+                          <span>{{ link.title }}</span>
+                        </a>
+                      </li>
+                      {%- endfor -%}
+                    </ul>
+                    {% endif %}
+                  </div>
+                  {%- endfor -%}
+                </div>
+              </div>
+              {% endif %}
+            </div>
+            {% endif %}
+        {%- endfor -%}
+        <div class="desktop_only deskSearchWrapper animate inactive" style="display: none;">
+          <form class="search ebyGlobalSearchbar" action="/search">
+            <input type="text" placeholder="Find colors and styles" name="q" value="{{ search.terms | escape }}"  />
+          </form>
+        </div>
+      </div>
+
+      <div class="header_right">
+        <button class="right_text desktop_only ebyMicroBtn joinNow{% if trueCartCount <= 0 %} join{%  else %} buy{% endif %}" data-subscribe="default" title="Subscribe">
+          <span>Get Started</span>
+        </button>
+
+        {%- if customer -%}
+        <a class="right_text sign_in_btn" href="/account" title="{{ 'layout.header.account' | t }}">
+          <span>
+            My Account
+          </span>
+        </a>
+        {%- else -%}
+        <a class="right_text sign_in_btn" href="/account/login" title="Sign In">
+          <span>
+            Sign In
+          </span>
+        </a>
+        {%- endif -%}
+
+        <div class="right_text header_search">
+          <button id="internationalToggleBtn" class="internationalToggleBtn usOnline" aria-label="International Toggle Button">
+          	<img id="intToggIndicator" class="internationalImgIcon us us-def" data-src="" alt="International Shopping" title="International Shopping" />
+          </button>
+          <form class="search ebyGlobalSearchbar mobileVer" action="/search">
+            <input type="text" placeholder="Find colors and styles" name="q" value="{{ search.terms | escape }}"  />
+          </form>
+        </div>
+
+        <div class="right_text ebyHeaderCtaWrapper">
+          <button id="global-search-btn-desktop" name="q" class="ebyMiniSearch snize-input-style desktop_only">
+            <span class="animate searchIconWrapper">
+              <i class="ebyicon-search"></i>
+            </span>
+          </button>
+          <button id="global-search-btn-mobile" name="q" class="ebyMiniSearch snize-input-style mobile_only">
+            <span class="animate searchIconWrapper">
+              <i class="ebyicon-search"></i>
+            </span>
+          </button>
+          <a class="cart-link jsDrawerOpenRight d-flex ebyMinicart {%if trueCartCount == 0 %}isEmpty{% endif %}" href="/cart">
+            <span class="animate cartIconWrapper">
+              <i class="ebyicon-minicart-empty-alt"></i>
+              <span class="item-count"><span id="CartCount">{{trueCartCount | at_least: 1}}</span></span>
+            </span>
+          </a>
+        </div>
+      </div>
+      </div>
+    </nav>
+  </div>
+  
+  {% render 'vela-template' %}
+</header>
+
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [],
+	"blocks": [
+	  {
+		"type": "manu1",
+		"name": "Add Menu style 1",
+		"settings": [
+		  {
+			"type": "text",
+			"label": "Add menu item name",
+			"id": "menuItem",
+			"info": "add exact manu name which you want to set as mega menu. make sure this is single level menu."
+		  },
+		  {
+            "type": "header",
+            "content": "Menu items"
+          },
+		  {
+            "type": "link_list",
+            "id": "style-menu1",
+            "label": "Select menu 1"
+          },
+	      {
+            "type": "link_list",
+            "id": "style-menu2",
+            "label": "Select menu 2"
+          },
+		  {
+            "type": "link_list",
+            "id": "style-menu3",
+            "label": "Select menu 3"
+          },
+	   	  {
+            "type": "link_list",
+            "id": "style-menu4",
+            "label": "Select menu 4"
+          },
+		  {
+            "type": "header",
+            "content": "Image items"
+          },
+		  {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+          },
+		  {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+		  {
+            "type": "text",
+            "id": "sub_title",
+            "label": "Sub Title"
+          },
+		  {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          },
+		  {
+            "type": "text",
+            "id": "btn_text",
+            "label": "Button Text"
+          },
+		  {
+            "type": "url",
+            "id": "link",
+            "label": "Button Link"
+          }
+		]
+	  },
+	  {
+		"type": "manu2",
+		"name": "Add Menu style 2",
+		"settings": [
+		  {
+			"type": "text",
+			"label": "Add menu item name",
+			"id": "menuItem",
+			"info": "add exact manu name which you want to set as mega menu. make sure this is single level menu."
+		  },
+		  {
+            "type": "header",
+            "content": "Reviews items 1"
+          },
+		  {
+            "type": "text",
+            "id": "rev_title1",
+            "label": "Title"
+          },
+		  {
+            "type": "url",
+            "id": "rev_title1_link",
+            "label": "Button Link"
+          },
+	      {
+            "type": "richtext",
+            "id": "rev_text1",
+            "label": "Text"
+          },
+		  {
+            "type": "text",
+            "id": "name1",
+            "label": "Auther Name"
+          },
+		  {
+            "type": "header",
+            "content": "Reviews items 2"
+          },
+		  {
+            "type": "text",
+            "id": "rev_title2",
+            "label": "Title"
+          },
+	      {
+            "type": "richtext",
+            "id": "rev_text2",
+            "label": "Text"
+          },
+		  {
+            "type": "text",
+            "id": "name2",
+            "label": "Auther Name"
+          },
+		  {
+            "type": "header",
+            "content": "Image items"
+          },
+		  {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+          },
+		  {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+		  {
+            "type": "text",
+            "id": "sub_title",
+            "label": "Sub Title"
+          },
+		  {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          },
+		  {
+            "type": "text",
+            "id": "btn_text",
+            "label": "Button Text"
+          },
+		  {
+            "type": "url",
+            "id": "link",
+            "label": "Button Link"
+          }
+		]
+	  },
+	  {
+		"type": "pro_image",
+		"name": "Add promotion image",
+		"settings": [
+		  {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+          },
+		  {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+		  {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }  
+		]
+	  }
+	]
+  }
+{% endschema %}

@@ -95,111 +95,104 @@
   {%- assign productUrl = productUrl -%}
 
 
-{%- assign hasFlag = "false" -%}
-                    {% for prodTag in product.tags %}
-                        {% if prodTag contains "prodFlag-" %}
-                            {% assign hasFlag = "true" %}
-                            {% assign prodFlag = prodTag | replace: "prodFlag-", "" | replace: "_", " " | capitalize %}
-                        {% endif %}
-                    {% endfor %}
-                    {% if product.type contains "Underwear" %}
-                        {% for prodTag in product.tags %}
-                            {% if prodTag contains "pantyType-" %}
-                                {%- assign prodNameTitle = prodTag | replace: "pantyType-", "" | replace: "_", " " -%}
-                            {% endif %}
-                            {% if prodTag contains "pantyColor-" %}
-                                {%- assign prodColorTitle = prodTag | replace: "pantyColor-", "" | replace: "_", " " -%}
-                            {% endif %}
-                            {% if prodTag contains "pantyFabric-" %}
-                                {% if prodTag == "pantyFabric-signature" %}
-                                    {%- assign prodFabricTitle = "Seamless" -%}
-                                {% elsif prodTag == "pantyFabric-cotton" %}
-                                	{%- assign prodFabricTitle = "Seamless Cotton" -%}
-                                {% else %}
-									{% if product.type contains "Mesh" %}
-                                        {%- assign prodFabricTitle = "Seamless Sheer" -%}
-                                    {% else %}
-                                        {%- assign prodFabricTitle = "Seamless" -%}
-                                    {% endif %}
-                                {% endif %}
-                            {% endif %}
-                        {% endfor %}
-                    {% elsif product.type contains "Bralette" %}
-                        {%- assign prodNameTitle = "bralette" -%}
-                        {% for prodTag in product.tags %}
-                            {% if prodTag contains "braletteColor-" %}
-                                {%- assign prodColorTitle = prodTag | replace: "braletteColor-", "" | replace: "_", " " -%}
-                            {% endif %}
-                            {% if prodTag contains "braletteFabric-" %}
-                                {% if prodTag == "braletteFabric-signature" %}
-                                    {%- assign prodFabricTitle = "Seamless" -%}
-                                {% elsif prodTag == "braletteFabric-cotton" %}
-                                    {%- assign prodFabricTitle = "Seamless Cotton" -%}
-                				{% else %}
-									{% if product.type contains "Mesh" %}
-                                        {%- assign prodFabricTitle = "Seamless Sheer" -%}
-                                    {% else %}
-                                        {%- assign prodFabricTitle = "Seamless" -%}
-                                    {% endif %}
-                                {% endif %}
-                            {% endif %}
-                        {% endfor %}
-                    {% elsif product.type == "Wrap Top" %}
-                        {%- assign prodNameTitle = "Wrap Top" -%}
-                        {% for prodTag in product.tags %}
-                            {% if prodTag contains "wrapColor-" %}
-                                {%- assign prodColorTitle = prodTag | replace: "wrapColor-", "" | replace: "_", " " -%}
-                            {% endif %}
-                            {% if prodTag contains "wrapFabric-" %}
-                                {% if prodTag == "wrapFabric-signature" %}
-                                    {%- assign prodFabricTitle = "Seamless" -%}
-                                {% else %}
-                                    {%- assign prodFabricTitle = prodTag | replace: "wrapFabric-", "" | replace: "_", " " -%}
-                                {% endif %}
-                            {% endif %}
-                        {% endfor %}
-                    {% elsif product.type == "Bodysuit" %}
-                        {%- assign prodNameTitle = "Bodysuit" -%}
-                        {% for prodTag in product.tags %}
-                            {% if prodTag contains "bodysuitColor-" %}
-                                {%- assign prodColorTitle = prodTag | replace: "bodysuitColor-", "" | replace: "_", " " -%}
-                            {% endif %}
-                            {% if prodTag contains "bodysuitFabric-" %}
-                                {% if prodTag == "bodysuitFabric-signature" %}
-                                    {%- assign prodFabricTitle = "Seamless" -%}
-                                {% else %}
-                                    {%- assign prodFabricTitle = prodTag | replace: "bodysuitFabric-", "" | replace: "_", " " -%}
-                                {% endif %}
-                            {% endif %}
-                        {% endfor %}
-                    {% elsif product.type contains "Pack" %}
-                        {%- assign prodNameTitle = "Pack" -%}
-                        {% for prodTag in product.tags %}
-                            {% if prodTag contains "packColor-" %}
-                                {%- assign prodColorTitle = prodTag | replace: "packColor-", "" | replace: "_", " " -%}
-                            {% endif %}
-                        {% endfor %}
-                    {% elsif product.type == "Tank" %}
-                        {%- assign prodNameTitle = "Tank" -%}
-                        {% for prodTag in product.tags %}
-                            {% if prodTag contains "tankColor-" %}
-                                {%- assign prodColorTitle = prodTag | replace: "tankColor-", "" | replace: "_", " " -%}
-                            {% endif %}
-                            {% if prodTag contains "tankFabric-" %}
-                                {% if prodTag == "tankFabric-signature" %}
-                                    {%- assign prodFabricTitle = "Seamless" -%}
-                                {% else %}
-                                    {%- assign prodFabricTitle = prodTag | replace: "tankFabric-", "" | replace: "_", " " -%}
-                                {% endif %}
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
+  {%- assign hasFlag = "false" -%}
+                      {% for prodTag in product.tags %}
+                          {% if prodTag contains "prodFlag-" %}
+                              {% assign hasFlag = "true" %}
+                              {% assign prodFlag = prodTag | replace: "prodFlag-", "" | replace: "_", " " | capitalize %}
+                          {% endif %}
+                      {% endfor %}
+                      {% if product.type contains "Underwear" %}
+                          {% for prodTag in product.tags %}
+                              {% if prodTag contains "pantyType-" %}
+                                  {%- assign prodNameTitle = prodTag | replace: "pantyType-", "" | replace: "_", " " -%}
+                              {% endif %}
+                              {% if prodTag contains "pantyColor-" %}
+                                  {%- assign prodColorTitle = prodTag | replace: "pantyColor-", "" | replace: "_", " " -%}
+                              {% endif %}
+                              {% if prodTag contains "pantyFabric-" %}
+                                  {% if prodTag == "pantyFabric-signature" %}
+                                      {%- assign prodFabricTitle = "Seamless" -%}
+                                  {% elsif prodTag == "pantyFabric-cotton" %}
+                                      {%- assign prodFabricTitle = "Seamless Cotton" -%}
+                                  {% else %}
+                                      {% if product.type contains "Mesh" %}
+                                          {%- assign prodFabricTitle = "Mesh" -%}
+                                      {% else %}
+                                          {%- assign prodFabricTitle = "Seamless" -%}
+                                      {% endif %}
+                                  {% endif %}
+                              {% endif %}
+                          {% endfor %}
+                      {% elsif product.type contains "Bralette" %}
+                          {%- assign prodNameTitle = "bralette" -%}
+                          {% for prodTag in product.tags %}
+                              {% if prodTag contains "braletteColor-" %}
+                                  {%- assign prodColorTitle = prodTag | replace: "braletteColor-", "" | replace: "_", " " -%}
+                              {% endif %}
+                              {% if prodTag contains "braletteFabric-" %}
+                                  {% if prodTag == "braletteFabric-signature" %}
+                                      {%- assign prodFabricTitle = "Seamless" -%}
+                                  {% elsif prodTag == "braletteFabric-cotton" %}
+                                      {%- assign prodFabricTitle = "Seamless Cotton" -%}
+                                  {% else %}
+                                      {% if product.type contains "Mesh" %}
+                                          {%- assign prodFabricTitle = "Mesh" -%}
+                                      {% else %}
+                                          {%- assign prodFabricTitle = "Seamless" -%}
+                                      {% endif %}
+                                  {% endif %}
+                              {% endif %}
+                          {% endfor %}
+                      {% elsif product.type == "Wrap Top" %}
+                          {%- assign prodNameTitle = "Wrap Top" -%}
+                          {% for prodTag in product.tags %}
+                              {% if prodTag contains "wrapColor-" %}
+                                  {%- assign prodColorTitle = prodTag | replace: "wrapColor-", "" | replace: "_", " " -%}
+                              {% endif %}
+                              {% if prodTag contains "wrapFabric-" %}
+                                  {% if prodTag == "wrapFabric-signature" %}
+                                      {%- assign prodFabricTitle = "Seamless" -%}
+                                  {% else %}
+                                      {%- assign prodFabricTitle = prodTag | replace: "wrapFabric-", "" | replace: "_", " " -%}
+                                  {% endif %}
+                              {% endif %}
+                          {% endfor %}
+                      {% elsif product.type == "Bodysuit" %}
+                          {%- assign prodNameTitle = "Bodysuit" -%}
+                          {% for prodTag in product.tags %}
+                              {% if prodTag contains "bodysuitColor-" %}
+                                  {%- assign prodColorTitle = prodTag | replace: "bodysuitColor-", "" | replace: "_", " " -%}
+                              {% endif %}
+                              {% if prodTag contains "bodysuitFabric-" %}
+                                  {% if prodTag == "bodysuitFabric-signature" %}
+                                      {%- assign prodFabricTitle = "Seamless" -%}
+                                  {% else %}
+                                      {%- assign prodFabricTitle = prodTag | replace: "bodysuitFabric-", "" | replace: "_", " " -%}
+                                  {% endif %}
+                              {% endif %}
+                          {% endfor %}
+                      {% elsif product.type == "Tank" %}
+                          {%- assign prodNameTitle = "Tank" -%}
+                          {% for prodTag in product.tags %}
+                              {% if prodTag contains "tankColor-" %}
+                                  {%- assign prodColorTitle = prodTag | replace: "tankColor-", "" | replace: "_", " " -%}
+                              {% endif %}
+                              {% if prodTag contains "tankFabric-" %}
+                                  {% if prodTag == "tankFabric-signature" %}
+                                      {%- assign prodFabricTitle = "Seamless" -%}
+                                  {% else %}
+                                      {%- assign prodFabricTitle = prodTag | replace: "tankFabric-", "" | replace: "_", " " -%}
+                                  {% endif %}
+                              {% endif %}
+                          {% endfor %}
+                      {% endif %}
 
-                    {% if prodNameTitle == "highwaisted_thong" %}
-                        {% assign prdImgFileName = "hwthong" %}
-                    {% else %}
-                        {% assign prdImgFileName = prodNameTitle %}
-                    {% endif %}
+                      {% if prodNameTitle == "highwaisted_thong" %}
+                          {% assign prdImgFileName = "hwthong" %}
+                      {% else %}
+                          {% assign prdImgFileName = prodNameTitle %}
+                      {% endif %}
 
                       {% assign premImgFileName = prodColorTitle | replace: " ", "" | append: "---" | append: prdImgFileName | append: "---missy---tile_fr.jpg" %}
 

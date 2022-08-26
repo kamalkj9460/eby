@@ -64,18 +64,6 @@
         {% endif %}
     {% endfor %}
 
-{% elsif product.type contains 'Silk '  %}
-    {% for prodTag in product.tags %}
-        {% if prodTag contains "Type-" %}
-            {%- assign prodNameTitle = prodTag | split: "Type-" -%}
-            {%- assign prodNameTitle = prodNameTitle | first -%}
-        {% endif %}
-        {% if prodTag contains "Color-" %}
-            {%- assign prodColorTitle = prodTag | split: "Color-" -%}
-            {%- assign prodColorTitle = prodColorTitle | last -%}
-        {% endif %}
-    {% endfor %}
-
 {% elsif product.type == "Core Bralette" or product.type == "Cotton Bralette" or product.type == 'Premium Bralette' or product.type == 'Mesh Bralette'  %}
 	{%- assign prodNameTitle = "bralette" -%}
 
@@ -159,8 +147,6 @@
 {% else %}
     {% if product.type contains "Cotton" %}
         <div class="subtitle"><h3>EBY invisible cotton {{ prodNameTitle | replace: "_", " " }} in <span id="pdp-color-text">{{ prodColorTitle | replace: "_", " " }}</span></h3></div>
-    {% elsif product.type contains "Silk" %}
-        <div class="subtitle"><h3>Washable eco silk {{ prodNameTitle | replace: "_", " " }} in <span id="pdp-color-text">{{ prodColorTitle | replace: "_", " " }}</span></h3></div>
     {% else %}
         {% if product.type contains "Surprise Panty Pack" %}
             <div class="subtitle"><h3>EBY seamless panty 3 pack</h3></div>
@@ -409,29 +395,18 @@
   {% if product.type contains "Surprise Panty Pack" %}
   	<span class="salePriceExcerptCopy">This item is final sale.</span>
   {% endif %}
+  {%- if settings.product_reviews_enable -%}
   <div class="proReviews"> 
-
-    <!-- Stamped - Begin Star Rating Badge -->
-    <span 
-    class="stamped-product-reviews-badge stamped-main-badge" 
-    data-id="{{ product.id }}" 
-    data-product-sku="{{ product.selected_or_first_available_variant.sku }}" 
-    data-product-title="{{product.title}}" 
-    data-product-type="{{product.type}}" 
-    style="display: block;">
-    </span>
-    <!-- Stamped - End Star Rating Badge -->
- 
+    <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{ product.id }}" style="display: inline-block;">{{ product.metafields.stamped.badge }}</span>
     {% comment %}<span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>{% endcomment %}
   </div>
+  {%- endif -%}
   {% form 'product', product, id: "oldID", class: "formAddToCart" %}
 
       {% comment %}{% include 'product-subscription-options', product_target: product %}{% endcomment %}
 
       {% unless product.type == "Mask"%}
-  		<div style="display:inline-block;">
-          <a class="siz_guid size_guid_pdp" href="#">Size Guide</a>
-        </div>
+  		<a class="siz_guid size_guid_pdp" href="#">Size Guide</a>
   	  {% endunless %}
   	
   	  {%- assign variantCount = product.variants | size -%}
@@ -648,9 +623,11 @@
               	</div>
             </div>
         
+            {% unless product.selected_or_first_available_variant.available %}
             <div class="ebyOutofstockCaptureWrapper back_in_stock" style="display:none;">
               <a class="klaviyo-bis-trigger" href="#">Notify Me When Available</a>
             </div>
+            {% endunless %}
         
         	{%if product.type contains 'Core Underwear' or product.type == "Mesh Underwear" %}
                 {%if customer %}

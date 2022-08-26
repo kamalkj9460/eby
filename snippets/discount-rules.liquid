@@ -101,7 +101,7 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
 {%- assign bCodeDiscountApplyFiveSubs = '' -%}
 
 {% if init == true -%}
-  <script type="text/javascript" defer>
+  <script type="lazyload2">
     if (typeof Shopify === "undefined") {
       Shopify = {};
     }
@@ -198,7 +198,7 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
     
     {%- assign FreeGiftPVariant = FreeGiftProduct.variants[0].id %}
 
-    <script type="text/javascript" defer>
+    <script type="lazyload2">
       window.discountRulesCustomProductTile = {{ settings.custom_free_gift_product_title | json }};
       
       function bGetCookie(cname) {
@@ -548,7 +548,7 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
         
       {% if showJsReady -%}
         function bDiscountRulesjQueryReady() {console.log('Execute bDiscountRulesjQueryReady');
-          document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
             {% if template.name == 'cart' -%}
               {% assign has_subscriptions = false %}
               {%- for i in cart.items -%}
@@ -651,7 +651,7 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
 
 		    {% if cart_value < FreeGiftCartValueNeeded or isAllOneTime == false or isCustomer == true and isCustomerVIP == false -%}
           {% if foundFreeGiftPVariant == true -%}
-            <script type="text/javascript" defer>
+            <script type="lazyload2">
               console.log('Removed Gift to Bag');
               $.ajax({
                 type: 'POST',
@@ -667,7 +667,7 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
           {%- endif -%}
         {%- endif -%}
         {% if foundFreeGiftPVariant == true -%}
-          <script type="text/javascript" defer>
+          <script type="lazyload2">
             let progressBarRun = true;
             let progressBarDontRun = {{ bProgressBarDontRun | json }};
             if (progressBarDontRun != '') {
@@ -692,7 +692,7 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
           </script>
         {%- endif -%}
         {%- if cart_value >= FreeGiftCartValueNeeded and isAllOneTime == true and foundFreeGiftPVariant == false and isCustomerVIP == true or isCustomer == false -%}
-          <script type="text/javascript" defer>
+          <script type="lazyload2">
             let progressBarRun = true;
             let progressBarDontRun = {{ bProgressBarDontRun | json }};
             if (progressBarDontRun != '') {
@@ -728,7 +728,7 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
           </script>
         {%- endif -%}
         {%- if foundFreeGiftPVariantCount > FreeGiftNumberProductToAdd -%}
-          <script type="text/javascript" defer>
+          <script type="lazyload2">
             console.log('Correcting Quantity Free Gift to Cart');
             window.location.href = "/cart/change?line={{ foundFreeGiftPVariantLine }}&quantity={{ FreeGiftNumberProductToAdd }}";
           </script>
@@ -747,7 +747,7 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
         {%- endif -%}
       {%- endfor -%}
       {%- if foundFreeGiftPVariant == true -%}
-        <script type="text/javascript" defer>
+        <script type="lazyload2">
           var params = {quantity:0,id:{{ FreeGiftPVariant }}};
           $.ajax({
             type: 'POST',
@@ -779,10 +779,10 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
 {%- endif %}
 
 {% if showJsReady == true -%}
-<script type="text/javascript" defer>
+<script type="lazyload2">
   function bDiscountRulesjQueryReady2() {
     console.log('Execute bDiscountRulesjQueryReady2');
-    document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(function() {
       $('form[action^="/cart/add"] [type="submit"]').click(function(e, jsonBYOB){
         console.log(jsonBYOB);
         console.log('submit');
@@ -1224,7 +1224,7 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
                 {{- bProgressBarBreakOneTextBottom -}}
               </span>
             </div>
-            <div class="unlocked-two{% if bCartValue >= bProgressBarBreakTwo %} active{% elsif bHasPreActive == false %} pre-active{%- assign bHasPreActive = true -%} {% endif %}">
+            <div class="unlocked-two{% if bProgressBarBreakTwo != false %}{% if bCartValue >= bProgressBarBreakTwo %} active{% elsif bHasPreActive == false %} pre-active{%- assign bHasPreActive = true -%}{% endif %}{% else %} hide{% endif %}">
               <span class="unlocked-text top">
                 {{- bProgressBarBreakTwoTextTop -}}
               </span>
@@ -1273,7 +1273,7 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
 {% endif %}
 
 {% if showProgressBarJS == true %}
-<script type="text/javascript" defer>
+<script type="lazyload2">
   
   Shopify.bItemsToAdd = [];
   Shopify.bItemsToAddCount = '{{ bCartTotalPriceCollectionQ }}';
@@ -1506,7 +1506,7 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
         //console.log('totalPrice',totalPrice,'cartValue',cartValue,'progressBarBreakOne',progressBarBreakOne);
         jQuery('.gamification .unlockeds > div').removeClass('active').removeClass('pre-active');
         if (progressBarBreakTwo == false) {
-          jQuery('.gamification .unlockeds .unlocked-two').removeClass('active');
+          jQuery('.gamification .unlockeds .unlocked-two').removeClass('active').addClass('hide');
           //console.log('totalPrice',totalPrice,'cartValue',cartValue,'progressBarBreakOne',progressBarBreakOne);
           if (cartValue >= progressBarBreakOne) {
             jQuery('.gamification .unlockeds .unlocked-one').addClass('active');
@@ -2337,239 +2337,7 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
 
 {% if showProgressBarCSS == true %}
 <style>
-  .gamification {
-    position: relative;
-    transition: all 0.1s;
-    display: block;
-    padding: 0 !important;
-  }
-  .gamification .gamification--is-loading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .gamification .gamification--is-loading:before {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: rgba(255,255,255,0.50);
-    z-index: 1;
-    top: 0;
-    left: 0;
-  }
-  .gamification .gamification--is-loading:after {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    left: 50%;
-    top: calc(50% - 12px);
-    margin-left: -12px;
-    border-radius: 50%;
-    border: 3px solid #001a72;
-    border-top-color: transparent;
-    -webkit-animation: spin 1s infinite linear;
-    -moz-animation: spin 1s infinite linear;
-    -o-animation: spin 1s infinite linear;
-    animation: spin 1s infinite linear;
-    z-index: 1;
-  }
-  .progress_wrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-  .gamification.gamification_side .progress_container {
-    width: 100%;
-  }
-  .progress_wrapper .pm-selected_wrapper {
-    width: 100px;
-    margin: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center!important;
-    align-items: center!important;
-    -ms-flex-pack: center!important;
-    justify-content: center!important;
-  }
-  .pm-selected_wrapper .pm-selected {
-    font-family: Hanoded,sans-serif;
-    font-weight: normal;
-    color: #376587;
-    display: inline-block;
-    font-size: 26px;
-    line-height: 20px;
-    text-align: center;
-  }
-  .pm-selected_wrapper .pm-selected small {
-    font-size: 70%;
-    display: block;
-  }
-  .pm-selected_wrapper .pm-selected span {
-    font-size: 30px;
-    font-weight: 600;
-    line-height: 30px;
-    color: #ff8c5a;
-    display: block;
-  }
-  .header-collection {
-    margin-bottom: 0;
-  }
-  .gamification.stickyBYOK {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    margin: 0;
-    left: 0;
-    border-radius: 0;
-    background-color: rgb(255 239 232);
-    padding: 10px 20px 5px !important;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.32);
-    z-index: 51;
-  }
-  .byob-helper .byob-helper_info {
-    display: inline-block;
-  }
-
-  .gamification .gamification-title {
-    font-size: 20px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.9;
-    letter-spacing: normal;
-    color: #001a72;
-  }
-  .gamification .you-just-unlocked {
-    display: block;
-    font-size: 20px;
-    font-weight: 500;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.9;
-    letter-spacing: normal;
-    color: #f97615;
-    text-align: center;
-  }
-  .gamification .cart-option .btn span {
-    width: 10px;
-    height: 10px;
-    border-top: solid 2px #ffffff;
-    border-right: solid 2px #ffffff;
-    display: inline-block;
-    margin-left: 8px;
-    transform: rotate(45deg);
-  }
-  .gamification .gamification_container .progress_container .progress-unlockeds {
-    position: relative;
-    padding: calc(12px + 18px) 0 calc(28px + 12px);
-    margin: 20px 0 10px;
-  }
-  .gamification .progress-unlockeds .progress {
-    background-color: #dfe0e4;
-    height: 2px;
-    margin: 0px;
-  }
-  .gamification .progress-unlockeds .progress .progress-bar {
-    background-color: #0064FF;
-    border-radius: 5px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    height: 2px;
-    max-width: 100%;
-  }
-  .gamification .progress-unlockeds .unlockeds > div {
-    position: absolute;
-    top: 0px;
-    text-align: right;
-    height: 100%;
-  }
-  .gamification .progress-unlockeds .unlockeds > div .unlocked-icon {
-    display: block;
-    text-align: center;
-    top: 21px;
-    height: 20px;
-  }
-  .gamification .progress-unlockeds .unlockeds > div .unlocked-icon::before {
-    content: '';
-    display: block;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    left: calc(50% - 10px);
-    border-radius: 50%;
-    border: 2px solid #dfe0e4;
-    background: #f0f0f0;
-  }
-  .gamification .progress-unlockeds .unlockeds > div .unlocked-icon::after {
-    content: '';
-    display: block;
-    width: 12px;
-    height: 12px;
-    position: absolute;
-    top: calc(50% - 6px);
-    left: calc(50% - 6px);
-    border-radius: 50%;
-    border: 2px solid #f0f0f0;
-    background: transparent;
-  }
-  .gamification .progress-unlockeds .unlockeds > div.pre-active .unlocked-icon::after {
-    border: 2px solid #dfe0e4;
-    background: #dfe0e4;
-  }
-  .gamification .progress-unlockeds .unlockeds > div.active .unlocked-icon::before {
-    border: 2px solid #0064FF;
-  }
-  .gamification .progress-unlockeds .unlockeds > div.active .unlocked-icon::after {
-    border: 2px solid #0064FF;
-    background: #0064FF;
-  }
-  .gamification .progress-unlockeds .unlockeds > div .unlocked-text {
-    display: block;
-    font-family: aktiv-grotesk,Helvetica,Arial,sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    line-height: normal;
-    color: #000C48;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing:0.5px; 
-  }
-  .gamification .progress-unlockeds .unlockeds > div.active .unlocked-text {
-    color: #0064FF;
-    /*color: #8bccaa;*/
-  }
-  .gamification .progress-unlockeds .unlockeds > div .unlocked-text.top,
-  .gamification .progress-unlockeds .unlockeds > div .unlocked-icon,
-  .gamification .progress-unlockeds .unlockeds > div .unlocked-text.bottom {
-    position: absolute;
-    width: 100%;
-  }
-  .gamification .progress-unlockeds .unlockeds > div .unlocked-text.top {
-    top: -1px;
-  }
-  .gamification .progress-unlockeds .unlockeds > div .unlocked-text.bottom {
-    top: 50px;
-  }
-  .toast.gamificationAlert {
-    background: #74be97;
-    max-width: 280px;
-    width: 100%;
-  }
-  @media screen and (max-width: 770px){
-    .toast.gamificationAlert {
-      max-width: 100%;
-    }
-  }
-  
+  .gamification{position:relative;transition:all 0.1s;display:block;padding:0!important}.gamification .gamification--is-loading{position:absolute;top:0;left:0;width:100%;height:100%}.gamification .gamification--is-loading:before{content:'';display:block;width:100%;height:100%;position:absolute;background:rgba(255,255,255,.5);z-index:1;top:0;left:0}.gamification .gamification--is-loading:after{content:'';display:block;width:24px;height:24px;position:absolute;left:50%;top:calc(50% - 12px);margin-left:-12px;border-radius:50%;border:3px solid #001a72;border-top-color:transparent;-webkit-animation:spin 1s infinite linear;-moz-animation:spin 1s infinite linear;-o-animation:spin 1s infinite linear;animation:spin 1s infinite linear;z-index:1}.progress_wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.gamification.gamification_side .progress_container{width:100%}.progress_wrapper .pm-selected_wrapper{width:100px;margin:0;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-align:center!important;align-items:center!important;-ms-flex-pack:center!important;justify-content:center!important}.pm-selected_wrapper .pm-selected{font-family:Hanoded,sans-serif;font-weight:400;color:#376587;display:inline-block;font-size:26px;line-height:20px;text-align:center}.pm-selected_wrapper .pm-selected small{font-size:70%;display:block}.pm-selected_wrapper .pm-selected span{font-size:30px;font-weight:600;line-height:30px;color:#ff8c5a;display:block}.header-collection{margin-bottom:0}.gamification.stickyBYOK{position:fixed;top:0;width:100%;margin:0;left:0;border-radius:0;background-color:rgb(255 239 232);padding:10px 20px 5px!important;box-shadow:0 3px 6px rgba(0,0,0,.32);z-index:51}.byob-helper .byob-helper_info{display:inline-block}.gamification .gamification-title{font-size:20px;font-weight:700;font-style:normal;font-stretch:normal;line-height:1.9;letter-spacing:normal;color:#001a72}.gamification .you-just-unlocked{display:block;font-size:20px;font-weight:500;font-style:normal;font-stretch:normal;line-height:1.9;letter-spacing:normal;color:#f97615;text-align:center}.gamification .cart-option .btn span{width:10px;height:10px;border-top:solid 2px #fff;border-right:solid 2px #fff;display:inline-block;margin-left:8px;transform:rotate(45deg)}.gamification .gamification_container .progress_container .progress-unlockeds{position:relative;padding:calc(12px + 18px) 0 calc(28px + 12px);margin:20px 0 10px}.gamification .progress-unlockeds .progress{background-color:#dfe0e4;height:2px;margin:0}.gamification .progress-unlockeds .progress .progress-bar{background-color:#0064FF;border-radius:5px;-webkit-box-shadow:none;box-shadow:none;height:2px;max-width:100%}.gamification .progress-unlockeds .unlockeds>div{position:absolute;top:0;text-align:right;height:100%}.gamification .progress-unlockeds .unlockeds>div .unlocked-icon{display:block;text-align:center;top:21px;height:20px}.gamification .progress-unlockeds .unlockeds>div .unlocked-icon::before{content:'';display:block;width:20px;height:20px;position:absolute;left:calc(50% - 10px);border-radius:50%;border:2px solid #dfe0e4;background:#f0f0f0}.gamification .progress-unlockeds .unlockeds>div .unlocked-icon::after{content:'';display:block;width:12px;height:12px;position:absolute;top:calc(50% - 6px);left:calc(50% - 6px);border-radius:50%;border:2px solid #f0f0f0;background:transparent}.gamification .progress-unlockeds .unlockeds>div.pre-active .unlocked-icon::after{border:2px solid #dfe0e4;background:#dfe0e4}.gamification .progress-unlockeds .unlockeds>div.active .unlocked-icon::before{border:2px solid #0064FF}.gamification .progress-unlockeds .unlockeds>div.active .unlocked-icon::after{border:2px solid #0064FF;background:#0064FF}.gamification .progress-unlockeds .unlockeds>div .unlocked-text{display:block;font-family:aktiv-grotesk,Helvetica,Arial,sans-serif;font-size:10px;font-weight:500;line-height:normal;color:#000C48;text-align:center;text-transform:uppercase;letter-spacing:.5px}.gamification .progress-unlockeds .unlockeds>div.active .unlocked-text{color:#0064FF}.gamification .progress-unlockeds .unlockeds>div .unlocked-text.top,.gamification .progress-unlockeds .unlockeds>div .unlocked-icon,.gamification .progress-unlockeds .unlockeds>div .unlocked-text.bottom{position:absolute;width:100%}.gamification .progress-unlockeds .unlockeds>div .unlocked-text.top{top:-1px}.gamification .progress-unlockeds .unlockeds>div .unlocked-text.bottom{top:50px}.toast.gamificationAlert{background:#74be97;max-width:280px;width:100%}@media screen and (max-width:770px){.toast.gamificationAlert{max-width:100%}}
   :root {
     --bByobProgressUnlockedsPadding: 3%;
     {% if bProgressBarBreakTwoOneTime != false -%}
@@ -2627,117 +2395,6 @@ If bProgressBarBreakValue is false the breaks are for the number of products in 
     --bByobProgressbarbreakfivefillSubs: {{bProgressBarBreakFiveFillSubs}}%;
     --bByobProgressbarbreakfivewidthSubs: {{bProgressBarBreakFiveWidthSubs}}%;
   }
-  .gamification .progress-unlockeds .unlockeds > div {
-    /*margin: 0 var(--bByobProgressUnlockedsPadding);*/
-  }
-  .gamification .progress-unlockeds .unlockeds > div.unlocked-one {
-    right: calc(100% - var(--bByobProgressbarbreakonefillOnetime) - (var(--bByobProgressbarbreakonewidthOnetime) / 2));
-    width: var(--bByobProgressbarbreakonewidthOnetime);
-  }
-  .gamification .progress-unlockeds .unlockeds > div.unlocked-two {
-    right: calc(100% - var(--bByobProgressbarbreaktwofillOnetime) - (var(--bByobProgressbarbreaktwowidthOnetime) / 2));
-    width: var(--bByobProgressbarbreaktwowidthOnetime);
-  }
-  .gamification .progress-unlockeds .unlockeds > div.unlocked-three {
-    right: calc(100% - var(--bByobProgressbarbreakthreefillOnetime) - (var(--bByobProgressbarbreakthreewidthOnetime) / 2));
-    width: var(--bByobProgressbarbreakthreewidthOnetime);
-  }
-  .gamification .progress-unlockeds .unlockeds > div.unlocked-four {
-    right: calc(100% - var(--bByobProgressbarbreakfourfillOnetime) - (var(--bByobProgressbarbreakfourwidthOnetime) / 2));
-    width: var(--bByobProgressbarbreakfourwidthOnetime);
-  }
-  .gamification .progress-unlockeds .unlockeds > div.unlocked-five {
-    right: calc(100% - var(--bByobProgressbarbreakfivefillOnetime) - (var(--bByobProgressbarbreakfivewidthOnetime) / 2));
-    width: var(--bByobProgressbarbreakfivewidthOnetime);
-  }
-  
-  .total-pre-bundle {
-    display: inline-block;
-    font-size: 14px;
-    font-weight: normal;
-  }
-  .mobile-description {
-    margin-top: 0px;
-  }
-  .hero-business h1, .hero-collection h1 {
-    color: #001a72;
-  }
-  .site-header__logo img, .hero-business h1, .hero-collection h1 {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#ffffff')";
-    -webkit-filter: drop-shadow(0px 0px 5px #ffffff );
-    filter: drop-shadow(0px 0px 5px #ffffff);
-  }
-  .header-collection {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-
-  .byob_block__type label.disabled {
-    cursor: not-allowed;
-  }
-  .byob_block__type label.disabled:before {
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    -ms-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    filter: grayscale(100%);
-  }
-  .byob_block__type label.disabled span {
-    color: #777777;
-  }
-  #byob_radio_options .textSubscribe {
-    line-height: normal;
-  }
-  .byob-helper .pm-selected {
-    width: 100%;
-  }
-  .byob-helper .byob-helper-btn {
-    display: none;
-  }
-
-  /* BYOB SideCart */
-  :root {
-    --bByobProgressUnlockedsPaddingSide: 1%;
-  }
-  .gamification.gamification_side .progress_wrapper {
-    width: 100%;
-  }
-  .gamification.gamification_side .progress_wrapper .byob-helper_info {
-    width: 100%;
-    font-family: aktiv-grotesk,Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #000C48;
-  }
-  .gamification.gamification_side .gamification_container .byob-helper {
-    margin: 0;
-    width: 98px;
-    -ms-flex-align: center!important;
-    align-items: center!important;
-    padding-left: 0;
-  }
-  .gamification.gamification_side .gamification_container .byob-helper .pm-selected {
-    width: inherit;
-    line-height: 1rem;
-  }
-  .gamification.gamification_side .gamification_container .byob-helper .pm-selected small {
-    display: block;
-    line-height: normal;
-  }
-  .gamification.gamification_side .gamification_container .byob-helper .pm-selected span {
-    display: block;
-    font-size: 40px;
-    line-height: 2.2rem;
-    padding: 0;
-  }
-  @media screen and (max-width: 375px){
-    .gamification .progress-unlockeds .unlockeds > div .unlocked-text.bottom {
-      top: 50px;
-    }
-  }
+  .gamification .progress-unlockeds .unlockeds>div.unlocked-one{right:calc(100% - var(--bByobProgressbarbreakonefillOnetime) - (var(--bByobProgressbarbreakonewidthOnetime) / 2));width:var(--bByobProgressbarbreakonewidthOnetime)}.gamification .progress-unlockeds .unlockeds>div.unlocked-two{right:calc(100% - var(--bByobProgressbarbreaktwofillOnetime) - (var(--bByobProgressbarbreaktwowidthOnetime) / 2));width:var(--bByobProgressbarbreaktwowidthOnetime)}.gamification .progress-unlockeds .unlockeds>div.unlocked-three{right:calc(100% - var(--bByobProgressbarbreakthreefillOnetime) - (var(--bByobProgressbarbreakthreewidthOnetime) / 2));width:var(--bByobProgressbarbreakthreewidthOnetime)}.gamification .progress-unlockeds .unlockeds>div.unlocked-four{right:calc(100% - var(--bByobProgressbarbreakfourfillOnetime) - (var(--bByobProgressbarbreakfourwidthOnetime) / 2));width:var(--bByobProgressbarbreakfourwidthOnetime)}.gamification .progress-unlockeds .unlockeds>div.unlocked-five{right:calc(100% - var(--bByobProgressbarbreakfivefillOnetime) - (var(--bByobProgressbarbreakfivewidthOnetime) / 2));width:var(--bByobProgressbarbreakfivewidthOnetime)}.total-pre-bundle{display:inline-block;font-size:14px;font-weight:400}.mobile-description{margin-top:0}.hero-business h1,.hero-collection h1{color:#001a72}.site-header__logo img,.hero-business h1,.hero-collection h1{-ms-filter:"progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#ffffff')";-webkit-filter:drop-shadow(0 0 5px #ffffff);filter:drop-shadow(0 0 5px #ffffff)}.header-collection{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.byob_block__type label.disabled{cursor:not-allowed}.byob_block__type label.disabled:before{-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%);-ms-filter:grayscale(100%);-o-filter:grayscale(100%);filter:grayscale(100%)}.byob_block__type label.disabled span{color:#777}#byob_radio_options .textSubscribe{line-height:normal}.byob-helper .pm-selected{width:100%}.byob-helper .byob-helper-btn{display:none}:root{--bByobProgressUnlockedsPaddingSide:1%}.gamification.gamification_side .progress_wrapper{width:100%}.gamification.gamification_side .progress_wrapper .byob-helper_info{width:100%;font-family:aktiv-grotesk,Helvetica,Arial,sans-serif;font-size:14px;font-weight:300;line-height:normal;letter-spacing:normal;color:#000C48}.gamification.gamification_side .gamification_container .byob-helper{margin:0;width:98px;-ms-flex-align:center!important;align-items:center!important;padding-left:0}.gamification.gamification_side .gamification_container .byob-helper .pm-selected{width:inherit;line-height:1rem}.gamification.gamification_side .gamification_container .byob-helper .pm-selected small{display:block;line-height:normal}.gamification.gamification_side .gamification_container .byob-helper .pm-selected span{display:block;font-size:40px;line-height:2.2rem;padding:0}@media screen and (max-width:375px){.gamification .progress-unlockeds .unlockeds>div .unlocked-text.bottom{top:50px}}
 </style>
 {% endif %}

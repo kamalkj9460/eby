@@ -30,13 +30,13 @@
     </div>
 </div>
 
-{% if template contains 'collection' or template contains "luxe-new-color-set" or template contains 'account' or template contains 'shogun' or template == 'page.premium_new' or template contains 'luxe-final' or template == 'index' or template == 'page.parisian-summer-luxury' or template == 'page.strawberry-ice' or template == 'page.blue-meadow' or template == 'page.dutchess-luxe' or template contains "discount-lp" or template == 'page.poppy-red-and-pose' or template == 'page.black-and-nude' or template contains 'cotton-bralette' or template contains 'tank-lp' or template == 'search' or template contains 'mesh' or template contains 'silky-separates' or page.handle contains 'spring-sets' %}
+{% if template contains 'collection' or template contains "luxe-new-color-set" or template contains 'account' or template contains 'shogun' or template == 'page.premium_new' or template contains 'luxe-final' or template == 'index' or template == 'page.parisian-summer-luxury' or template == 'page.strawberry-ice' or template == 'page.blue-meadow' or template == 'page.dutchess-luxe' or template contains "discount-lp" or template == 'page.poppy-red-and-pose' or template == 'page.black-and-nude' or template contains 'cotton-bralette' or template contains 'tank-lp' or template == 'search' or template contains 'mesh' or page.handle contains 'spring-sets' %}
     <div id="velaQuickAdd" style="display:none;">
       <form action="/cart/add" method="post" enctype="multipart/form-data" class="formAddToCart formQuickview form-ajaxtocart">
         <div class="proVariantsQuickview"><select name='id' style="display:none"></select></div>
         <input type="hidden" name="properties[Shipping Option]" value="pickup Ecommerce WH">
         <div class="proButton">
-          <button type="submit" name="add" class="btn btnAddToCart quickAddDisabled">
+          <button type="submit" name="add" class="btn btnAddToCart">
             <span>{{ 'products.product.add_to_cart' | t }}</span>
           </button>
         </div>

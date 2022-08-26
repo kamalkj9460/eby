@@ -518,6 +518,7 @@
             data-description="{{ product.description | escape }}"
             data-product-sku="{{product.handle}}"
             data-product-type="{{product.type}}">
+            {{ product.metafields.stamped.reviews }}
         </div>
     </div>
 </div>

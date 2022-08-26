@@ -1,50 +1,44 @@
 {% assign isOnDealSale = false %}
 {% assign isLiquidation = false %}
 {% assign isOnHolidaySale = false %}
-    {% for prodTag in product.tags %}
+{% for prodTag in product.tags %}
     {% if prodTag contains "julyfour2022-" %}
-    {% assign isOnHolidaySale = true %}
+        {% assign isOnHolidaySale = true %}
     {% endif %}
     {% if prodTag contains "lightningDeal-" %}
-    {%- assign prodDealPrice = prodTag | replace: "lightningDeal-", "" -%}
-	{% assign isLiquidation = true %}
+        {%- assign prodDealPrice = prodTag | replace: "lightningDeal-", "" -%}
+        {% assign isLiquidation = true %}
     {% endif %}
-    {% endfor %}
-
-	{% if isOnHolidaySale %}
-        {% assign premSkuCodes = ""%}
-        {% assign holidayDiscounts = "40%,25%,25%,25%,25%,40%,40%,40%,30%,25%,30%,40%,25%,40%,40%,25%,40%,70%,75%,75%,40%" | split: ',' %}
-        {% assign holidayCodes = "BG,BO,CG,DP,DU,ER,EN,EV,FR,FB,GR,LG,PO,PB,PG,SK,VS,P1,P2,BM,LL" | split: "," %}
-		{% assign currSkuCode = product.selected_or_first_available_variant.sku | slice: 7, 2 %}
-
-        {% if holidayCodes contains currSkuCode %}
-          {% for skuCode in holidayCodes %}
-            {% if currSkuCode == skuCode %}
-              {% assign skuCodeIndex = forloop.index0 %}
-              {% break %}
-            {% endif %}
-          {% endfor %}
+{% endfor %}
+{% if isOnHolidaySale %}
+    {% assign premSkuCodes = ""%}
+    {% assign holidayDiscounts = "40%,25%,25%,25%,25%,40%,40%,40%,30%,25%,30%,40%,25%,40%,40%,25%,40%,70%,75%,75%,40%" | split: ',' %}
+    {% assign holidayCodes = "BG,BO,CG,DP,DU,ER,EN,EV,FR,FB,GR,LG,PO,PB,PG,SK,VS,P1,P2,BM,LL" | split: "," %}
+    {% assign currSkuCode = product.selected_or_first_available_variant.sku | slice: 7, 2 %}
+    {% if holidayCodes contains currSkuCode %}
+        {% for skuCode in holidayCodes %}
+        {% if currSkuCode == skuCode %}
+            {% assign skuCodeIndex = forloop.index0 %}
+            {% break %}
         {% endif %}
-
-		{% if product.title contains "String" %}
-            {% assign currSaleDiscount = "55%" %}
-        {% elsif premSkuCodes contains currSkuCode %}
-            {% assign currSaleDiscount = "30%" %}
-        {% elsif product.type == "Crop Top" or product.type == "XBusiness Tee" %}
-			{% assign currSaleDiscount = "50%" %}
-		{% else %}
-            {% assign currSaleDiscount = holidayDiscounts[skuCodeIndex] %}
-        {% endif %}
-
-		{% if product.type contains "Cotton" %}
-			{% assign currSaleDiscount = "25%" %}
-        {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% if product.title contains "String" %}
+        {% assign currSaleDiscount = "55%" %}
+    {% elsif premSkuCodes contains currSkuCode %}
+        {% assign currSaleDiscount = "30%" %}
+    {% elsif product.type == "Crop Top" or product.type == "XBusiness Tee" %}
+        {% assign currSaleDiscount = "50%" %}
     {% else %}
-        {% assign currSaleDiscount = "n_a" %}
+        {% assign currSaleDiscount = holidayDiscounts[skuCodeIndex] %}
     {% endif %}
-
+    {% if product.type contains "Cotton" %}
+        {% assign currSaleDiscount = "25%" %}
+    {% endif %}
+{% else %}
+    {% assign currSaleDiscount = "n_a" %}
+{% endif %}
 {% if product.type == "Core Underwear" or product.type == "Cotton Underwear" or product.type == "Shapewear" or product.type == 'Premium Underwear' %}
-
     {% for prodTag in product.tags %}
         {% if prodTag contains "pantyType-" %}
             {%- assign prodNameTitle = prodTag | replace: "pantyType-", "" -%}
@@ -53,9 +47,7 @@
             {%- assign prodColorTitle = prodTag | replace: "pantyColor-", "" -%}
         {% endif %}
     {% endfor %}
-
 {% elsif product.type == 'Mesh Underwear'  %}
-
     {% for prodTag in product.tags %}
         {% if prodTag contains "pantyType-" %}
             {%- assign prodNameTitle = prodTag | replace: "pantyType-", "" -%}
@@ -64,729 +56,557 @@
             {%- assign prodColorTitle = prodTag | replace: "pantyColor-", "" -%}
         {% endif %}
     {% endfor %}
-
-{% elsif product.type contains 'Silk '  %}
-    {% for prodTag in product.tags %}
-        {% if prodTag contains "Type-" %}
-            {%- assign prodNameTitle = prodTag | split: "Type-" -%}
-            {%- assign prodNameTitle = prodNameTitle | first -%}
-        {% endif %}
-        {% if prodTag contains "Color-" %}
-            {%- assign prodColorTitle = prodTag | split: "Color-" -%}
-            {%- assign prodColorTitle = prodColorTitle | last -%}
-        {% endif %}
-    {% endfor %}
-
 {% elsif product.type == "Tank"  %}
 	{%- assign prodNameTitle = "tank" -%}
-
     {% for prodTag in product.tags %}
         {% if prodTag contains "tankColor-" %}
             {%- assign prodColorTitle = prodTag | replace: "tankColor-", "" -%}
         {% endif %}
     {% endfor %}
-
 {% elsif product.type == "Core Bralette" or product.type == "Cotton Bralette" or product.type == 'Premium Bralette' or product.type == 'Mesh Bralette'  %}
 	{%- assign prodNameTitle = "bralette" -%}
-
     {% for prodTag in product.tags %}
         {% if prodTag contains "braletteColor-" %}
             {%- assign prodColorTitle = prodTag | replace: "braletteColor-", "" -%}
         {% endif %}
     {% endfor %}
-
 {% elsif product.type == "Mask" %}
 	{%- assign prodNameTitle = "mask" -%}
-
     {% for prodTag in product.tags %}
         {% if prodTag contains "maskColor-" %}
             {%- assign prodColorTitle = prodTag | replace: "maskColor-", "" -%}
         {% endif %}
     {% endfor %}
-
 {% elsif product.type == "Wrap Top" %}
 	{%- assign prodNameTitle = "wrap top" -%}
-
     {% for prodTag in product.tags %}
         {% if prodTag contains "wrapColor-" %}
             {%- assign prodColorTitle = prodTag | replace: "wrapColor-", "" -%}
         {% endif %}
     {% endfor %}
-
 {% elsif product.type == "Bodysuit" %}
 	{%- assign prodNameTitle = "bra bodysuit" -%}
-
     {% for prodTag in product.tags %}
         {% if prodTag contains "bodysuitColor-" %}
             {%- assign prodColorTitle = prodTag | replace: "bodysuitColor-", "" -%}
         {% endif %}
     {% endfor %}
-
-
 {% elsif product.type == "Gift Cards" %}
 	{%- assign prodNameTitle = "gift card" -%}
-
     {% for prodTag in product.tags %}
         {% if prodTag contains "cardColor-" %}
             {%- assign prodColorTitle = "sitewide" -%}
         {% endif %}
     {% endfor %}
-
 {% elsif product.type == "Panty Pack" or product.type contains "Prebuilt" %}
 	{%- assign prodNameTitle = "3 panty pack" -%}
-
     {% for prodTag in product.tags %}
         {% if prodTag contains "packColor-" %}
             {%- assign prodColorTitle = prodTag | replace: "packColor-", "" -%}
         {% endif %}
     {% endfor %}
-
-
 {% elsif product.type == "Mask Pack" %}
 	{%- assign prodNameTitle = "3 mask pack" -%}
-
     {% for prodTag in product.tags %}
         {% if prodTag contains "packColor-" %}
             {%- assign prodColorTitle = prodTag | replace: "packColor-", "" -%}
         {% endif %}
     {% endfor %}
-
 {% elsif product.type == "Emissary Tank" or product.type == "XBusiness Tee" or product.type == "Crop Top" %}
 	{%- assign prodNameTitle = product.title -%}
-
 {% endif %}
-
 {%- assign proImageSize = section.settings.image_size -%}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {%- if product.description contains '[SHORTDESCRIPTION]' -%}
-  {%- assign shortDescription = product.description | split:'[SHORTDESCRIPTION]' | first -%}
-  {%- assign fullDescription = product.description | split:'[SHORTDESCRIPTION]' | last -%}
+    {%- assign shortDescription = product.description | split:'[SHORTDESCRIPTION]' | first -%}
+    {%- assign fullDescription = product.description | split:'[SHORTDESCRIPTION]' | last -%}
 {%- else -%}
-  {%- assign shortDescription = '' -%}
-  {%- assign fullDescription = product.description -%}
+    {%- assign shortDescription = '' -%}
+    {%- assign fullDescription = product.description -%}
 {%- endif -%}
 <div class="container-full">
-  <div class="pageCollectionInner{% if isLiquidation %} pdp-liq{% endif %}">
-    <div class="productBox pdp{% if isOnHolidaySale %} holidaySaleItem{% endif %}" itemscope itemtype="http://schema.org/Product">
-      <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
-      <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
-      <div itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
-        <meta itemprop="name" content="EBY" />
-      </div>
-      <meta itemprop="description" content="{{ product.metafields.ebyacf.new_desc_details.en }}" />
-      
-      <meta itemprop="sku" content="{{ product.selected_or_first_available_variant.sku }}">
-      <meta itemprop="gtin8" content="{{ product.selected_or_first_available_variant.sku }}">
-      
-      <div class="breadcrumbs ebyBreadcrumbs">
-        {% if product.type contains 'Underwear' %}
-        <ul id="esn-outer_wrapper" class="nav-promotion-images desktop_promotion home_promotion esn-outer_wrapper">
-          <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
-            <ul id="esn-container" class="esn-container">
-              {% if product.type == 'Core Underwear' %}
-                {% if productNameTitle == "thong"%}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><b>Signature Seamless</b></li>
-                  <li><a href="/products/black-mesh-thong-panties">Seamless Sheer</a></li>
-                {% elsif productNameTitle == "brief"%}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><b>Signature Seamless</b></li>
-                  <li><a href="/products/black-cotton-brief-panties">Seamless Cotton</a></li>
-                  <li><a href="/products/black-mesh-brief-panties">Seamless Sheer</a></li>
-                {% elsif productNameTitle == "bikini"%}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><b>Signature Seamless</b></li>
-                  <li><a href="/products/black-cotton-bikini-panties">Seamless Cotton</a></li>
-                {% elsif productNameTitle == "cheeky"%}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><b>Signature Seamless</b></li>
-                {% elsif productNameTitle == "highwaisted"%}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><b>Signature Seamless</b></li>
-                  <li><a href="/products/black-mesh-highwaisted-panties">Seamless Sheer</a></li>
-                {% elsif productNameTitle == "highwaisted_thong"%}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><b>Signature Seamless</b></li>
-                {% else %}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><b>Signature Seamless</b></li>
+    <div class="pageCollectionInner{% if isLiquidation %} pdp-liq{% endif %}">
+        <div class="productBox pdp{% if isOnHolidaySale %} holidaySaleItem{% endif %}" itemscope itemtype="http://schema.org/Product">
+            <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+            <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+            <div itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
+                <meta itemprop="name" content="EBY" />
+            </div>
+            <meta itemprop="description" content="{{ product.metafields.ebyacf.new_desc_details.en }}" />
+            <meta itemprop="sku" content="{{ product.selected_or_first_available_variant.sku }}">
+            <meta itemprop="gtin8" content="{{ product.selected_or_first_available_variant.sku }}">
+            <div class="breadcrumbs ebyBreadcrumbs">
+                {% if product.type contains 'Underwear' %}
+                    <ul id="esn-outer_wrapper" class="nav-promotion-images desktop_promotion home_promotion esn-outer_wrapper">
+                        <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
+                            <ul id="esn-container" class="esn-container">
+                                {% if product.type == 'Core Underwear' %}
+                                    {% if productNameTitle == "thong"%}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><b>Signature Seamless</b></li>
+                                        <li><a href="/products/black-mesh-thong-panties">Seamless Sheer</a></li>
+                                    {% elsif productNameTitle == "brief"%}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><b>Signature Seamless</b></li>
+                                        <li><a href="/products/black-cotton-brief-panties">Seamless Cotton</a></li>
+                                        <li><a href="/products/black-mesh-brief-panties">Seamless Sheer</a></li>
+                                    {% elsif productNameTitle == "bikini"%}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><b>Signature Seamless</b></li>
+                                        <li><a href="/products/black-cotton-bikini-panties">Seamless Cotton</a></li>
+                                    {% elsif productNameTitle == "cheeky"%}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><b>Signature Seamless</b></li>
+                                    {% elsif productNameTitle == "highwaisted"%}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><b>Signature Seamless</b></li>
+                                        <li><a href="/products/black-mesh-highwaisted-panties">Seamless Sheer</a></li>
+                                    {% elsif productNameTitle == "highwaisted_thong"%}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><b>Signature Seamless</b></li>
+                                    {% else %}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><b>Signature Seamless</b></li>
+                                    {% endif %}
+                                {% elsif product.type == 'Cotton Underwear' %}
+                                    {% if productNameTitle == "brief"%}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><a href="products/black-brief-panties" >Signature Seamless</a></li>
+                                        <li><b>Seamless Cotton</b></li>
+                                        <li><a href="/products/black-mesh-brief-panties">Seamless Sheer</a></li>
+                                    {% elsif productNameTitle == "bikini"%}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><a href="/products/black-bikini-panties" >Signature Seamless</a></li>
+                                        <li><b>Seamless Cotton</b></li>
+                                    {% else %}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><b>Seamless Cotton</b></li>
+                                    {% endif %}
+                                {% elsif product.type == 'Mesh Underwear' %}
+                                    {% if productNameTitle == "thong"%}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><a href="/products/black-thong">Signature Seamless</a></li>
+                                        <li><b>Seamless Sheer</b></li>
+                                    {% elsif productNameTitle == "brief"%}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><a href="/products/black-brief-panties">Signature Seamless</a></li>
+                                        <li><a href="/products/black-cotton-brief-panties">Seamless Cotton</a></li>
+                                        <li><b>Seamless Sheer</b></li>
+                                    {% elsif productNameTitle == "highwaisted"%}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><a href="/products/black-high-waisted-panties" >Signature Seamless</a></li>
+                                        <li><b>Seamless Sheer</b></li>
+                                    {% else %}
+                                        <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                        <li><b>Seamless Sheer</b></li>
+                                    {% endif %}
+                                {% else %}
+                                
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
                 {% endif %}
-              {% elsif product.type == 'Cotton Underwear' %}
-				{% if productNameTitle == "brief"%}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><a href="products/black-brief-panties" >Signature Seamless</a></li>
-                  <li><b>Seamless Cotton</b></li>
-                  <li><a href="/products/black-mesh-brief-panties">Seamless Sheer</a></li>
-                {% elsif productNameTitle == "bikini"%}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><a href="/products/black-bikini-panties" >Signature Seamless</a></li>
-                  <li><b>Seamless Cotton</b></li>
-              	{% else %}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><b>Seamless Cotton</b></li>
+                {% if product.type == 'Core Bralette' or product.type == 'Cotton Bralette' or product.type == 'Mesh Bralette' %}
+                    <ul id="esn-outer_wrapper" class="nav-promotion-images desktop_promotion home_promotion esn-outer_wrapper">
+                        <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
+                            <ul id="esn-container" class="esn-container">
+                                {% if product.type == 'Core Bralette' %}
+                                    <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                    <li><b>Signature Seamless</b></li>
+                                    <li><a href="/products/black-cotton-bralette-1">Seamless Cotton</a></li>
+                                    <li><a href="/products/black-seamless-sheer-bralette">Seamless Sheer</a></li>
+                                {% elsif product.type == 'Cotton Bralette' %}
+                                    <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                    <li><a href="/products/black-bralette">Signature Seamless</a></li>
+                                    <li><b>Seamless Cotton</b></li>
+                                    <li><a href="/products/black-seamless-sheer-bralette">Seamless Sheer</a></li>
+                                {% elsif product.type == 'Mesh Bralette' %}
+                                    <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                    <li><a href="/products/black-bralette">Signature Seamless</a></li>
+                                    <li><a href="/products/black-cotton-bralette-1">Seamless Cotton</a></li>
+                                    <li><b>Seamless Sheer</b></li>
+                                {% else %}
+                        
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
                 {% endif %}
-              {% elsif product.type == 'Mesh Underwear' %}
-                {% if productNameTitle == "thong"%}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><a href="/products/black-thong">Signature Seamless</a></li>
-                  <li><b>Seamless Sheer</b></li>
-                {% elsif productNameTitle == "brief"%}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><a href="/products/black-brief-panties">Signature Seamless</a></li>
-                  <li><a href="/products/black-cotton-brief-panties">Seamless Cotton</a></li>
-                  <li><b>Seamless Sheer</b></li>
-                {% elsif productNameTitle == "highwaisted"%}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><a href="/products/black-high-waisted-panties" >Signature Seamless</a></li>
-                  <li><b>Seamless Sheer</b></li>
-                {% else %}
-                  <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                  <li><b>Seamless Sheer</b></li>
+                {% if product.type == 'Panty Pack' %}
+                    <ul id="esn-outer_wrapper" class="nav-promotion-images desktop_promotion home_promotion esn-outer_wrapper">
+                        <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
+                            <ul id="esn-container" class="esn-container">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                <li><a href="/collections/seamless-panties-packs">Seamless Panties Packs</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 {% endif %}
-              {% else %}
-    <!--           		<li><a href="/collections/signature-seamless-underwear">Signature Seamless</a></li> -->
-    <!--           		<li><a href="/collections/{{ collectionParentHandle }}">{{ collectionParentTitle }}</a></li> -->
-              {% endif %}
-            </ul>
-          </li>
-        </ul>
-        {% endif %}
-        {% if product.type == 'Core Bralette' or product.type == 'Cotton Bralette' or product.type == 'Mesh Bralette' %}
-        <ul id="esn-outer_wrapper" class="nav-promotion-images desktop_promotion home_promotion esn-outer_wrapper">
-          <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
-            <ul id="esn-container" class="esn-container">
-              {% if product.type == 'Core Bralette' %}
-                <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                <li><b>Signature Seamless</b></li>
-                <li><a href="/products/black-cotton-bralette-1">Seamless Cotton</a></li>
-                <li><a href="/products/black-seamless-sheer-bralette">Seamless Sheer</a></li>
-              {% elsif product.type == 'Cotton Bralette' %}
-                <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                <li><a href="/products/black-bralette">Signature Seamless</a></li>
-                <li><b>Seamless Cotton</b></li>
-                <li><a href="/products/black-seamless-sheer-bralette">Seamless Sheer</a></li>
-              {% elsif product.type == 'Mesh Bralette' %}
-                <li><a href="/collections/seamless-underwear">Shop All</a></li>
-                <li><a href="/products/black-bralette">Signature Seamless</a></li>
-                <li><a href="/products/black-cotton-bralette-1">Seamless Cotton</a></li>
-                <li><b>Seamless Sheer</b></li>
-              {% else %}
-    <!--           		<li><a href="/collections/signature-seamless-underwear">Signature Seamless</a></li> -->
-    <!--           		<li><a href="/collections/{{ collectionParentHandle }}">{{ collectionParentTitle }}</a></li> -->
-              {% endif %}
-            </ul>
-          </li>
-        </ul>
-        {% endif %}
-        {% if product.type == 'Panty Pack' %}
-        <ul id="esn-outer_wrapper" class="nav-promotion-images desktop_promotion home_promotion esn-outer_wrapper">
-          <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
-            <ul id="esn-container" class="esn-container">
-              <li><a href="/">Home</a></li>
-              <li><a href="/collections/seamless-underwear">Shop All</a></li>
-              <li><a href="/collections/seamless-panties-packs">Seamless Panties Packs</a></li>
-            </ul>
-          </li>
-        </ul>
-        {% endif %}
-        {% if product.type == 'Gift Cards' %}
-        <ul id="esn-outer_wrapper" class="nav-promotion-images desktop_promotion home_promotion esn-outer_wrapper">
-          <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
-            <ul id="esn-container" class="esn-container">
-              <li><a href="/">Home</a></li>
-              <li><a href="/collections/seamless-underwear">Shop All</a></li>
-            </ul>
-          </li>
-        </ul>
-        {% endif %}
-        {% if product.type contains 'Silk' %}
-        <ul id="esn-outer_wrapper" class="nav-promotion-images desktop_promotion home_promotion esn-outer_wrapper">
-          <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
-            <ul id="esn-container" class="esn-container">
-              <li><a href="/">Home</a></li>
-              <li><a href="/collections/shop-all-tops">Shop All</a></li>
-              <li><a href="/pages/washable-eco-silk-outerwear">Shop Eco Silk</a></li>
-            </ul>
-          </li>
-        </ul>
-        {% endif %}
-        {% if product.type == 'EBY Mask' or product.type == 'Mask'  %}
-        <ul id="esn-outer_wrapper" class="nav-promotion-images desktop_promotion home_promotion esn-outer_wrapper">
-          <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
-            <ul id="esn-container" class="esn-container">
-              <li><a href="/">Home</a></li>
-              <li><a href="/collections/seamless-underwear">Shop All</a></li>
-              <!--           <li><a href="/collections/eby-masks">EBY Masks</a></li> -->
-            </ul>
-          </li>
-        </ul>
-        {% endif %}
-        {% if product.type == 'Tank'  %}
-        <ul id="esn-outer_wrapper" class="nav-promotion-images desktop_promotion home_promotion esn-outer_wrapper">
-          <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
-            <ul id="esn-container" class="esn-container">
-              <li><a href="/">Home</a></li>
-              <li><a href="/collections/seamless-underwear">Shop All</a></li>
-              <li><a href="/collections/seamless-tank-top">Tank Tops</a></li>
-            </ul>
-          </li>
-        </ul>
-        {% endif %}
-      </div>
-        <div class="proBoxPrimary mb30 {{ section.settings.prodetail_style }}">
-          <div class="row">
-              <div class="mobile-intro">
-                
-                {% if product.type == "Gift Cards" %}
-                	<div class="subtitle"><h1 itemprop="name">The EBY digital gift card</h1></div>
-                {% else %}
-                	{% if product.metafields.ebyacf.alt_seo_rich_title %}
-                        <div class="subtitle"><h1 itemprop="name" style="text-transform:initial;">{{ product.metafields.ebyacf.alt_seo_rich_title }} in <span id="pdp-color-text">{{ prodColorTitle | replace: "_", " " }}</span></h1></div>
-                    {% else %}
-                        {% if product.type contains "Cotton" %}
-                        <div class="subtitle"><h1 itemprop="name">EBY invisible cotton {{ prodNameTitle | replace: "_", " " }} in {{ prodColorTitle | replace: "_", " " }}</h1></div>
-                        {% elsif product.type contains "Mesh" %}
-                        <div class="subtitle"><h1 itemprop="name">EBY seamless sheer {{ prodNameTitle | replace: "_", " " }} in {{ prodColorTitle | replace: "_", " " }}</h1></div>
+                {% if product.type == 'Gift Cards' %}
+                    <ul id="esn-outer_wrapper" class="nav-promotion-images desktop_promotion home_promotion esn-outer_wrapper">
+                        <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
+                            <ul id="esn-container" class="esn-container">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% endif %}
+                {% if product.type == 'EBY Mask' or product.type == 'Mask'  %}
+                    <ul id="esn-outer_wrapper" class="nav-promotion-images desktop_promotion home_promotion esn-outer_wrapper">
+                        <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
+                            <ul id="esn-container" class="esn-container">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% endif %}
+                {% if product.type == 'Tank'  %}
+                    <ul id="esn-outer_wrapper" class="nav-promotion-images desktop_promotion home_promotion esn-outer_wrapper">
+                        <li id="esn-inner_wrapper" class="nav_image_wrapper esn-inner_wrapper">
+                            <ul id="esn-container" class="esn-container">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/collections/seamless-underwear">Shop All</a></li>
+                                <li><a href="/collections/seamless-tank-top">Tank Tops</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="proBoxPrimary mb30 {{ section.settings.prodetail_style }}">
+                <div class="row">
+                    <div class="mobile-intro">
+                        {% if product.type == "Gift Cards" %}
+                            <div class="subtitle"><h1 itemprop="name">The EBY digital gift card</h1></div>
                         {% else %}
-                          {% if product.type contains "Surprise Panty Pack" %}
-                          <div class="subtitle"><h1 itemprop="name">EBY seamless panty 3 pack</h1></div>
-                          {% else %}
-                          <div class="subtitle"><h1 itemprop="name">EBY seamless {{ prodNameTitle | replace: "_", " " }} in <span id="pdp-color-text">{{ prodColorTitle | replace: "_", " " }}</span></h1></div>
-                          {% endif %}
+                            {% if product.metafields.ebyacf.alt_seo_rich_title %}
+                                <div class="subtitle"><h1 itemprop="name">{{ product.metafields.ebyacf.alt_seo_rich_title }}</h1></div>
+                            {% else %}
+                                {% if product.type contains "Cotton" %}
+                                    <div class="subtitle"><h1 itemprop="name">EBY invisible cotton {{ prodNameTitle | replace: "_", " " }} in {{ prodColorTitle | replace: "_", " " }}</h1></div>
+                                {% elsif product.type contains "Mesh" %}
+                                    <div class="subtitle"><h1 itemprop="name">EBY seamless sheer {{ prodNameTitle | replace: "_", " " }} in {{ prodColorTitle | replace: "_", " " }}</h1></div>
+                                {% else %}
+                                    {% if product.type contains "Surprise Panty Pack" %}
+                                        <div class="subtitle"><h1 itemprop="name">EBY seamless panty 3 pack</h1></div>
+                                    {% else %}
+                                        <div class="subtitle"><h1 itemprop="name">EBY seamless {{ prodNameTitle | replace: "_", " " }} in <span id="pdp-color-text">{{ prodColorTitle | replace: "_", " " }}</span></h1></div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                {% endif %}
-                
-                <h2 class="product-name">
-                  {% if product.type contains "Panty Pack" %}
-                    {% if product.type contains "Cotton" %}Cotton {% endif %}{{ product.title  | replace: "_", " " | capitalize }}
-                  {% else %}
-                  	{% if product.type contains "Cotton" %}Cotton {% endif %}{{ prodNameTitle  | replace: "_", " " | capitalize }}
-                  {% endif %}
-                    
-                    <!-- <img src="{{ 'arrow-point-to-down.svg' | asset_url }}" alt="Arrow" class="changer-arrow-mobile"/> -->
-                </h2>
-                  <!-- <div class="style-changer style-changer-mobile">
-                      <div class="single-type">Bikini</div>
-                      <div class="single-type">Cheeky</div>
-                      <div class="single-type">Highwaisted</div>
-                      <div class="single-type">Thong</div>
-                      <div class="single-type">Highwaisted Thong</div>
-                  </div> -->
-                  <div class="proPrice flexRow flexAlignCenter{% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if product.metafields.ebyacf.new_sale_release and product.metafields.ebyacf.new_sale_release_price%} salePriceOverride{% endif %}">
-                    {% comment %}
-                    {% unless customer.tags contains 'Active Subscriber' %}
-                      {% if product.metafields.ebyacf.evergreen_price_test %}
-                          {% if product.title contains "High Waisted" or product.title contains "Highwaisted"  %}
-                          <div class="priceProduct strikethrough bfx-old-price bfx-price">$20</div>
-                          {% else %}
-                          <div class="priceProduct strikethrough bfx-old-price bfx-price">$19</div>
-                          {% endif  %}
-                      {% endif %}
-                    {% endunless %}
-                    {% endcomment %}
-                    
-                    {% if isLiquidation %}
-                    <div class="proPrice flexRow flexAlignCenter">
-                      <div class="priceProduct holidayPriceWrapper strikethrough bfx-price">{{ product.price | money_without_trailing_zeros  }}</div>
-                      <div class="priceProduct holidayPriceWrapper standard bfx-price">{{ prodDealPrice | money_without_trailing_zeros  }}</div>
-                    </div>
-                    
-                    <span class="salePriceExcerptCopy mobile_only">This item is final sale</span>
-                    {% endif %}
-                    {% if isOnHolidaySale %}
-                      {% if product.type contains "Cotton" %}
-                        {% assign perOff = 25 %}
-                      {% else %}
-                        {% assign perOff = currSaleDiscount | replace: "%", "" %}
-                      {% endif %}
-                      {% assign moneyOff = product.price | divided_by: 100 | round: 2 | times: perOff | round | money_without_currency %}
-                      {% assign finalSalePriceCheck = product.price | divided_by: 100 | round: 2 | minus: moneyOff | round: 2 | times: 100 | round %}
-                      <div class="priceProduct holidayPriceWrapper strikethrough bfx-price">{{ product.price | money_without_trailing_zeros}}</div>
-                      <div class="priceProduct holidayPriceWrapper standard bfx-price">{{ product.price | divided_by: 100 | round: 2 | minus: moneyOff | round: 2 | times: 100 | round | money_without_trailing_zeros }}</div>
-                      {% if isOnHolidaySale and finalSalePriceCheck <= 1000 %}
-                      	<span class="salePriceExcerptCopy">This item is final sale.</span>
-                      {% endif %}
-                    {% endif %}
-                    {% if isOnDealSale and isOnHolidaySale == false %}
-                        <div class="priceProduct holidayPriceWrapper strikethrough bfx-price">{{ product.price | money_without_trailing_zeros}}</div>
-                        <div class="priceProduct holidayPriceWrapper standard bfx-price">{{ dealSalePrice | money_without_trailing_zeros }}</div>
-                    {% endif %}
-                    {%- if product.metafields.ebyacf.new_sale_release and product.metafields.ebyacf.new_sale_release_price -%}
-                        <div class="proPrice">
-                          <!-- <div class="priceProduct priceCompare">{{ product.compare_at_price | money_without_trailing_zeros  }}</div> -->
-                          <div class="ebySalePriceWrapper"><p><span class="ebyOrigPrice bfx-old-price bfx-price">{{ product.price | money_without_trailing_zeros  }}</span><span class="ebySalePrice bfx-sale-price {% if product.metafields.ebyacf.evergreen_price_test %} st-tangentPrice{%endif%} bfx-price">${{ product.metafields.ebyacf.new_sale_release_price | replace: ".00", "" }}</span></p></div>
-                        </div>
-                    {%- else -%}
-                    	{% if customer.tags contains 'Active Subscriber' %}
-                    {% else %}
-                        {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
-                            <div class="priceProduct holidaySale {% if on_sale %}priceSale bfx-sale-price{% endif %} bfx-price">{{ product.price | money | remove: ".00" }}</div>
-                        {% else %}
-                            <div class="priceProduct {% if on_sale %}priceSale bfx-sale-price{% endif %}{% if product.metafields.ebyacf.evergreen_price_test %} standard{%endif%} bfx-price">{{ product.price | money | remove: ".00" }}</div>
-                        {% endif %}
-                    {% endif %}
-                        {% if customer.tags contains 'Active Subscriber' %}
-                            {% if product.type == "Mask"%}
-                                {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
-                    			{% comment %}
-                                <div class="priceProduct {% if on_sale %}priceSale{% endif %} holidaySale"><p class="ebyMemberPriceWrapper">( <span class="bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p></div>
-                    			{% endcomment %}
-                                {% else %}
-                                    <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %}">{{ product.price | money_without_trailing_zeros }}</div>
-                                {% endif %}
-
-                                <div class="ebyProdTile-vipPriceWrapper">
-                                  {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
-                                        {%- assign discount = product.price | times: shop.metafields.ebyacf.sitewide_discount_price | divided_by: 100 -%}
-                                        {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
-                                        <p><span class="ebyHolidayPrice bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
-                                  {% else %}
-                                  		{% if product.metafields.ebyacf.vip_member_price and isOnHolidaySale == false %}
-                                        <p class="ebyMemberPriceWrapper">( <span class="bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p>
-                                  		{% endif %}
-                                  {% endif %}
+                        <h2 class="product-name">
+                            {% if product.type contains "Panty Pack" %}
+                                {% if product.type contains "Cotton" %}Cotton {% endif %}{{ product.title  | replace: "_", " " | capitalize }}
+                            {% else %}
+                                {% if product.type contains "Cotton" %}Cotton {% endif %}{{ prodNameTitle  | replace: "_", " " | capitalize }}
+                            {% endif %}    
+                        </h2>
+                        <div class="proPrice flexRow flexAlignCenter{% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if product.metafields.ebyacf.new_sale_release and product.metafields.ebyacf.new_sale_release_price%} salePriceOverride{% endif %}">                            
+                            {% if isLiquidation %}
+                                <div class="proPrice flexRow flexAlignCenter">
+                                    <div class="priceProduct holidayPriceWrapper strikethrough bfx-price">{{ product.price | money_without_trailing_zeros  }}</div>
+                                    <div class="priceProduct holidayPriceWrapper standard bfx-price">{{ prodDealPrice | money_without_trailing_zeros  }}</div>
                                 </div>
-                            {% elsif product.type == "Core Bralette"%}
-                                {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
-                                    <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale{% endif %} holidaySale"><p class="ebyMemberPriceWrapper">( <span class="{% if on_sale %}bfx-sale-price{% endif %} bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p></div>
+                                <span class="salePriceExcerptCopy mobile_only">This item is final sale</span>
+                            {% endif %}
+                            {% if isOnHolidaySale %}
+                                {% if product.type contains "Cotton" %}
+                                    {% assign perOff = 25 %}
                                 {% else %}
-                                    <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %} bfx-price">{{ product.price | money_without_trailing_zeros }}</div>
+                                    {% assign perOff = currSaleDiscount | replace: "%", "" %}
                                 {% endif %}
-
-                                <div class="ebyProdTile-vipPriceWrapper">
-                                  {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
-                                        {%- assign discount = product.price | times: shop.metafields.ebyacf.sitewide_discount_price | divided_by: 100 -%}
-                                        {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
-                                        <p><span class="ebyHolidayPrice priceSale bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
-                                  {% else %}
-                                  		{% if product.metafields.ebyacf.vip_member_price and isOnHolidaySale == false %}
-                                        <p class="ebyMemberPriceWrapper">( <span class="bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p>
-                                  		{% endif %}
-                                  {% endif %}
-                                </div>
-                            {% elsif product.type == "Core Underwear" and product.tags contains "Featured Style" %}
-                                {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
-                                <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale{% endif %} holidaySale"><p class="ebyMemberPriceWrapper">( <span class="{% if on_sale %}bfx-sale-price{% endif %} bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p></div>
-                                {% else %}
-                                <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale bfx-sale-price bfx-price{% endif %}">{{ product.price | money_without_trailing_zeros }}</div>
+                                {% assign moneyOff = product.price | divided_by: 100 | round: 2 | times: perOff | round | money_without_currency %}
+                                {% assign finalSalePriceCheck = product.price | divided_by: 100 | round: 2 | minus: moneyOff | round: 2 | times: 100 | round %}
+                                <div class="priceProduct holidayPriceWrapper strikethrough bfx-price">{{ product.price | money_without_trailing_zeros}}</div>
+                                <div class="priceProduct holidayPriceWrapper standard bfx-price">{{ product.price | divided_by: 100 | round: 2 | minus: moneyOff | round: 2 | times: 100 | round | money_without_trailing_zeros }}</div>
+                                {% if isOnHolidaySale and finalSalePriceCheck <= 1000 %}
+                                    <span class="salePriceExcerptCopy">This item is final sale.</span>
                                 {% endif %}
-
-                                <div class="ebyProdTile-vipPriceWrapper">
-                                  {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
-                                        {%- assign discount = product.price | times: shop.metafields.ebyacf.sitewide_discount_price | divided_by: 100 -%}
-                                        {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
-                                        <p><span class="ebyHolidayPrice bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
-                                  {% else %}
-                                  		{% if product.metafields.ebyacf.vip_member_price and isOnHolidaySale == false %}
-                                        <p class="ebyMemberPriceWrapper">( <span class="bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p>
-                                  		{% endif %}
-                                  {% endif %}
+                            {% endif %}
+                            {% if isOnDealSale and isOnHolidaySale == false %}
+                                <div class="priceProduct holidayPriceWrapper strikethrough bfx-price">{{ product.price | money_without_trailing_zeros}}</div>
+                                <div class="priceProduct holidayPriceWrapper standard bfx-price">{{ dealSalePrice | money_without_trailing_zeros }}</div>
+                            {% endif %}
+                            {%- if product.metafields.ebyacf.new_sale_release and product.metafields.ebyacf.new_sale_release_price -%}
+                                <div class="proPrice">
+                                    <div class="ebySalePriceWrapper"><p><span class="ebyOrigPrice bfx-old-price bfx-price">{{ product.price | money_without_trailing_zeros  }}</span><span class="ebySalePrice bfx-sale-price {% if product.metafields.ebyacf.evergreen_price_test %} st-tangentPrice{%endif%} bfx-price">${{ product.metafields.ebyacf.new_sale_release_price | replace: ".00", "" }}</span></p></div>
                                 </div>
-                            {% elsif product.type == "Core Underwear" or product.type == "Mesh Underwear" %}
-                                {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
-                    				{% comment %}
-                                    <div class="priceProduct {% if on_sale %}priceSale{% endif %} holidaySale"><p class="ebyMemberPriceWrapper">( <span class="{% if on_sale %}bfx-sale-price{% endif %} bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p></div>
-                    				{% endcomment %}
-                                {% else %}
-                                <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale{% endif %} bfx-price">{{ product.price | money_without_trailing_zeros }}</div>
-                                {% endif %}
-
-                                <div class="ebyProdTile-vipPriceWrapper">
-                                  {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
-                                        {%- assign discount = product.price | times: shop.metafields.ebyacf.sitewide_discount_price | divided_by: 100 -%}
-                                        {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
-                                        <p><span class="ebyHolidayPrice bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
-                                  {% else %}
-                                  		{% if product.metafields.ebyacf.vip_member_price and isOnHolidaySale == false %}
-                                        <p class="ebyMemberPriceWrapper">( <span class="{% if on_sale %}bfx-sale-price{% endif %} bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p>
-                                  		{% endif %}
-                                  {% endif %}
-                                </div>
+                            {%- else -%}
+                                {% if customer.tags contains 'Active Subscriber' %}
                             {% else %}
                                 {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
-                                <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %} holidaySale bfx-price"></div>
+                                    <div class="priceProduct holidaySale {% if on_sale %}priceSale bfx-sale-price{% endif %} bfx-price">{{ product.price | money | remove: ".00" }}</div>
                                 {% else %}
-                                <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %} bfx-price">{{ product.price | money_without_trailing_zeros }}</div>
+                                    <div class="priceProduct {% if on_sale %}priceSale bfx-sale-price{% endif %}{% if product.metafields.ebyacf.evergreen_price_test %} standard{%endif%} bfx-price">{{ product.price | money | remove: ".00" }}</div>
                                 {% endif %}
-
-                                <div class="ebyProdTile-vipPriceWrapper">
-                                    {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
-                                          {%- assign discount = product.price | times: shop.metafields.ebyacf.sitewide_discount_price | divided_by: 100 -%}
-                                          {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
-                                    <p><span class="ebyHolidayPrice bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
-                                    {% else %}
-                                          {% if product.metafields.ebyacf.vip_member_price and isOnHolidaySale == false %}
-                                          <p class="ebyMemberPriceWrapper">( <span class="{% if on_sale %}priceSale bfx-sale-price {% endif %}bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p>
-                                          {% endif %}	
-                                    {% endif %}
-                                </div>
                             {% endif %}
+                                {% if customer.tags contains 'Active Subscriber' %}
+                                    {% if product.type == "Mask"%}
+                                        {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
 
-                        {% else %}
-                            <div class="ebyProdTile-vipPriceWrapper">
-                              {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
-                                    {%- assign discount = product.price | times: shop.metafields.ebyacf.sitewide_discount_price | divided_by: 100 -%}
-                                    {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
-                              <p><span class="ebyHolidayPrice bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
-                              {% else %}
-                                {% if product.metafields.ebyacf.vip_member_price and isOnHolidaySale == false %}
-                                <p class="ebyMemberPriceWrapper">( <span class="{% if on_sale %}priceSale bfx-sale-price {% endif %}bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p>
+                                        {% else %}
+                                            <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %}">{{ product.price | money_without_trailing_zeros }}</div>
+                                        {% endif %}
+                                        <div class="ebyProdTile-vipPriceWrapper">
+                                            {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                                {%- assign discount = product.price | times: shop.metafields.ebyacf.sitewide_discount_price | divided_by: 100 -%}
+                                                {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
+                                                <p><span class="ebyHolidayPrice bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
+                                            {% else %}
+                                                {% if product.metafields.ebyacf.vip_member_price and isOnHolidaySale == false %}
+                                                <p class="ebyMemberPriceWrapper">( <span class="bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    {% elsif product.type == "Core Bralette"%}
+                                        {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                            <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale{% endif %} holidaySale"><p class="ebyMemberPriceWrapper">( <span class="{% if on_sale %}bfx-sale-price{% endif %} bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p></div>
+                                        {% else %}
+                                            <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %} bfx-price">{{ product.price | money_without_trailing_zeros }}</div>
+                                        {% endif %}
+                                        <div class="ebyProdTile-vipPriceWrapper">
+                                            {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                                {%- assign discount = product.price | times: shop.metafields.ebyacf.sitewide_discount_price | divided_by: 100 -%}
+                                                {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
+                                                <p><span class="ebyHolidayPrice priceSale bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
+                                            {% else %}
+                                                {% if product.metafields.ebyacf.vip_member_price and isOnHolidaySale == false %}
+                                                <p class="ebyMemberPriceWrapper">( <span class="bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    {% elsif product.type == "Core Underwear" and product.tags contains "Featured Style" %}
+                                        {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                            <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale{% endif %} holidaySale"><p class="ebyMemberPriceWrapper">( <span class="{% if on_sale %}bfx-sale-price{% endif %} bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p></div>
+                                        {% else %}
+                                            <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale bfx-sale-price bfx-price{% endif %}">{{ product.price | money_without_trailing_zeros }}</div>
+                                        {% endif %}
+                                        <div class="ebyProdTile-vipPriceWrapper">
+                                            {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                                {%- assign discount = product.price | times: shop.metafields.ebyacf.sitewide_discount_price | divided_by: 100 -%}
+                                                {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
+                                                <p><span class="ebyHolidayPrice bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
+                                            {% else %}
+                                                {% if product.metafields.ebyacf.vip_member_price and isOnHolidaySale == false %}
+                                                <p class="ebyMemberPriceWrapper">( <span class="bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    {% elsif product.type == "Core Underwear" or product.type == "Mesh Underwear" %}
+                                        {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                    
+                                        {% else %}
+                                            <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale{% endif %} bfx-price">{{ product.price | money_without_trailing_zeros }}</div>
+                                        {% endif %}
+                                        <div class="ebyProdTile-vipPriceWrapper">
+                                            {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                                {%- assign discount = product.price | times: shop.metafields.ebyacf.sitewide_discount_price | divided_by: 100 -%}
+                                                {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
+                                                <p><span class="ebyHolidayPrice bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
+                                            {% else %}
+                                                {% if product.metafields.ebyacf.vip_member_price and isOnHolidaySale == false %}
+                                                <p class="ebyMemberPriceWrapper">( <span class="{% if on_sale %}bfx-sale-price{% endif %} bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    {% else %}
+                                        {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                            <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %} holidaySale bfx-price"></div>
+                                        {% else %}
+                                            <div class="priceProduct {% if customer.tags contains 'Active Subscriber' %} vipHighlight{%endif%}{% if on_sale %}priceSale bfx-sale-price{% endif %} bfx-price">{{ product.price | money_without_trailing_zeros }}</div>
+                                        {% endif %}
+                                        <div class="ebyProdTile-vipPriceWrapper">
+                                            {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                                {%- assign discount = product.price | times: shop.metafields.ebyacf.sitewide_discount_price | divided_by: 100 -%}
+                                                {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
+                                                <p><span class="ebyHolidayPrice bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
+                                            {% else %}
+                                                {% if product.metafields.ebyacf.vip_member_price and isOnHolidaySale == false %}
+                                                <p class="ebyMemberPriceWrapper">( <span class="{% if on_sale %}priceSale bfx-sale-price {% endif %}bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p>
+                                                {% endif %}	
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                {% else %}
+                                    <div class="ebyProdTile-vipPriceWrapper">
+                                        {% if shop.metafields.ebyacf.enable_holiday_mode-vip_pg or shop.metafields.ebyacf.enable_holiday_mode-coll_pg %}
+                                            {%- assign discount = product.price | times: shop.metafields.ebyacf.sitewide_discount_price | divided_by: 100 -%}
+                                            {%- assign holidayPrice = product.price | minus: discount | money_without_currency -%}
+                                            <p><span class="ebyHolidayPrice bfx-sale-price bfx-price">${{holidayPrice}}</span> <span class="ebyHolidayDiscount bfx-price">{{ shop.metafields.ebyacf.sitewide_discount_price }} Off</span></p>
+                                        {% else %}
+                                            {% if product.metafields.ebyacf.vip_member_price and isOnHolidaySale == false %}
+                                                <p class="ebyMemberPriceWrapper">( <span class="{% if on_sale %}priceSale bfx-sale-price {% endif %}bfx-price">{{ product.metafields.ebyacf.vip_member_price }}</span> <span class="fontMinor">subscribers</span> )</p>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                {% else %}
+                                    <p id="ProductPrice" class="priceProduct {% if product.compare_at_price > product.price %}priceSale bfx-sale-price{% endif %}bfx-price" itemprop="price">
+                                        {{ current_variant.price | money_without_trailing_zeros }}
+                                    </p>
                                 {% endif %}
-                              {% endif %}
-                            </div>
-                        {% else %}
-                        <p id="ProductPrice" class="priceProduct {% if product.compare_at_price > product.price %}priceSale bfx-sale-price{% endif %}bfx-price" itemprop="price">
-                          {{ current_variant.price | money_without_trailing_zeros }}
-                        </p>
+                            {%- endif -%}
+                            {%- if product.compare_at_price > product.price -%}
+                                <span id="ComparePrice" class="priceProduct priceCompare bfx-old-price bfx-price">
+                                    {{ current_variant.compare_at_price | money_without_trailing_zeros }}
+                                </span>
+                            {%- endif -%}
+                        </div>
+                        {% if product.type contains "Surprise Panty Pack" %}
+                            <span class="salePriceExcerptCopy desktop_only">This item is final sale.</span>
                         {% endif %}
-                    
-                    {%- endif -%}
-
-                    {%- if product.compare_at_price > product.price -%}
-                    <span id="ComparePrice" class="priceProduct priceCompare bfx-old-price bfx-price">
-                      {{ current_variant.compare_at_price | money_without_trailing_zeros }}
-                    </span>
-                    {%- endif -%}
-                  </div>
-                  {% if product.type contains "Surprise Panty Pack" %}
-                  	<span class="salePriceExcerptCopy desktop_only">This item is final sale.</span>
-                  {% endif %}
-                  {%- if settings.product_reviews_enable -%}
-                  <div class="proReviews">
-                      <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{ product.id }}" data-product-sku="{{ product.selected_or_first_available_variant.sku }}" data-product-type="{{product.type}}" data-product-title="{{product.title}}" style="display: inline-block;"></span>
-                      {% comment %}<span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>{% endcomment %}
-                  </div>
-                  {%- endif -%}
-              </div>
-            <div class="ab proBoxImage col-xs-12 col-md-12 col-lg-12 mb30{% if product.type contains "Surprise Panty Pack" %} spImgWrapper{% endif %}">
-              {% include 'vela-prodetail-image-lite' %}
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-6 mb30 proBoxInfo_outr">
-              <div class="proBoxInfo{% if product.type == "Cotton Underwear" or product.type == "Cotton Bralette" %} isCotton{% endif %}">
-                
-                {% if product.metafields.ebyacf.has_subscription_upsell_online %}
-                  	{% include 'vela-prodetail-info-subUpsell-lite' %}
-                {% else %}
-                	{% include 'vela-prodetail-info-lite' %}
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-            <div class="flex-wrap">                
-                <div class="ebyPdpRelatedProductsWrapper">
-                    <h2>You might also like</h2>
-                  	<div data-rebuy-id="5675" id="rebuy-id-5675">
-                      <div class="rebuy-widget"
-                           v-cloak
-                           v-on:click="stopPropagation($event)"
-                           v-bind:id="'rebuy-widget-' + id"
-                           v-bind:class="['widget-type-' + config.type.replace('_','-'), 'widget-display-' + config.display_type, products.length > 0 ? 'is-visible' : 'is-hidden']">
-
-                        <div
-                             class="rebuy-widget-container"
-                             v-cloak
-                             v-bind:class="['widget-display-' + config.display_type, visible ? 'is-visible' : 'is-hidden' ]"
-                             v-on:click.self="hide()">
-
-                          <div class="rebuy-widget-content">
-                            <div class="rebuy-modal-close" v-on:click="hide()">
-                              <i class="fas fa-times"></i>
+                        {%- if settings.product_reviews_enable -%}
+                            <div class="proReviews">
+                                <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{ product.id }}" data-product-sku="{{ product.selected_or_first_available_variant.sku }}" data-product-type="{{product.type}}" data-product-title="{{product.title}}" style="display: inline-block;"></span>
+                                {% comment %}<span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>{% endcomment %}
                             </div>
+                        {%- endif -%}
+                    </div>
+                    <div class="ab proBoxImage col-xs-12 col-md-12 col-lg-12 mb30{% if product.type contains "Surprise Panty Pack" %} spImgWrapper{% endif %}">
+                        {% include 'vela-prodetail-image-lite' %}
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-6 mb30 proBoxInfo_outr">
+                        <div class="proBoxInfo{% if product.type == "Cotton Underwear" or product.type == "Cotton Bralette" %} isCotton{% endif %}">
+                            {% if product.metafields.ebyacf.has_subscription_upsell_online %}
+                                {% include 'vela-prodetail-info-subUpsell-lite' %}
+                            {% else %}
+                                {% include 'vela-prodetail-info-lite' %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="flex-wrap">                
+                    <div class="ebyPdpRelatedProductsWrapper">
+                        <h2>You might also like</h2>
+                        <div data-rebuy-id="5675" id="rebuy-id-5675">
+                        <div class="rebuy-widget"
+                            v-cloak
+                            v-on:click="stopPropagation($event)"
+                            v-bind:id="'rebuy-widget-' + id"
+                            v-bind:class="['widget-type-' + config.type.replace('_','-'), 'widget-display-' + config.display_type, products.length > 0 ? 'is-visible' : 'is-hidden']">
 
-                            <h4 class="super-title" v-if="config.language.super_title != ''" v-html="config.language.super_title"></h4>
+                            <div
+                                class="rebuy-widget-container"
+                                v-cloak
+                                v-bind:class="['widget-display-' + config.display_type, visible ? 'is-visible' : 'is-hidden' ]"
+                                v-on:click.self="hide()">
 
-                            <h3 class="primary-title" v-if="config.language.title != ''" v-html="config.language.title"></h3>
+                            <div class="rebuy-widget-content">
+                                <div class="rebuy-modal-close" v-on:click="hide()">
+                                <i class="fas fa-times"></i>
+                                </div>
 
-                            <div class="description" v-if="config.language.description != ''" v-html="config.language.description"></div>
+                                <h4 class="super-title" v-if="config.language.super_title != ''" v-html="config.language.super_title"></h4>
 
-                            <div class="rebuy-product-grid" v-bind:class="layoutClasses">
+                                <h3 class="primary-title" v-if="config.language.title != ''" v-html="config.language.title"></h3>
 
-                                  <div class="rebuy-product-block" v-bind:data-prdId="product.id" v-for="product in products" v-bind:class="[product.handle, 'product-id-' + product.id, cartHasProduct(product) ? 'cart-has-item' : '']">
-                          <div class="rebuy-product-media">
-                              <a class="rebuy-product-image" v-bind:style="imageStyles" v-bind:class="[hasLearnMore() ? 'clickable' : '']" v-bind:href="learnMoreURL(product)" v-on:click="learnMore(product);">
-                                  <img class="lazyload" width="157" height="157" v-bind:src="itemImage(product, product.selected_variant, '400x400')" v-bind:alt="product.title">
-                              </a>
-                              <div class="rebuy-product-options" v-if="showVariantSelect(product)">
-                                  <div class="rebuy-select-block"  v-bind:class="[product.product_type == 'Silk Scarf' ? 'onesizeonly' : '']">
-                                      <div class="rebuy-title-container">
-                                          <a class="rebuy-variant-title rebuy-select-size" v-html="product.selected_variant.title"></a>
-                                          <img src="{{ 'arrow-point-to-down.svg' | asset_url }}" alt="Arrow" class="rebuy-arrow"/>
-                                      </div>
-                                      <div class="rebuy-select-options">
-                                          <div class="current-size" v-html="product.selected_variant.title"></div>
-                                          <div class="siz-guid-container" v-if="product.product_type == 'Core Bralette' || product.product_type == 'Core Underwear' || product.product_type == 'Surprise Panty Pack'">
-                                              <a class="siz_guid rebuy" v-bind:data-product-type="product.product_type" href="#">Size Guide</a>
-                                          </div>
-                                          <div class="options">
-                                              <div class="single-select" v-for="variant in product.variants" 
-                                              v-bind:data-value="variant.id">{% raw %}{{ variant.title }}{% endraw %}</div>
-                                              <select
-                                              class="rebuy-select"
-                                              v-model="product.selected_variant_id"
-                                              v-on:change="selectVariant(product);">
-                                              <option v-for="variant in product.variants" v-bind:value="variant.id">{% raw %}{{ variant.title }}{% endraw %}</option>
-                                              </select>                                                
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="rebuy-product-actions">
-                                  <button
-                                      class="rebuy-button"
-                                      v-bind:class="{ working: (product.status != 'ready' && product.status != 'selecting') }"
-                                      v-bind:disabled="!(variantAvailable(product.selected_variant)) || (product.status != 'ready' && product.status != 'selecting')"
-                                      v-on:click="addToCart(product)"
-                                      type="button">
-                                          <span v-html="!(variantAvailable(product.selected_variant)) || (product.status != 'ready' && product.status != 'selecting') ? '...' : 'Add'"></span>
-                                  </button>
-                              </div>
-                          </div>
-                          <div class="rebuy-product-info">
-                              <!-- <div class="description" v-if="config.language.description != ''" v-html="config.language.description"></div> -->
-                              <a class="rebuy-product-title" v-bind:href="learnMoreURL(product)" v-on:click="learnMore(product);" v-html="product.title" v-bind:class="[hasLearnMore() ? 'clickable' : '']"></a>
-                              <div class="rebuy-product-review" v-if="hasProductReviews(product)">
-                                  <span class="rebuy-star-rating">
-                                      <span class="rebuy-star-rating-background"></span>
-                                      <span class="rebuy-star-rating-foreground" v-bind:style="{ width: productReviewRatingPercentage(product) }"></span>
-                                  </span>
-                                  <span class="rebuy-review-count" v-html="productReviewCount(product)"></span>
-                              </div>
-                              <div class="rebuy-product-price bfx-price-container">
-                                  <div v-if="variantOnSale(product, product.selected_variant)">
-                                      <span class="rebuy-money sale bfx-sale-price bfx-price" v-html="formatMoney(variantPrice(product, product.selected_variant)).replace('.00', '')"></span>
-                                      <span class="rebuy-money compare-at bfx-old-price bfx-price" v-html="formatMoney(variantCompareAtPrice(product, product.selected_variant)).replace('.00', '')"></span>
-                                  </div>
-                                  <div v-if="!(variantOnSale(product, product.selected_variant))">
-                                      <span class="rebuy-money bfx-price" v-html="formatMoney(variantPrice(product, product.selected_variant)).replace('.00', '')"></span>
-                                  </div>
-                              </div>
-                              <div class="rebuy-select-color">
-                                <a class="rebuy-select-colors" v-bind:href="learnMoreURL(product)" v-on:click="learnMore(product);">More colors</a>
-                              </div>
-                          </div>                                                       
-                      </div>
+                                <div class="description" v-if="config.language.description != ''" v-html="config.language.description"></div>
+
+                                <div class="rebuy-product-grid" v-bind:class="layoutClasses">
+
+                                    <div class="rebuy-product-block" v-bind:data-prdId="product.id" v-for="product in products" v-bind:class="[product.handle, 'product-id-' + product.id, cartHasProduct(product) ? 'cart-has-item' : '']">
+                            <div class="rebuy-product-media">
+                                <a class="rebuy-product-image" v-bind:style="imageStyles" v-bind:class="[hasLearnMore() ? 'clickable' : '']" v-bind:href="learnMoreURL(product)" v-on:click="learnMore(product);">
+                                    <img class="lazyload" width="157" height="157" v-bind:src="itemImage(product, product.selected_variant, '400x400')" v-bind:alt="product.title">
+                                </a>
+                                <div class="rebuy-product-options" v-if="showVariantSelect(product)">
+                                    <div class="rebuy-select-block">
+                                        <div class="rebuy-title-container">
+                                            <a class="rebuy-variant-title rebuy-select-size" v-html="product.selected_variant.title"></a>
+                                            <img src="{{ 'arrow-point-to-down.svg' | asset_url }}" alt="Arrow" class="rebuy-arrow"/>
+                                        </div>
+                                        <div class="rebuy-select-options">
+                                            <div class="current-size" v-html="product.selected_variant.title"></div>
+                                            <div class="siz-guid-container" v-if="product.product_type == 'Core Bralette' || product.product_type == 'Core Underwear' || product.product_type == 'Surprise Panty Pack'">
+                                                <a class="siz_guid rebuy" v-bind:data-product-type="product.product_type" href="#">Size Guide</a>
+                                            </div>
+                                            <div class="options">
+                                                <div class="single-select" v-for="variant in product.variants" 
+                                                v-bind:data-value="variant.id">{% raw %}{{ variant.title }}{% endraw %}</div>
+                                                <select
+                                                class="rebuy-select"
+                                                v-model="product.selected_variant_id"
+                                                v-on:change="selectVariant(product);">
+                                                <option v-for="variant in product.variants" v-bind:value="variant.id">{% raw %}{{ variant.title }}{% endraw %}</option>
+                                                </select>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rebuy-product-actions">
+                                    <button
+                                        class="rebuy-button"
+                                        v-bind:class="{ working: (product.status != 'ready' && product.status != 'selecting') }"
+                                        v-bind:disabled="!(variantAvailable(product.selected_variant)) || (product.status != 'ready' && product.status != 'selecting')"
+                                        v-on:click="addToCart(product)"
+                                        type="button">
+                                            <span v-html="!(variantAvailable(product.selected_variant)) || (product.status != 'ready' && product.status != 'selecting') ? '...' : 'Add'"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rebuy-product-info">
+                                <!-- <div class="description" v-if="config.language.description != ''" v-html="config.language.description"></div> -->
+                                <a class="rebuy-product-title" v-bind:href="learnMoreURL(product)" v-on:click="learnMore(product);" v-html="product.title" v-bind:class="[hasLearnMore() ? 'clickable' : '']"></a>
+                                <div class="rebuy-product-review" v-if="hasProductReviews(product)">
+                                    <span class="rebuy-star-rating">
+                                        <span class="rebuy-star-rating-background"></span>
+                                        <span class="rebuy-star-rating-foreground" v-bind:style="{ width: productReviewRatingPercentage(product) }"></span>
+                                    </span>
+                                    <span class="rebuy-review-count" v-html="productReviewCount(product)"></span>
+                                </div>
+                                <div class="rebuy-product-price bfx-price-container">
+                                    <div v-if="variantOnSale(product, product.selected_variant)">
+                                        <span class="rebuy-money sale bfx-sale-price bfx-price" v-html="formatMoney(variantPrice(product, product.selected_variant)).replace('.00', '')"></span>
+                                        <span class="rebuy-money compare-at bfx-old-price bfx-price" v-html="formatMoney(variantCompareAtPrice(product, product.selected_variant)).replace('.00', '')"></span>
+                                    </div>
+                                    <div v-if="!(variantOnSale(product, product.selected_variant))">
+                                        <span class="rebuy-money bfx-price" v-html="formatMoney(variantPrice(product, product.selected_variant)).replace('.00', '')"></span>
+                                    </div>
+                                </div>
+                                <div class="rebuy-select-color">
+                                    <a class="rebuy-select-colors" v-bind:href="learnMoreURL(product)" v-on:click="learnMore(product);">More colors</a>
+                                </div>
+                            </div>                                                       
+                        </div>
+                                </div>
 
                             </div>
 
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                <div class="product-details-tab">
-<!--                   	<div class="details-content-mobile mobile_only">
-                      <div class="multiple-details">
-                          {{ product.metafields.ebyacf.new_spec_details.en }}
-                      </div>
-                    </div> -->
-                    <div class="product-details">more details +</div>
-                    <div class="details-content-background">
-                        <div class="details-content">
-                            <h3>Details</h3>
-                            {{ product.metafields.ebyacf.new_desc_details.en }}
-<!--                             <p>Our bikini is truly seamless, designed to be invisible under your clothes, and cut from our
-                                oh-so-soft signature fabric. This seamless piece features a mid-rise front, standard leg
-                                with a narrow side, and full coverage back. </p> -->
-                            <div class="multiple-details">
-                              	{{ product.metafields.ebyacf.new_spec_details.en }}
-<!--                                 <div class="singe-detail-block">
-                                    <h4>Color</h4>
-                                    <p>The panty is a gorgeous flat grey with a slightly blue tint.</p>
-                                </div>
-                                <div class="singe-detail-block">
-                                    <h4>No-Slip Grip</h4>
-                                    <p>This panty features our no-slip lining – no riding up, no slipping down</p>
-                                </div>
-                                <div class="singe-detail-block">
-                                    <h4>Fit</h4>
-                                    <ul>
-                                        <li>Front: Mid-rise</li>
-                                        <li>Back: Full coverage</li>
-                                        <li>Leg: Standard</li>
-                                        <li>Side: Narrow</li>
-                                    </ul>
-                                </div>
-                                <div class="singe-detail-block">
-                                    <h4>Material</h4>
-                                    <p>85% nylon, 15% spandex, 100% cotton lining</p>
-                                </div> -->
                             </div>
-                            <h3>Mission</h3>
-                          	<div class="ebyProductPromiseWrapper">
-                         		{{ product.metafields.ebyacf.new_women_empower_details.en }}	
-                          	</div>
-                          	<div class="ebyProductPromiseWrapper">
-                          		{{ product.metafields.ebyacf.new_manufacture_rule_details.en }}
-                          	</div>
+                        </div>
                         </div>
                     </div>
-                </div>
-                <div class="guarantee-block">
-                    <h2>EBY Fit Guarantee</h2>
-                    <p>Free returns and exchanges on U.S. orders.</p>
-                 	<a href="/pages/faq" class="guarantee-blockLink" target="_blank">See More Details <span class="ebyicon-link-arrow learnMoreSubLink"></span></a>
+                    <div class="product-details-tab">
+                        <div class="product-details">more details +</div>
+                        <div class="details-content-background">
+                            <div class="details-content">
+                                <h3>Details</h3>
+                                {{ product.metafields.ebyacf.new_desc_details.en }}
+                                <div class="multiple-details">
+                                    {{ product.metafields.ebyacf.new_spec_details.en }}
+                                </div>
+                                <h3>Mission</h3>
+                                <div class="ebyProductPromiseWrapper">
+                                    {{ product.metafields.ebyacf.new_women_empower_details.en }}	
+                                </div>
+                                <div class="ebyProductPromiseWrapper">
+                                    {{ product.metafields.ebyacf.new_manufacture_rule_details.en }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="guarantee-block">
+                        <h2>EBY Fit Guarantee</h2>
+                        <p>Free returns and exchanges on U.S. orders.</p>
+                        <a href="/pages/faq" class="guarantee-blockLink" target="_blank">See More Details <span class="ebyicon-link-arrow learnMoreSubLink"></span></a>
+                    </div>
                 </div>
             </div>
-          
-          	{% unless product.type == "Panty Pack" or product.type == "Surprise Panty Pack" or product.type contains "Prebuilt" or product.type == "Premium Bralette" or product.type == "Gift Cards" or product.type == "Mesh Underwear"  or product.type == "Wrap Top" %}
-<!--           	<div class="resource-conscious">
-                <div class="resource-row">
-                    <div class="resource-col">
-                        <div class="column-image">
-                            <img width="376" height="550" class="lazyload" data-src="{{ "STATIC---" | append: prodNameTitle | append: "---1.jpg" | file_img_url: 'master' }}" alt="" title=""/>
-                        </div>
-                    </div>
-                    <div class="resource-col">
-                        <div class="column-image">
-                            <img width="376" height="550" class="lazyload" data-src="{{ "STATIC---" | append: prodNameTitle | append: "---2.jpg" | file_img_url: 'master' }}" alt="" title=""/>
-                        </div>
-                    </div>
-                  	<div class="resource-col">
-                        <div class="column-image">
-                            <img width="376" height="550" class="lazyload" data-src="{{ "STATIC---" | append: prodNameTitle | append: "---3.jpg" | file_img_url: 'master' }}" alt="" title=""/>
-                        </div>
-                    </div>
-                  	<div class="resource-col">
-                        <div class="column-image">
-                            <img width="376" height="550" class="lazyload" data-src="{{ "STATIC---" | append: prodNameTitle | append: "---4.jpg" | file_img_url: 'master' }}" alt="" title=""/>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-          	{% endunless %}
-          
-          	{% if product.type == "Premium Bralette" %}
-<!--           	<div class="resource-conscious">
-                <div class="resource-row">
-                    <div class="resource-col">
-                        <div class="column-image">
-                            <img width="375" height="550" class="lazyload" data-src="{{ "STATIC---" | append: "afbralette" | append: "---1.jpg" | file_img_url: 'master' }}" alt="" title=""/>
-                        </div>
-                    </div>
-                    <div class="resource-col">
-                        <div class="column-image">
-                            <img width="375" height="550" class="lazyload" data-src="{{ "STATIC---" | append: "afbralette" | append: "---2.jpg" | file_img_url: 'master' }}" alt="" title=""/>
-                        </div>
-                    </div>
-                  	<div class="resource-col">
-                        <div class="column-image">
-                            <img width="375" height="550" class="lazyload" data-src="{{ "STATIC---" | append: "afbralette" | append: "---3.jpg" | file_img_url: 'master' }}" alt="" title=""/>
-                        </div>
-                    </div>
-                  	<div class="resource-col">
-                        <div class="column-image">
-                            <img width="375" height="550" class="lazyload" data-src="{{ "STATIC---" | append: "afbralette" | append: "---4.jpg" | file_img_url: 'master' }}" alt="" title=""/>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-          	{% endif %}
-        </div>
 
 
         {% if section.settings.image_picker_1 != blank %}
@@ -907,26 +727,40 @@
 
 
 <div class="pdp-reviews-block">
-  <div class="testm_slider">
-      <h2>{{ section.settings.product_review_section_title }}</h2>
-      <div class="rev_sect">
+    {%- if section.settings.product_review_section_enable -%}
+    <div class="testm_slider">
+        <h2>{{ section.settings.product_review_section_title }}</h2>
+        <div class="rev_sect">
           
-        <!--Stamped - Begin Main Widget -->
-        <div 
-        id="stamped-main-widget"   
-        data-product-id="{{ product.id }}"   
-        data-name="{{ product.title | escape }}"   
-        data-url="{{ shop.url }}{{ product.url }}"   
-        data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" 
-        data-description="{{ product.description | escape }}"   
-        data-product-sku="{{product.selected_or_first_available_variant.sku}}"
-        data-product-title="{{product.title}}" 
-        data-product-type="{{product.type}}">
-        </div>
-        <!-- Stamped - End Main Widget -->   
+          <div id="stamped-main-widget" class="stamped-container" 
+               data-widget-style="profile"
+               data-widget-type="profile" 
+               data-sort="most-votes"
+               data-widget-sort="most-votes"
+               data-product-id="{{ reviewProdId }}"
+               data-product-category=“{{ product.type }}”
+               data-product=“{{ product.type }}”
+               data-widget-show-upload="true" 
+               data-widget-show-graph="true" 
+               data-widget-show-sort="true" 
+               data-widget-show-summary-recommend="true"
+               data-widget-show-tab-reviews="false"
+               data-widget-show-avatar="false" 
+               data-widget-show-location="true" 
+               data-widget-show-verified="true" 
+               data-widget-show-date="true" 
+               data-widget-show-share="true" 
+               data-widget-show-votes="true" 
+               data-widget-show-qna="false" 
+               data-widget-show-product-variant="true" 
+               data-widget-show-filter-custom-forms="true" 
+               data-widget-show-filter-search="true" 
+               data-widget-show-filter-keywords="true" data-widget-show-smart-guide="true" data-widget-load-type="continue" data-take-reviews="20" data-widget-limit-words="50">
+          </div>
 
       </div>
   </div>
+  {%- endif -%}
 </div>
 
 <div class="pop_size size_guid_pdp">
@@ -1802,7 +1636,17 @@
 
 <script type="lazyload2" data-src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
 <script type="lazyload2">
-
+  	setTimeout(function(){
+        $('.product-name-desktop').click(function () {
+            if ($('.style-changer').css("display") === "none"){
+                $('.style-changer').css("display", "block");
+                $('.changer-arrow').css("transform", "rotate(180deg)")
+            } else {
+                $('.style-changer').css("display", "none");
+                $('.changer-arrow').css("transform", "rotate(0deg)")
+            }
+        })
+    });
   	setTimeout(function(){
         gtag("event", "view_item", {
           currency: "USD",
@@ -1818,26 +1662,15 @@
             quantity: 1
           }]
         });
-
-        ttq.instance('CBK4Q5RC77U0CJTABNJG').track('ViewContent', {
-            content_id: "{{ product.id }}",
-            content_type: "product",
-            content_category: "{{ product.type }}",
-            content_name: "{{ product.title }}",
-            quantity: 1,
-            price: "{{ product.price | money_without_currency }}",
-            value: "{{ cart.total_price | money_without_currency }}",
-            currency: 'USD'
-        });
       
         {% for tag in product.tags %}
-        {% if tag contains 'limited_edition' %}
-        var text = "We'll let you know when the next limited edition colors come out.";
-        {% elsif tag contains 'core' %}
-        var text = "We'll let you know when its back.";
-        {% else %}
-        var text = "We'll let you know when the next limited edition colors come out.";
-        {% endif %}
+            {% if tag contains 'limited_edition' %}
+                var text = "We'll let you know when the next limited edition colors come out.";
+            {% elsif tag contains 'core' %}
+                var text = "We'll let you know when its back.";
+            {% else %}
+                var text = "We'll let you know when the next limited edition colors come out.";
+            {% endif %}
         {% endfor %}
         var klaviyo = window.klaviyo || [];
         klaviyo.init({
@@ -1943,7 +1776,7 @@
               console.log(":: prod inv pull ::", window.productInfo);
             
               var s = data[prodIdForInventoryCheck].product.variants[v.id].inventoryItem.locations;
-              console.log('--lc--', s[0].available);
+              console.log(s[0].available);
               if(s[0].available == 0 || s[0].available < 2){
                 if($('#AddToCartText').attr('data-need-color') == undefined || $('#AddToCartText').attr('data-need-color') != 'true') {
                   // look at a different size
@@ -1955,7 +1788,7 @@
                       	break;
                     }
                   }
-                  //jQuery('.swatch-element[data-value="'+variantToPreselect.title+'"] input').trigger('click');
+                  jQuery('.swatch-element[data-value="'+variantToPreselect.title+'"] input').trigger('click');
                 } else {
                   $addToCartText.attr('data-text','Sold Out');
                 }
@@ -2054,6 +1887,7 @@
             isDesktop = displayProductDetails(desktopWidth, isDesktop);
         });      
       
+      
         jQuery('.product-name').click(function () {
             if ($('.style-changer-mobile').css("display") === "block"){
                 $('.style-changer-mobile').css("display", "none");
@@ -2064,6 +1898,53 @@
             }
         });
 
+        document.addEventListener('rebuy.ready', function(event) {
+            jQuery('.single-select').on("click", function (ev) {
+                const variantID = jQuery(this).data("value");
+                const currentSelect = jQuery(this).siblings('select.rebuy-select');
+                const productID = jQuery(currentSelect[0]).data("id");
+              	let productTileId = jQuery(this).closest('.rebuy-product-block').attr('data-prdId');
+                jQuery('select.rebuy-select option[value=' + variantID + ']').attr('selected','selected');
+                const rebuyWidgets = Rebuy.widgets;
+              	if (rebuyWidgets && rebuyWidgets.length > 0) {
+                      const rebuyWidget = Rebuy.widgets[0];
+                  	let widgetProducts = rebuyWidget.data.products;
+                    for( var index = 0; index < widgetProducts.length; index++ ){
+                      if (widgetProducts[index].id === +productTileId) {
+                          // reduce down to find the variant in question by 
+                          let selectedVariantProd = widgetProducts[index].variants.reduce(function (acc, variantPrd) {
+                            if (variantPrd.id === variantID) {
+                              acc.push(variantPrd);
+                            }
+                            return acc;
+                          }, []);
+                          // set new values for prod upsell
+                          rebuyWidget.data.products[index].selected_variant_id = variantID;
+                          rebuyWidget.data.products[index].selected_variant = selectedVariantProd[0];
+                      }
+                    }
+                } else {
+                  console.log(':: Error - Rebuy widget not found ::');
+                }
+                currentSelect.val(variantID).change();
+            });
+            jQuery('div.rebuy-title-container').on("click", function (e) {
+                e.preventDefault();
+                console.log($('.rebuy-select-options'));
+                $('.rebuy-select-options').hide();
+                $(this).siblings('.rebuy-select-options').show();
+            });
+            $(document).bind( "mouseup", function(e){
+                    var element = $(".rebuy-select-options");
+	                if (!element.is(e.target) && element.has(e.target).length === 0){
+		            element.hide();
+	            }
+            });
+			jQuery('div.rebuy-select-options').on("click", function (e) {
+                e.preventDefault();
+                $('.rebuy-select-options').hide();
+            });
+        });
         jQuery(document).on('click', '.siz_guid.rebuy', function(e) {
           e.preventDefault();
           if (jQuery(this).data('product-type') == 'Core Bralette') {
@@ -2087,54 +1968,5 @@
         jQuery('span.colz_pop.rebuy').click(function() {
           jQuery('.pop_size.rebuy').fadeOut();
         });
-    }, 2000);
-
-    document.addEventListener('rebuy.ready', function(event) {
-        jQuery('.single-select').on("click", function (ev) {
-            const variantID = jQuery(this).data("value");
-            const currentSelect = jQuery(this).siblings('select.rebuy-select');
-            const productID = jQuery(currentSelect[0]).data("id");
-            let productTileId = jQuery(this).closest('.rebuy-product-block').attr('data-prdId');
-            jQuery('select.rebuy-select option[value=' + variantID + ']').attr('selected','selected');
-            const rebuyWidgets = Rebuy.widgets;
-            if (rebuyWidgets && rebuyWidgets.length > 0) {
-                  const rebuyWidget = Rebuy.widgets[0];
-                let widgetProducts = rebuyWidget.data.products;
-                for( var index = 0; index < widgetProducts.length; index++ ){
-                  if (widgetProducts[index].id === +productTileId) {
-                      // reduce down to find the variant in question by 
-                      let selectedVariantProd = widgetProducts[index].variants.reduce(function (acc, variantPrd) {
-                        if (variantPrd.id === variantID) {
-                          acc.push(variantPrd);
-                        }
-                        return acc;
-                      }, []);
-                      // set new values for prod upsell
-                      rebuyWidget.data.products[index].selected_variant_id = variantID;
-                      rebuyWidget.data.products[index].selected_variant = selectedVariantProd[0];
-                  }
-                }
-            } else {
-              console.log(':: Error - Rebuy widget not found ::');
-            }
-            currentSelect.val(variantID).change();
-        });
-        jQuery('div.rebuy-title-container').on("click", function (e) {
-            e.preventDefault();
-            console.log($('.rebuy-select-options'));
-            $('.rebuy-select-options').hide();
-            $(this).siblings('.rebuy-select-options').show();
-        });
-        $(document).bind( "mouseup", function(e){
-                var element = $(".rebuy-select-options");
-                if (!element.is(e.target) && element.has(e.target).length === 0){
-                element.hide();
-            }
-        });
-        jQuery('div.rebuy-select-options').on("click", function (e) {
-            e.preventDefault();
-            $('.rebuy-select-options').hide();
-        });
     });
-  
 </script>

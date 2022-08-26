@@ -12,7 +12,6 @@
         
           {% assign on_sale = false %}
           {% assign isOnDealSale = false %}
-          {% assign hasFlag = false %}
 
           {% for prodTag in product.tags %}
           {% if prodTag contains "lightningDeal-" %}
@@ -34,6 +33,7 @@
           {% elsif product.type contains "Pack" %}
           {%- assign prodFabric = "signature" -%}
           {% endif %}
+
 
           {% if product.type contains "Underwear" or product.type == "Shapewear" %}
               {% assign isPanty = true %}
@@ -167,16 +167,6 @@
               {% assign isTank = false %}
 
               {% assign prodNameTitle = "top" %}
-              {% for prodTag in product.tags %}
-                {% if prodTag == "flag-new_arrival" %}
-                    {% assign hasFlag = "true" %}
-                    {% assign prodFlag = "New" %}
-                {% endif %}
-                {% if prodTag == "flag-on_sale" %}
-                    {% assign hasFlag = "true" %}
-                    {% assign prodFlag = "Sale" %}
-                {% endif %}
-              {% endfor %}
           {% endif %}
 
           {% if prodIsLe == "limited_edition" %}
@@ -201,7 +191,7 @@
 
           
           {% assign bestSellerCount = bestSellerCount | plus: 1 %}
-          <div class="item ebyProdTile epcWrapper tileFilterable {% if on_sale or isOnDealSale %}this_sale{% endif %} {% if product.metafields.ebyacf.product_is_new_release or hasFlag == "true" %} newRelease{% endif %}{% if prodIsLe == "limited_edition" %} limitedReleaseTile{% endif %} tileHide noFilterType" 
+          <div class="item ebyProdTile epcWrapper tileFilterable {% if on_sale or isOnDealSale %}this_sale{% endif %} {% if product.metafields.ebyacf.product_is_new_release %} newRelease{% endif %}{% if prodIsLe == "limited_edition" %} limitedReleaseTile{% endif %} tileHide noFilterType" 
                data-prodTitle="{{ product.title }}"
                data-prodSku="{{ product.id }}"
                data-prodType="{{ prodNameTitle }}"
@@ -216,7 +206,6 @@
                data-bestSellingRank="{{ bestSellerCount }}"
                data-reviewsCount="{{ product.metafields.stamped.reviews_average }}"
                >
-                {% if hasFlag %}<div class="prodTileFlag"><div class="prodTileFlagInnerWrapper"><span>New</span></div></div>{% endif %}
             	{% if on_sale %}<div class="labelSale holidaySaleFlag">Sale</div>{% endif %}
             {% include 'product-grid-filter-item' %}
           </div>

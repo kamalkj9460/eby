@@ -230,11 +230,11 @@
               <div class="drw-cus-div">
               	{{#if isIncludedInCustomBox }}
                     {{#if customBoxIsPlus }}
-                        <div class="drawerProductImage bfx-product-image" style="background-image:url({{img}})">
+                        <div class="drawerProductImage bfx-product-image" style="background-image:url({{customBoxPlusImg}})">
                           <a{{#unless productFreeGift}} href="{{url}}"{{/unless}}></a>
                         </div>
                     {{else}}
-                        <div class="drawerProductImage bfx-product-image" style="background-image:url({{img}})">
+                        <div class="drawerProductImage bfx-product-image" style="background-image:url({{customBoxImg}})">
                           <a{{#unless productFreeGift}} href="{{url}}"{{/unless}}></a>
                         </div>
                     {{/if}}
@@ -687,8 +687,7 @@
                             	{% endraw %}
                                 
                                 {% if (isSubscription) %}
-                                  	<button class="btn btnVelaCart btnCheckout r-btn">Checkout</button>
-                                  	<a href="{{ shop.url }}/checkout" class="btn btnVelaCart btnCheckout shopCheckoutBtn hidden">Checkout</a>
+                                  	<button class="btn btnVelaCart btnCheckout r-btn">Checkout</button>      
                                 {% else %}
                                 	<a href="{{ shop.url }}/checkout" class="btn btnVelaCart btnCheckout">Checkout</a>
                                     <a href="{{ shop.url }}/checkout" class="btn bfx-checkout international">Checkout</a>

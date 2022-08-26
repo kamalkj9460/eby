@@ -1,12 +1,8 @@
 {% assign slashPrice = 0 %}
-{% assign hasSub = false %}
 {% for item in cart.items %}
   {% for p in item.properties %}
 	{% if p.first == "product_type" and p.last == 'Sub Subscription' %}
   	  {% assign slashPrice = slashPrice | plus: item.final_line_price %}
-  	{% endif %}
-    {% if p.first == "product_type" and p.last == 'Main Subscription' %}
-      {% assign hasSub = true %}
   	{% endif %}
   {% endfor %}
 {% endfor %}
@@ -62,7 +58,6 @@
                       {% assign isBuildAPack = "false" %}
                           {% assign isHiddenCollateral = "false" %}
                           {%- assign productFreeGift = false -%}
-                          {%- assign isMysteryProductPair = false -%}
                           {% for p in item.properties %}
                             {% if p.first == 'sub_bundle' or p.first == 'hidden_collateral' %}
                               {% assign c = 'hide' %}
@@ -85,9 +80,6 @@
                             {% if p.first == 'Free' and p.last == 'Gift' %}
                               {%- assign productFreeGift = true -%}
                             {% endif %}
-                            {% if p.first == 'Mystry_Collection' and p.last == 'Mystry Product' %}
-                              {%- assign isMysteryProductPair = true -%}
-                            {% endif %}
                             {% if p.first == "hidden_collateral" and p.last == 'true' %}
                             	{% assign isHiddenCollateral = "true" %}
                             {% endif %}
@@ -95,7 +87,7 @@
                           {% if item.product.type == 'Surprise Panty Pack' %}
                           	<div class="flexRow noGutter spanty_pack">
                           {% else %}
-                            <div class="flexRow noGutter{% if isMysteryProductPair %} mysteryPair{% endif %} {% if isCustomBoxProd == "true" %} includeInCb{% endif %} {% if isHiddenCollateral == "true" %} hidden{% endif %} {{ c }}{% if isMysteryPackProd == "true" %} includedInMP{% endif %}" >
+                            <div class="flexRow noGutter{% if isCustomBoxProd == "true" %} includeInCb{% endif %} {% if isHiddenCollateral == "true" %} hidden{% endif %} {{ c }}{% if isMysteryPackProd == "true" %} includedInMP{% endif %}" >
                           {% endif %}
                             
                                 <div class="productImage col-xs-3 col-sm-2{% if prdPlusImgFileName != "false" %} plusImgVariant{% endif %}" data-label="{{ 'customer.order.product' | t }}">
@@ -103,19 +95,14 @@
                                         <div class="ebyMembershipImg">
                                           <img class="img-responsive lazyload" width="114" height="167" data-src="{{ item | img_url: '370x' }}" alt="{{ item.title | escape }}" title="{{ item.title | escape }}" >
                                         </div>
-
-                                    {% elsif isMysteryProductPair %}
-                                        <div class="ebyMembershipImg">
-                                          <img class="img-responsive lazyload" width="114" height="167" data-src="https://cdn.shopify.com/s/files/1/0313/4062/5964/files/mystery-panty-1.jpg" alt="EBY Surprise Pair" title="EBY Surprise Pair" >
-                                        </div>
                                     {% else %}
 										{% if isCustomBoxProd == "true" %}
                                   			{% if prdPlusImgFileName != "false" %}
-                                              <img class="t1 img-responsive missy lazyload" width="114" height="167" alt="{{ item.product.featured_image.alt | escape }}" title="{{ item.title | escape }}" data-src="{{ item | img_url: '370x' }}" />
+                                              <img class="t1 img-responsive missy lazyload" width="114" height="167" alt="{{ item.product.featured_image.alt | escape }}" title="{{ item.title | escape }}" data-src="{{ customBoxImageSrc | file_img_url: 'master' }}" />
                                               {% assign customBoxPlusImageSrc = prodColorTitle | replace: " ", "" | append: "---" | append: prdPlusImgFileName | append: "---prod-cb--2x.jpg" %}
-                                              <img class="t1 img-responsive plus lazyload" width="114" height="167" alt="{{ item.product.featured_image.alt | escape }}" title="{{ item.title | escape }}" data-src="{{ item | img_url: '370x' }}" />
+                                              <img class="t1 img-responsive plus lazyload" width="114" height="167" alt="{{ item.product.featured_image.alt | escape }}" title="{{ item.title | escape }}" data-src="{{ customBoxPlusImageSrc | file_img_url: 'master' }}" />
                                             {% else %}
-                                              <img class="t1 img-responsive uni lazyload" width="114" height="167" alt="{{ item.product.featured_image.alt | escape }}" title="{{ item.title | escape }}" data-src="{{ item | img_url: '370x' }}" />
+                                              <img class="t1 img-responsive uni lazyload" width="114" height="167" alt="{{ item.product.featured_image.alt | escape }}" title="{{ item.title | escape }}" data-src="{{ customBoxImageSrc | file_img_url: 'master' }}" />
                                             {% endif %}
                                   		{% else %}
                                             <a{% unless productFreeGift == true %} href="{{ item.url | within: collections.all }}"{% endunless %} class="cartImage">
@@ -130,17 +117,13 @@
                                   	<div class="ebyCartItemHeader">
                                       {% if item.product.type == "Subscription Box" or item.product.type == 'Surprise Panty Pack' %}
                                       <p class="ebyMembershipTitle bfx-product-name notranslate">{{ item.product.title }}</p>
-                                      {% elsif isMysteryProductPair %}
-                                      <p class="ebyMembershipTitle bfx-product-name notranslate">Surprise Pair</p>
                                       {% else %}
                                       <a{% unless productFreeGift == true %} href="{{ item.url }}"{% endunless %} class="productName bfx-product-name notranslate">
                                         {{ item.product.title }}
                                       </a>
                                       {% endif %}
                                       {% unless item.variant.title contains 'Default' %}
-                                        {% unless isMysteryProductPair or item.product.type == "Subscription Box" %}
                                           <br>
-                                        {% endunless %}
                                           <small class="notranslate">{{ item.variant.title }}</small>
                                       {% endunless %}
                                       <span class="hidden bfx-sku notranslate">{{ item.sku }}</span>
@@ -167,8 +150,6 @@
                                       		  p.first == "product_type" or 
                                       		  p.first == "shipping_interval_frequency" or p.first == "bundle_ids" or p.first == "bundle_" or 
                                             p.first == "shipping_interval_unit_type" or p.first == "product_type" or
-                                            p.first contains "free" or
-                                            p.first contains "FREE" or
                                             p.first == "Free" %}
                                             <span>{{ p.first }}:
                                               {% if p.last contains '/uploads/' %}
@@ -255,11 +236,7 @@
                           {%- if cart.items_subtotal_price >= 5000 -%}
                           <div class="price_content">Over $75 - Free</div>
                           {%- else -%}
-                              {% if hasSub %}
-                                  <div class="price_content">FREE with subscription</div>
-                              {% else %}
-                                  <div class="price_content">Standard - $5</div>                      
-                              {% endif %}
+                          <div class="price_content">Standard - $5</div>
                           {%- endif -%}
                         </div>
                         <div class="price_block_row">

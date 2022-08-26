@@ -28,7 +28,7 @@
 
   {% if main.first %}
       {% for itemCollection in item.product.collections %}
-        {% if itemCollection.handle == 'bralettes-for-women' or itemCollection.handle == 'eby-seamless-clothing' %}
+        {% if itemCollection.handle == 'bralettes-for-women' %}
           {% assign collShow = true %}
         {% endif %}
       {% endfor %}

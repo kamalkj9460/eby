@@ -296,7 +296,7 @@
                           </div>
                         {% elsif product.type contains "Premium" %}  
                         	<div class="priceProduct {% if on_sale %}priceSale bfx-sale-price{% endif %}{% if product.metafields.ebyacf.evergreen_price_test %} st-tangentPrice{%endif%} bfx-price">{{ product.price | money_without_trailing_zeros  }}</div>
-                        {% elsif product.type contains "Surprise Panty Pack" or product.type contains "Panty Pack" %}
+                        {% elsif product.type contains "Surprise Panty Pack" %}
                         	<div class="priceProduct {% if on_sale %}priceSale bfx-sale-price{% endif %}{% if product.metafields.ebyacf.evergreen_price_test %} st-tangentPrice{%endif%} bfx-price">{{ product.price | money_without_trailing_zeros  }}</div>
                         {% endif %}
 

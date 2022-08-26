@@ -1099,11 +1099,6 @@ body #cartDrawer.empty_cart {
   background: #000c48!important;
   background-color: #000c48!important;
 }
-
-.quickAddDisabled {
-    opacity: 0.5;
-}
-
 .pop_productQuickAdd .proVariantsQuickview > .swatch .selectedSwatch label {
   color: #fff;
 }
@@ -1561,12 +1556,4 @@ form.search.ebyGlobalSearchbar:before {
       position: fixed;
       bottom:0;
   }
-}
-
-body#create-account {
-    background: #f0f0f0;
-}
-
-#cartDrawer {
-  overflow: hidden;
 }
